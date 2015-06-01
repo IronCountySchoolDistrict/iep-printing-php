@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Request;
+use Response;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use mikehaertl\pdftk\Pdf;
@@ -33,12 +34,19 @@ class HomeController extends Controller {
         // dd($pdf);
 
         if (Request::isMethod('get')) {
-            return 'hi';
+            return 'Hi!';
         } else if (Request::isMethod('post')) {
-            return 'hello';
+            $data = json_decode(Request::input('responses'));
+
+            $pdfFile = storage_path() . DIRECTORY_SEPARATOR . 'forms' . DIRECTORY_SEPARATOR . $data->form->title . '.pdf';
+
+            if (file_exists($pdfFile)) {
+                $pdf = new Pdf($pdfFile);
+            }
+
+
+            return Response::json($pdf);
         }
-        
-        dd(Request::all());
     }
 
 }
