@@ -66,11 +66,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 			$downloadFile = event(new PdfWasFilled($files))[0];
 		}
 
-		return json_encode(
-			[
-				'file' => $downloadFile,
-				'error' => (isset($error)) ? $error : []
-			]);
+		return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
 	}
 
 }
