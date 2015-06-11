@@ -1,0 +1,9 @@
+{
+	"sftp": {
+		"host": "205.125.100.64",
+		"user": "ps-api-test",
+		"pass": "P$apip@ssw0rd",
+		"remotePath": "/var/www/iep-printing-php/app/Http/Controllers"	
+	}
+	
+}
