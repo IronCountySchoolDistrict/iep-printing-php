@@ -1,44 +1,27 @@
 <?php namespace App\Http\Controllers;
 
 use Request;
-use Response;
-use Illuminate\Support\Str;
+use App\Iep\Pdf;
+use App\Iep\Student;
+use App\Commands\FillPdfCommand;
 use App\Http\Controllers\Controller;
-use mikehaertl\pdftk\Pdf;
-use mikehaertl\pdftk\FdfFile;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class HomeController extends Controller {
+
+    use DispatchesCommands;
 
     public function index()
     {
         if (Request::isMethod('get')) {
             return 'Hi!';
         } else if (Request::isMethod('post')) {
-            $responses = json_decode(Request::input('responses'));
-
-            $pdfFiles = [];
-            foreach ($responses as $response) {
-                $file = storage_path() . DIRECTORY_SEPARATOR . 'forms' . DIRECTORY_SEPARATOR . $response->form->title . '.pdf';
-                if (file_exists($file)) {
-                    $pdf = new Pdf($file);
-
-                    $fillForm = [];
-                    foreach ($response->response as $formFields) {
-                        $fillForm[$formFields->title] = $formFields->response;
-                    }
-
-                    $pdf->fillForm($fillForm)
-                        ->flatten()
-                        ->needAppearances()
-                        ->saveAs(); // TODO: save as what? can we get the temp location?
-                }
-            }
-
-            // TODO: zip if $pdfFiles length > 1
-
-            // TODO: move files to a location where we can give a link to it (not temp_dir)
-
-            return Response::json($pdf->getDataFields());
+            return $this->dispatch(
+                new FillPdfCommand(
+                    json_decode(Request::input('student')),
+                    json_decode(Request::input('responses'))
+                )
+            );
         }
     }
 
