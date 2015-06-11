@@ -16,12 +16,14 @@ class HomeController extends Controller {
         if (Request::isMethod('get')) {
             return 'Hi!';
         } else if (Request::isMethod('post')) {
-            return $this->dispatch(
+            $info = $this->dispatch(
                 new FillPdfCommand(
                     json_decode(Request::input('student')),
                     json_decode(Request::input('responses'))
                 )
             );
+
+            return response()->json($info);
         }
     }
 
