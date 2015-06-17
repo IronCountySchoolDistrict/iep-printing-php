@@ -1,2 +1,3 @@
 laravel.log
 forms/
+*.DS_Store
