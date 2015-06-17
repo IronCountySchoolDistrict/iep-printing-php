@@ -3,8 +3,8 @@
 use Carbon\Carbon;
 
 class Pdf extends \mikehaertl\pdftk\Pdf {
-	private $id;
-	private $fields = [];
+	public $id;
+	public $fields = [];
 
 	public function getId()
 	{
@@ -35,7 +35,7 @@ class Pdf extends \mikehaertl\pdftk\Pdf {
 
 	public function setField($key, $value)
 	{
-		return $this->fields[$key] = $value;
+		$this->fields[$key] = $value;
 	}
 
 	public function setFields($data)
