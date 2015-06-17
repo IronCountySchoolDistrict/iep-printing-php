@@ -8,6 +8,7 @@ class Student {
 	private $middleName;
 	private $lastName;
 	private $studentNumber;
+	private $grade;
 	private $entryDate;
 	private $exitDate;
 	private $gender;
@@ -38,6 +39,7 @@ class Student {
 		$this->middleName = isset($data->middle_name) ? $data->middle_name : '';
 		$this->lastName = isset($data->last_name) ? $data->last_name : '';
 		$this->studentNumber = isset($data->student_number) ? $data->student_number : 0;
+		$this->grade = (isset($data->grade)) ? $data->grade : 0;
 		$this->entryDate = isset($data->entrydate) ? new Carbon($data->entrydate) : null;
 		$this->exitDate = isset($data->exitdate) ? new Carbon($data->exitdate) : null;
 		$this->gender = isset($data->gender) ? $data->gender : '';
@@ -73,7 +75,7 @@ class Student {
 		}
 
 		$name .= ' ' . $this->lastName;
-		
+
 		return $name;
 	}
 
@@ -115,6 +117,10 @@ class Student {
 	*/
 	public function getStudentNumber() {
 		return $this->studentNumber;
+	}
+
+	public function getGrade() {
+		return $this->grade;
 	}
 
 	/**
@@ -323,7 +329,7 @@ class Student {
 	* set the middle name
 	* @param $name
 	*/
-	public function setmiddleName($name) {
+	public function setMiddleName($name) {
 		if (is_string($name)) {
 			$this->middleName = $name;
 		}
@@ -346,6 +352,12 @@ class Student {
 	public function setStudentNumber($number) {
 		if (is_int($number)) {
 			$this->studentNumber = $number;
+		}
+	}
+
+	public function setGrade($grade) {
+		if (is_int($grade)) {
+			$this->grade = $grade;
 		}
 	}
 
@@ -501,10 +513,10 @@ class Student {
 				$date = new Carbon($date);
 				$propertyValue = $date;
 			} catch (Exception $e) {
-				// invalid date string -- do nothing	
-			} 
+				// invalid date string -- do nothing
+			}
 		}
 
 		return $propertyValue;
 	}
-} 
+}
