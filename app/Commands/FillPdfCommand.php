@@ -30,34 +30,45 @@ class FillPdfCommand extends Command implements SelfHandling {
 	public function handle()
 	{
 		foreach ($this->responses as $response) {
-			$path_to_blank = config('iep.forms_storage_path') . $response->form->title . '.pdf';
-			$pdf = new Pdf($path_to_blank);
+			$formsPath = config('iep.forms_storage_path');
+			$formsFile = str_replace('IEP: ', '', $response->form->title) . '.pdf';
 
-			$existing_fields = $pdf->getDataFields();
+			$path_to_blank = $formsPath . $formsFile;
+			$renderer = str_replace('IEP: ', '', str_replace('.', '', $response->form->title));
 
-			$pdf = new Pdf($path_to_blank);
-			$pdf->setFields($existing_fields);
-			$pdf->setId($response->form->id);
+			if (file_exists($path_to_blank)) {
+				if (view()->exists("iep.forms.{$renderer}")) {
+					$pdf = new Pdf($path_to_blank);
 
-			foreach ($response->response as $fieldResponse) {
-				$pdf->setField($fieldResponse->field, $fieldResponse->response);
-			}
+					$existing_fields = $pdf->getDataFields();
 
-			if ($pdf->missing() > 0) {
-				$pdf->addStudent($this->student);
-			}
+					$pdf = new Pdf($path_to_blank);
+					$pdf->setFields($existing_fields);
+					$pdf->setId($response->form->id);
 
-			$path_to_filled = str_random(20) . '.pdf';
+					view("iep.forms.{$renderer}")
+						->with('pdf', $pdf)
+						->with('responses', $response)
+						->with('student', $this->student)
+						->render();
 
-			$pdf->fillForm($pdf->fields())
-				->flatten()
-				->needAppearances()
-				->saveAs($path_to_filled);
+					$path_to_filled = str_random(20) . '.pdf';
 
-			if (empty($pdf->getError())) {
-				$files[] = $path_to_filled;
+					$pdf->fillForm($pdf->fields())
+						->flatten()
+						->needAppearances()
+						->saveAs($path_to_filled);
+
+					if (empty($pdf->getError())) {
+						$files[] = $path_to_filled;
+					} else {
+						$error[$pdf->getId()] = $pdf->getError();
+					}
+				} else {
+					$error[$response->form->id] = 'There is no renderer for this pdf.';
+				}
 			} else {
-				$error[$pdf->getId()] = $pdf->getError();
+				$error[$response->form->id] = 'File does not exist: ' . $formsFile;
 			}
 		}
 
