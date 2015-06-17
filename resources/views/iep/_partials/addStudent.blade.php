@@ -1,0 +1,1 @@
+<?php $pdf->addStudent($student); ?>
