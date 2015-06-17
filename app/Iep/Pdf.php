@@ -8,7 +8,7 @@ class Pdf extends \mikehaertl\pdftk\Pdf {
 
 	public function getId()
 	{
-			return $this->id;
+		return $this->id;
 	}
 
 	public function getFields()
