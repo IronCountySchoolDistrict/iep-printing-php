@@ -2,17 +2,27 @@
 iep-printing-php is the server side part of the [iep-printing](https://github.com/IronCountySchoolDistrict/iep-printing) project. This application uses the pdftk toolkit to fill out pdf files for printing with data collected with the PowerSchool plugin `FormBuilder`.
 
 ## Installation
-Make sure you have composer installed on your machine. Clone the repository. Run `composer install` in the root folder to install laravel and other dependency packages. Take a look at the [laravel documentation](http://laravel.com/docs/5.0) for specifics on the laravel framework.
+### Server requirements
+- See [laravel requirements](http://laravel.com/docs/5.0#server-requirements)
+- [Composer](https://getcomposer.org/)
+- [pdftk](https://www.pdflabs.com/tools/pdftk-server/)
+- [zip](http://manpages.ubuntu.com/manpages/raring/man1/zip.1.html)
+- [beanstalkd](http://kr.github.io/beanstalkd/) (Optional)
 
-Run `composer update` on subsequent updates.
+### Setup
+- Run `git clone` on this repository
+- Run `composer install` in the root of the cloned repository
+- Run `composer update` on subsequent pulls
 
-## Configuration
-Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server.
+### Configuration
+Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server as well as the `public` directory.
 
 Where the fillable pdf files reside can be configured in `app/iep.php`. The value is defaulted to `storage/forms` directory.
 
+By default, iep-printing-php is set up to keep all pdf and zip files it generates. You can either create a cron job that deletes these files in the public folder or change the default driver in `app/queue.php` from null to beanstalkd. By running `php artisan queue:listen` this will delete the files 10 minutes after they are generated.
+
 ## php-pdftk
-Pdftk-php is a php wrapper to the pdftk server toolkit which is what is used to handle all the pdf files. See the [original repo](https://github.com/mikehaertl/php-pdftk) on some of its usage. iep-printing-php extends the class to include the `$fields` property on the object, which is generated from fdf data after the pdf file is loaded.
+php-pdftk is a php wrapper to the pdftk server toolkit which is what is used to handle all the pdf files. See the [original repo](https://github.com/mikehaertl/php-pdftk) on some of its usage. iep-printing-php extends the class to include the `$fields` property on the object, which is generated from fdf data after the pdf file is loaded.
 
 ### Setting fields
 Set all the fields at once.
@@ -68,6 +78,8 @@ This is an example object of what you can expect. This will be json_decode()ed i
   ...
 ]
 ```
+
+**!Important**: Note that the response->field value is the Custom Css Class set in FormBuilder in Powerschool. This is how you will create logic that will actually be able to match fields in FormBuilder to fields in it's corresponding pdf.
 
 The pdf files must be named after the form->title without `IEP:`. In this case iep-printing-php will look for the pdf file named `SpEd 05-1 v.150501.pdf` wherever your forms are stored.
 
