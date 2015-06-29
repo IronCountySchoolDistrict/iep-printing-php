@@ -21,6 +21,28 @@ Where the fillable pdf files reside can be configured in `app/iep.php`. The valu
 
 By default, iep-printing-php is set up to keep all pdf and zip files it generates. You can either create a cron job that deletes these files in the public folder or change the default driver in `app/queue.php` from null to beanstalkd. By running `php artisan queue:listen` this will delete the files 10 minutes after they are generated.
 
+### Running the queue as a system service
+Create a file `/etc/init/queue.conf` with these contents and replacing paths as necessary
+
+```
+description "iep-printing-php file management queue listener"
+start on filesystem
+stop on runlevel [!2345]
+respawn
+respawn limit 5 2
+script
+exec php /var/www/iep-printing-php/artisan queue:listen
+end script
+```
+
+The service will start automatically on reboot. Start and stop like any other service e.g.
+
+```shell
+service start queue
+service status queue
+service stop queue
+```
+
 ## php-pdftk
 php-pdftk is a php wrapper to the pdftk server toolkit which is what is used to handle all the pdf files. See the [original repo](https://github.com/mikehaertl/php-pdftk) on some of its usage. iep-printing-php extends the class to include the `$fields` property on the object, which is generated from fdf data after the pdf file is loaded.
 

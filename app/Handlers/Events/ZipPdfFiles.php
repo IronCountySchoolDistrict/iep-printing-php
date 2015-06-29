@@ -29,9 +29,12 @@ class ZipPdfFiles {
 	{
 		$this->queueFiles($event->files);
 
-		if (count($event->files) > 1) {
+		if (count($event->files) > 1 || $event->forceZip) {
 			$outfile = str_random(16) . '.zip';
-			$infile = implode($event->files, ' ');
+			$infile = '';
+			foreach ($event->files as $file) {
+				$infile .= ' ' . escapeshellarg($file);
+			}
 
 			exec("zip $outfile $infile");
 
