@@ -14,4 +14,5 @@ return [
 	*/
 
   'forms_storage_path' => storage_path() . DIRECTORY_SEPARATOR . 'forms' . DIRECTORY_SEPARATOR,
+  'blanks_storage_path' => storage_path() . DIRECTORY_SEPARATOR . 'forms' . DIRECTORY_SEPARATOR,
 ];
