@@ -36,7 +36,7 @@ class AssemblePdfCommand extends Command implements SelfHandling {
 				exec($command);
 				$files[] = str_slug($formsFile) . '.pdf';
 			} else {
-				$errors[$form->id] = 'No pdf found for this form.';
+				$errors[$form->id] = 'There is no pdf file for this form.';
 			}
 		}
 

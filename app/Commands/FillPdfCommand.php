@@ -65,10 +65,10 @@ class FillPdfCommand extends Command implements SelfHandling {
 						$error[$pdf->getId()] = $pdf->getError();
 					}
 				} else {
-					$error[$response->form->id] = 'There is no renderer for this pdf.';
+					$error[$response->form->id] = 'There is no renderer for this form.';
 				}
 			} else {
-				$error[$response->form->id] = 'File does not exist: ' . $formsFile;
+				$error[$response->form->id] = 'There is no pdf file for this form.';
 			}
 		}
 
