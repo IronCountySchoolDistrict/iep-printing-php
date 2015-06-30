@@ -45,7 +45,7 @@ class AssemblePdfCommand extends Command implements SelfHandling {
 			$downloadFile = event(new PdfWasFilled($files))[0];
 		}
 
-		return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
+		return [ 'file' => $downloadFile, 'error' => (isset($errors)) ? $errors : [] ];
 	}
 
 }
