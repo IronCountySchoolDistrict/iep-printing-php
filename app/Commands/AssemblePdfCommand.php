@@ -28,11 +28,13 @@ class AssemblePdfCommand extends Command implements SelfHandling {
 		$formsPath = Config::get('iep.blanks_storage_path');
 
 		foreach ($this->forms as $form) {
-			$formsFile = str_replace('IEP: ', '', $form->title) . '.pdf';
-			$path_to_blank = $formsPath . $formsFile;
+			$formsFile = str_replace('IEP: ', '', $form->title);
+			$path_to_blank = $formsPath . $formsFile . '.pdf';
 
 			if (file_exists($path_to_blank)) {
-				$files[] = $path_to_blank;
+				$command = 'cp ' . escapeshellarg($path_to_blank) . ' ' . escapeshellarg(str_slug($formsFile)) . '.pdf';
+				exec($command);
+				$files[] = str_slug($formsFile) . '.pdf';
 			} else {
 				$errors[$form->id] = 'No pdf found for this form.';
 			}
@@ -40,7 +42,7 @@ class AssemblePdfCommand extends Command implements SelfHandling {
 
 		$downloadFile = '';
 		if (isset($files)) {
-			$downloadFile = event(new PdfWasFilled($files, true))[0];
+			$downloadFile = event(new PdfWasFilled($files))[0];
 		}
 
 		return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
