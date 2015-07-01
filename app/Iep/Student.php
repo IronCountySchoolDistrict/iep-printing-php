@@ -271,11 +271,26 @@ class Student {
 	}
 
 	/**
-	* get one of the parents, father is prioritized
+	* get one of the parents, mother is prioritized
 	* @return string
 	*/
 	public function getParent() {
-		if (!empty($this->father)) return $this->father;
+		if (!empty($this->mother)) return $this->mother;
+
+		return $this->father;
+	}
+
+	/**
+	* get both parents, one if only one available
+	* @param string $separator String to separate mother's name and father's name
+	* @return string
+	*/
+	public function getParents($separator = '/') {
+		if (!empty($this->mother) && !empty($this->father)) {
+			return "$this->mother $separator $this->father";
+		} else if (empty($this->mother)) {
+			return $this->father;
+		}
 
 		return $this->mother;
 	}

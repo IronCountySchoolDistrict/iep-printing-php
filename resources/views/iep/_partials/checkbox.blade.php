@@ -1,8 +1,9 @@
 <?php
 
 if (!isset($checked)) $checked = 'Yes';
+if (!isset($split)) $split = "/,\s(?<=\|\d,\s)/";
 
-$values = preg_split("/,\s(?<=\|\d,\s)/", $response->response);
+$values = preg_split($split, $response->response);
 $key = $response->field;
 
 foreach ($values as $checkbox) {
