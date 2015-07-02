@@ -1,29 +1,42 @@
 <?php
 
-$yesCheckboxes = ['sensory-motor', 'self-help', 'social-emotional', 'cognitive', 'communication'];
-$onCheckboxes = [];
+$textTypes = ['text', 'dropdown', 'paragraph'];
+foreach ($textTypes as $type) {
+  $fields = $responses->find('type', $type);
+  foreach ($fields as $field) {
+    $pdf->setField($field['field'], $field['value']);
+  }
+}
 
-?>
+$pdf->addStudent($student);
 
-@foreach ($responses->response as $response)
-  @if ($response->type == 'text' || $response->type == 'dropdown' || $response->type == 'paragraph')
-    @include('iep._partials.text')
-  @elseif ($response->type == 'checkbox')
-    @if (in_array($response->field, $yesCheckboxes))
-      @include('iep._partials.checkbox')
-    @endif
-
-  @endif
-@endforeach
-
-@include('iep._partials.addStudent')
-
-<?php
-
-$pdf->setField('address', $student->getAddress());
-$pdf->setField('parents', $student->getParents());
+$textFields = $responses->find('type', 'text');
 if ($pdf->fields['date'] == $student->getState()) $pdf->setField('date', '');
+$pdf->setField('parents', $student->getParents());
+$pdf->setField('address', $student->getAddress());
+$pdf->setField('vision:' . $responses->get('vision'), 'Yes');
+$pdf->setField('hearing:' . $responses->get('hearing'), 'Yes');
+$pdf->setField('health:' . $responses->get('health'), 'Yes');
+$pdf->setField('other-preschool-services:' . $responses->get('other-preschool-services'), 'Yes');
+$pdf->setField('parent-aware-of-referral:' . $responses->get('parent-aware-of-referral'), 'Yes');
+if (!in_array($responses->get('relationship'), ['Parent', 'Teacher'])) {
+  $pdf->setField('relationship:Other', 'Yes');
+  $pdf->setField('relationship:other-text', $responses->get('relationship'));
+} else {
+  $pdf->setField('relationship:' . $responses->get('relationship'), 'Yes');
+}
 
 
+if (!empty($responses->get('screening-recommended'))) $pdf->setField('screening-recommended', 'Yes');
+if (!empty($responses->get('no-evaluation-recommended'))) $pdf->setField('no-evaluation-recommended', 'Yes');
 
-?>
+$checkboxFields = $responses->find('type', 'checkbox');
+$split = "/,\s(?<=\|\d,\s)/";
+foreach ($checkboxFields as $checkboxField) {
+  $values = preg_split($split, $checkboxField['value']);
+  foreach ($values as $value) {
+    if (isset($pdf->fields[$checkboxField['field'].':'.$value])) {
+  		$pdf->fields[$checkboxField['field'].':'.$value] = 'Yes';
+  	}
+  }
+}

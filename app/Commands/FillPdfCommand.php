@@ -3,6 +3,7 @@
 
 use App\Iep\Pdf;
 use App\Iep\Student;
+use App\Iep\Response;
 use App\Commands\Command;
 use App\Events\PdfWasFilled;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -45,10 +46,10 @@ class FillPdfCommand extends Command implements SelfHandling {
 					$pdf = new Pdf($path_to_blank);
 					$pdf->setFields($existing_fields);
 					$pdf->setId($response->form->id);
-
+					
 					view("iep.forms.{$renderer}")
 						->with('pdf', $pdf)
-						->with('responses', $response)
+						->with('responses', new Response($response->response))
 						->with('student', $this->student)
 						->render();
 
