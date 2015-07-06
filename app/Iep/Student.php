@@ -24,10 +24,10 @@ class Student {
 	private $mother;
 
 	/**
-	* create new student from json string or json decoded string (stdClass)
-	*
-	* @param mixed $data
-	*/
+	 * create new student from json string or json decoded string (stdClass)
+	 *
+	 * @param mixed $data
+	 */
 	public function __construct($data)
 	{
 		if (is_string($data)) {
@@ -53,21 +53,25 @@ class Student {
 		$this->enrollmentSchool = isset($data->enrollment_school) ? $data->enrollment_school : '';
 		$this->father = isset($data->father) ? $data->father : '';
 		$this->mother = isset($data->mother) ? $data->mother : '';
+		$this->ethnicity = isset($data->ethnicity) ? $data->ethnicity : '';
+		$this->phone = isset($data->home_phone) ? $data->home_phone : '';
 	}
 
 	/**
-	* get first name and last name combined
-	* @return string
-	*/
-	public function getFirstLast() {
+	 * get first name and last name combined
+	 * @return string
+	 */
+	public function getFirstLast()
+	{
 		return $this->firstName . ' ' . $this->lastName;
 	}
 
 	/**
-	* get the full name First Middle(if !empty) Last
-	* @return string
-	*/
-	public function getFullName() {
+	 * get the full name First Middle(if !empty) Last
+	 * @return string
+	 */
+	public function getFullName()
+	{
 		$name = $this->firstName;
 
 		if (!empty($this->middleName)) {
@@ -80,158 +84,182 @@ class Student {
 	}
 
 	/**
-	* get the lastname, firstname middleaname
-	* @return string
-	*/
-	public function getLastFirst() {
+	 * get the lastname, firstname middleaname
+	 * @return string
+	 */
+	public function getLastFirst()
+	{
 		return $this->lastFirst;
 	}
 
 	/**
-	* get the first name
-	* @return string
-	*/
-	public function getFirstName() {
+	 * get the first name
+	 * @return string
+	 */
+	public function getFirstName()
+	{
 		return $this->firstName;
 	}
 
 	/**
-	* get the middle name
-	* @return string
-	*/
-	public function getMiddleName() {
+	 * get the middle name
+	 * @return string
+	 */
+	public function getMiddleName()
+	{
 		return $this->middleName;
 	}
 
 	/**
-	* get the last name
-	* @return string
-	*/
-	public function getLastName() {
+	 * get the last name
+	 * @return string
+	 */
+	public function getLastName()
+	{
 		return $this->getLastName();
 	}
 
 	/**
-	* get the student number
-	* @return integer
-	*/
-	public function getStudentNumber() {
+	 * get the student number
+	 * @return integer
+	 */
+	public function getStudentNumber()
+	{
 		return $this->studentNumber;
 	}
 
-	public function getGrade() {
+	/**
+	 * Get the current grade of the student
+	 * @return integer
+	 */
+	public function getGrade()
+	{
 		return $this->grade;
 	}
 
 	/**
-	* get the entry date
-	* @return Carbon\Carbon
-	*/
-	public function getEntryDate() {
+	 * get the entry date
+	 * @return Carbon\Carbon
+	 */
+	public function getEntryDate()
+	{
 		return $this->entryDate;
 	}
 
 	/**
-	* simplified getter for the entry date
-	* @return Carbon\Carbon
-	*/
-	public function entryDate() {
+	 * simplified getter for the entry date
+	 * @return Carbon\Carbon
+	 */
+	public function entryDate()
+	{
 		return $this->entryDate;
 	}
 
 	/**
-	* get the exit date
-	* @return Carbon\Carbon
-	*/
-	public function getExitDate() {
+	 * get the exit date
+	 * @return Carbon\Carbon
+	 */
+	public function getExitDate()
+	{
 		return $this->exitDate;
 	}
 
 	/**
-	* simplified getter for the exit date
-	* @return Carbon\Carbon
-	*/
-	public function exitDate() {
+	 * simplified getter for the exit date
+	 * @return Carbon\Carbon
+	 */
+	public function exitDate()
+	{
 		return $this->exitDate;
 	}
 
 	/**
-	* get the gender 'M' or 'F'
-	* @return string
-	*/
-	public function getGender() {
+	 * get the gender 'M' or 'F'
+	 * @return string
+	 */
+	public function getGender()
+	{
 		return $this->gender;
 	}
 
 	/**
-	* get the current school
-	* @return string
-	*/
-	public function getCurrentSchool() {
+	 * get the current school
+	 * @return string
+	 */
+	public function getCurrentSchool()
+	{
 		return $this->currentSchool;
 	}
 
 	/**
-	* get the date of birth
-	* @return Carbon\Carbon
-	*/
-	public function getDob() {
+	 * get the date of birth
+	 * @return Carbon\Carbon
+	 */
+	public function getDob()
+	{
 		return $this->dob;
 	}
 
 	/**
-	* simplified getter for the DOB
-	* @return Carbon\Carbon
-	*/
-	public function dob() {
+	 * simplified getter for the DOB
+	 * @return Carbon\Carbon
+	 */
+	public function dob()
+	{
 		return $this->dob;
 	}
 
 	/**
-	* get the street address
-	* @return string
-	*/
-	public function getStreet() {
+	 * get the street address
+	 * @return string
+	 */
+	public function getStreet()
+	{
 		return $this->street;
 	}
 
 	/**
-	* get the city
-	* @return string
-	*/
-	public function getCity() {
+	 * get the city
+	 * @return string
+	 */
+	public function getCity()
+	{
 		return $this->city;
 	}
 
 	/**
-	* get the zipcode
-	* @return string
-	*/
-	public function getZip() {
+	 * get the zipcode
+	 * @return string
+	 */
+	public function getZip()
+	{
 		return $this->zip;
 	}
 
 	/**
-	* alternate getter for the zipcode
-	* @return string
-	*/
-	public function getZipcode() {
+	 * alternate getter for the zipcode
+	 * @return string
+	 */
+	public function getZipcode()
+	{
 		return $this->zip;
 	}
 
 	/**
-	* get the state e.g. Utah
-	* @return string
-	*/
-	public function getState() {
+	 * get the state e.g. Utah
+	 * @return string
+	 */
+	public function getState()
+	{
 		return $this->state;
 	}
 
 	/**
-	* get the full address in one line
-	* @return string
-	*/
-	public function getAddress() {
+	 * get the full address in one line
+	 * @return string
+	 */
+	public function getAddress()
+	{
 		return $this->street . ' '
 			. $this->city . ', '
 			. $this->state . ' '
@@ -239,53 +267,59 @@ class Student {
 	}
 
 	/**
-	* get the next school
-	* @return string
-	*/
-	public function getNextSchool() {
+	 * get the next school
+	 * @return string
+	 */
+	public function getNextSchool()
+	{
 		return $this->nextSchool;
 	}
 
 	/**
-	* get the school of enrollment
-	* @return string
-	*/
-	public function getEnrollmentSchool() {
+	 * get the school of enrollment
+	 * @return string
+	 */
+	public function getEnrollmentSchool()
+	{
 		return $this->enrollmentSchool;
 	}
 
 	/**
-	* get the name of the mother
-	* @return string
-	*/
-	public function getMother() {
+	 * get the name of the mother
+	 * @return string
+	 */
+	public function getMother()
+	{
 		return $this->mother;
 	}
 
 	/**
-	* get the name of the father
-	* @return string
-	*/
-	public function getFather() {
+	 * get the name of the father
+	 * @return string
+	 */
+	public function getFather()
+	{
 		return $this->father;
 	}
 
 	/**
-	* get one of the parents, mother is prioritized
-	* @return string
-	*/
-	public function getParent() {
+	 * get one of the parents, mother is prioritized
+	 * @return string
+	 */
+	public function getParent()
+	{
 		if (!empty($this->mother)) return $this->mother;
 
 		return $this->father;
 	}
 
 	/**
-	* get both parents, one if only one available
-	* @param string $separator String to separate mother's name and father's name
-	* @return string
-	*/
-	public function getParents($separator = '/') {
+	 * get both parents, one if only one available
+	 * @param string $separator String to separate mother's name and father's name
+	 * @return string
+	 */
+	public function getParents($separator = '/')
+	{
 		if (!empty($this->mother) && !empty($this->father)) {
 			return "$this->mother $separator $this->father";
 		} else if (empty($this->mother)) {
@@ -296,10 +330,27 @@ class Student {
 	}
 
 	/**
-	* gets all the properties of the class and supplements it
-	* with extras that have functions associated with them
-	* @return array
-	*/
+	 * Get the ethnicity of the student
+	 * @return string
+	 */
+	public function getEthnicity()
+	{
+		return $this->ethnicity;
+	}
+
+	/**
+	 * Get the home phone number for the student
+	 * @return string
+	 */
+	public function getPhone() {
+		return $this->phone;
+	}
+
+	/**
+	 * gets all the properties of the class and supplements it
+	 * with extras that have functions associated with them
+	 * @return array
+	 */
 	public function getProperties() {
 		$exist = array_keys(get_object_vars($this));
 		$supplement = [
@@ -310,19 +361,30 @@ class Student {
 		return array_merge($exist, $supplement);
 	}
 
-	public function getStudent() {
-		return $this->getLastFirst();
-	}
-
-	public function getName() {
+	/**
+	 * Extra function to get the student name "lastname, firstname"
+	 * @return string
+	 */
+	public function getStudent()
+	{
 		return $this->getLastFirst();
 	}
 
 	/**
-	* set the lastname, firstname middlename
-	* @param $name
-	*/
-	public function setLastFirst($name) {
+	 * Get the student name "lastname, firstname"
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->getLastFirst();
+	}
+
+	/**
+	 * set the lastname, firstname middlename
+	 * @param $name
+	 */
+	public function setLastFirst($name)
+	{
 		if (is_string($name)) {
 			if (strpos($name, ',')) {
 				$this->lastFirst = $name;
@@ -331,19 +393,21 @@ class Student {
 	}
 
 	/**
-	* set the first name
-	* @param $name
-	*/
-	public function setFirstName($name) {
+	 * set the first name
+	 * @param $name
+	 * @return void
+	 */
+	public function setFirstName($name)
+	{
 		if (is_string($name)) {
 			$this->firstName = $name;
 		}
 	}
 
 	/**
-	* set the middle name
-	* @param $name
-	*/
+	 * set the middle name
+	 * @param $name
+	 */
 	public function setMiddleName($name) {
 		if (is_string($name)) {
 			$this->middleName = $name;
@@ -351,52 +415,62 @@ class Student {
 	}
 
 	/**
-	* set the last name
-	* @param $name
-	*/
-	public function setLastName($name) {
+	 * set the last name
+	 * @param $name
+	 */
+	public function setLastName($name)
+	{
 		if (is_string($name)) {
 			$this->lastName = $name;
 		}
 	}
 
 	/**
-	* set the student number
-	* @param $number
-	*/
-	public function setStudentNumber($number) {
+	 * set the student number
+	 * @param $number
+	 */
+	public function setStudentNumber($number)
+	{
 		if (is_int($number)) {
 			$this->studentNumber = $number;
 		}
 	}
 
-	public function setGrade($grade) {
+	/**
+	 * Set the current grade of the student
+	 * @param integer $grade
+	 */
+	public function setGrade($grade)
+	{
 		if (is_int($grade)) {
 			$this->grade = $grade;
 		}
 	}
 
 	/**
-	* set the entry date
-	* @param mixed $date
-	*/
-	public function setEntryDate($date) {
+	 * set the entry date
+	 * @param mixed $date
+	 */
+	public function setEntryDate($date)
+	{
 		$this->entryDate = $this->setDate($this->entryDate, $date);
 	}
 
 	/**
-	* set the exit date
-	* @param mixed $date
-	*/
-	public function setExitDate($date) {
+	 * set the exit date
+	 * @param mixed $date
+	 */
+	public function setExitDate($date)
+	{
 		$this->exitDate = $this->setDate($this->exitDate, $date);
 	}
 
 	/**
-	* set the gender
-	* @param string $gender
-	*/
-	public function setGender($gender) {
+	 * set the gender
+	 * @param string $gender
+	 */
+	public function setGender($gender)
+	{
 		if (is_string($gender)) {
 			if ($gender === 'F' || $gender === 'M') {
 				$this->gender = $gender;
@@ -405,58 +479,64 @@ class Student {
 	}
 
 	/**
-	* set the current school
-	* @param string $school
-	*/
-	public function setCurrentSchool($school) {
+	 * set the current school
+	 * @param string $school
+	 */
+	public function setCurrentSchool($school)
+	{
 		if (is_string($school)) {
 			$this->currentSchool = $school;
 		}
 	}
 
 	/**
-	* set the date of birth
-	* @param mixed $date
-	*/
-	public function setDob($date) {
+	 * set the date of birth
+	 * @param mixed $date
+	 */
+	public function setDob($date)
+	{
 		$this->dob = $this->setDate($this->dob, $date);
 	}
 
 	/**
-	* set the street address
-	* @param string $street
-	*/
-	public function setStreet($street) {
+	 * set the street address
+	 * @param string $street
+	 */
+	public function setStreet($street)
+	{
 		if (is_string($street)) {
 			$his->street = $street;
 		}
 	}
 
 	/**
-	* set the city
-	* @param string $city
-	*/
-	public function setCity($city) {
+	 * set the city
+	 * @param string $city
+	 */
+	public function setCity($city)
+	{
 		if (is_string($city)) {
 			$ths->city = $city;
 		}
 	}
 
 	/**
-	* set the state
-	* @param string $state
-	*/
-	public function setState($state) {
+	 * set the state
+	 * @param string $state
+	 */
+	public function setState($state)
+	{
 		if (is_string($state)) {
 			$this->state = $state;
 		}
 	}
 
 	/**
-	* set the zipcode
-	* @param mixed $zip
-	*/
-	public function setZip($zip) {
+	 * set the zipcode
+	 * @param mixed $zip
+	 */
+	public function setZip($zip)
+	{
 		if (is_string($zip)) {
 			$this->zip = $zip;
 		} else if (is_int($zip)) {
@@ -465,60 +545,66 @@ class Student {
 	}
 
 	/**
-	* alternate setter for the zipcode
-	* @param mixed $zip
-	*/
-	public function setZipcode($zip) {
+	 * alternate setter for the zipcode
+	 * @param mixed $zip
+	 */
+	public function setZipcode($zip)
+	{
 		$this->setZip($zip);
 	}
 
 	/**
-	* set the next school
-	* @param string $school
-	*/
-	public function setNextSchool($school) {
+	 * set the next school
+	 * @param string $school
+	 */
+	public function setNextSchool($school)
+	{
 		if (is_string($school)) {
 			$this->nextSchool = $school;
 		}
 	}
 
 	/**
-	* set the school of enrollment
-	* @param string $school
-	*/
-	public function setEnrollmentSchool($school) {
+	 * set the school of enrollment
+	 * @param string $school
+	 */
+	public function setEnrollmentSchool($school)
+	{
 		if (is_string($school)) {
 			$this->enrollmentSchool = $school;
 		}
 	}
 
 	/**
-	* set the name of the father of the student
-	* @param string $father
-	*/
-	public function setFather($father) {
+	 * set the name of the father of the student
+	 * @param string $father
+	 */
+	public function setFather($father)
+	{
 		if (is_string($father)) {
 			$this->father = $father;
 		}
 	}
 
 	/**
-	* set the name of the mother of the student
-	* @param string $mother
-	*/
-	public function setMother($mother) {
+	 * set the name of the mother of the student
+	 * @param string $mother
+	 */
+	public function setMother($mother)
+	{
 		if (is_string($mother)) {
 			$this->mother = $mother;
 		}
 	}
 
 	/**
-	* sets the date to the property if the date is valid
-	* @param Carbon\Carbon $propertyValue
-	* @param mixed $date
-	* @return Carbon\Carbon
-	*/
-	protected function setDate($propertyValue, $date) {
+	 * sets the date to the property if the date is valid
+	 * @param Carbon\Carbon $propertyValue
+	 * @param mixed $date
+	 * @return Carbon\Carbon
+	 */
+	protected function setDate($propertyValue, $date)
+	{
 		if ($date instanceof Carbon) {
 			$propertyValue = $date;
 		} else if ($date instanceof DateTime) {
