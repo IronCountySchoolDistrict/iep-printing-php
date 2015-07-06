@@ -1,5 +1,5 @@
 <?php
 
-$pdf->setField($response->field, $response->response); 
+$pdf->setField($response['field'], $response['value']); 
 
 ?>

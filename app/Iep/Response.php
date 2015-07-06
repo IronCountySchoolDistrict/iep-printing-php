@@ -46,4 +46,19 @@ class Response {
     return ($index >= 0) ? $this->responses[$index]['value'] : null;
   }
 
+  /**
+   * Executes a callback over each item
+   * @param callable $callback
+   * @return $this
+   */
+  public function each(callable $callback) {
+    foreach ($this->responses as $key => $response) {
+      if ($callback($response, $key) === false) {
+        break;
+      }
+    }
+
+    return $this;
+  }
+
 }
