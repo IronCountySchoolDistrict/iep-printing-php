@@ -12,6 +12,8 @@ $pdf->addStudent($student);
 
 $textFields = $responses->find('type', 'text');
 if ($pdf->fields['date'] == $student->getState()) $pdf->setField('date', '');
+$pdf->setField('phone', $student->getPhone());
+$pdf->setField('ethnicity', $student->getEthnicity());
 $pdf->setField('parents', $student->getParents());
 $pdf->setField('address', $student->getAddress());
 $pdf->setField('vision:' . $responses->get('vision'), 'Yes');
