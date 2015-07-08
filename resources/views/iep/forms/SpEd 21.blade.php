@@ -15,13 +15,3 @@
     @include('iep._partials.radio', ['checked' => 'On'])
   @endif
 @endforeach
-
-<?php
-
-  if ($responses->get('eval-recommended') === 'Y') {
-    $pdf->setField('eval-recommended', 'On');
-  } else if ($responses->get('eval-recommended') === 'N') {
-    $pdf->setField('no-eval-recommended', 'On');
-  }
-
-?>
