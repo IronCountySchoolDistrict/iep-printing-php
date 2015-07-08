@@ -1,8 +1,8 @@
 <?php
 
 if (!isset($checked)) $checked = 'Yes';
-$key = $response->field;
-$value = $response->response;
+$key = $response['field'];
+$value = $response['value'];
 
 if (isset($pdf->fields[$key.':'.$value])) {
 	$pdf->fields[$key.':'.$value] = $checked;

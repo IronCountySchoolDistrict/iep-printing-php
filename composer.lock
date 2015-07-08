@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1d8c46756ec58187e58e0e822fdc0cfc",
+    "hash": "4d058612e314e08d4cdc57df041be19b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -666,16 +666,16 @@
         },
         {
             "name": "mikehaertl/php-shellcommand",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/php-shellcommand.git",
-                "reference": "6f7e146adf0b27eb0e5cf32753fd96e966c5cda4"
+                "reference": "888c5c9b2646650c63111dc526c8159e85bddea7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/6f7e146adf0b27eb0e5cf32753fd96e966c5cda4",
-                "reference": "6f7e146adf0b27eb0e5cf32753fd96e966c5cda4",
+                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/888c5c9b2646650c63111dc526c8159e85bddea7",
+                "reference": "888c5c9b2646650c63111dc526c8159e85bddea7",
                 "shasum": ""
             },
             "type": "library",
@@ -698,7 +698,7 @@
             "keywords": [
                 "shell"
             ],
-            "time": "2015-06-29 17:34:00"
+            "time": "2015-06-30 13:50:15"
         },
         {
             "name": "mikehaertl/php-tmpfile",
@@ -1109,16 +1109,16 @@
         },
         {
             "name": "raveren/kint",
-            "version": "1.0.2",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/raveren/kint.git",
-                "reference": "cc15a0be3fb4de4683fcc15cd68d1027378f86c5"
+                "reference": "0cb1329798c85df500e4dfac607c5d6834c18431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/cc15a0be3fb4de4683fcc15cd68d1027378f86c5",
-                "reference": "cc15a0be3fb4de4683fcc15cd68d1027378f86c5",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/0cb1329798c85df500e4dfac607c5d6834c18431",
+                "reference": "0cb1329798c85df500e4dfac607c5d6834c18431",
                 "shasum": ""
             },
             "require": {
@@ -1156,7 +1156,7 @@
                 "kint",
                 "php"
             ],
-            "time": "2015-06-03 14:54:00"
+            "time": "2015-07-02 11:06:58"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2558,16 +2558,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "92408bb1968a81b3217a6fdf6c1a198da83caa35"
+                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/92408bb1968a81b3217a6fdf6c1a198da83caa35",
-                "reference": "92408bb1968a81b3217a6fdf6c1a198da83caa35",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/1c330b1b6e1ea8fd15f2fbea46770576e366855c",
+                "reference": "1c330b1b6e1ea8fd15f2fbea46770576e366855c",
                 "shasum": ""
             },
             "require": {
@@ -2609,7 +2609,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-06-11 15:55:48"
+            "time": "2015-07-04 05:41:32"
         },
         {
             "name": "sebastian/comparator",

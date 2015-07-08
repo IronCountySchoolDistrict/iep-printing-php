@@ -1,5 +1,5 @@
 
-@foreach ($responses->response as $response)
+@foreach ($responses->responses as $response)
   @include('iep._partials.text')
 @endforeach
 
