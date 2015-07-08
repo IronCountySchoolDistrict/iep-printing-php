@@ -1,5 +1,5 @@
 # iep-printing-php
-iep-printing-php is the server side part of the [iep-printing](https://github.com/IronCountySchoolDistrict/iep-printing) project. This application uses the pdftk toolkit to fill out pdf files for printing with data collected with the PowerSchool plugin `FormBuilder`.
+iep-printing-php is the server side part of the [iep-printing](https://github.com/IronCountySchoolDistrict/iep-printing) project. This application uses the [pdftk](https://github.com/mikehaertl/php-pdftk) toolkit to fill out pdf files for printing with data collected with the PowerSchool plugin `FormBuilder`.
 
 ## Installation
 ### Server requirements
