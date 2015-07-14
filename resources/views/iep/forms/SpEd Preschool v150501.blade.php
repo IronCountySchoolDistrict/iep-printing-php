@@ -11,7 +11,7 @@ foreach ($textTypes as $type) {
 $pdf->addStudent($student);
 
 $textFields = $responses->find('type', 'text');
-if ($pdf->fields['date'] == $student->getState()) $pdf->setField('date', '');
+$pdf->setField('date', $responses->get('date'));
 $pdf->setField('phone', $student->getPhone());
 $pdf->setField('ethnicity', $student->getEthnicity());
 $pdf->setField('parents', $student->getParents());
