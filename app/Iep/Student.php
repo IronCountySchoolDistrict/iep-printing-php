@@ -1,5 +1,6 @@
 <?php namespace App\Iep;
 
+use DateTime;
 use Carbon\Carbon;
 
 class Student {
@@ -14,6 +15,8 @@ class Student {
 	private $gender;
 	private $currentSchool;
 	private $dob;
+	private $years;
+	private $months;
 	private $street;
 	private $city;
 	private $state;
@@ -45,6 +48,8 @@ class Student {
 		$this->gender = isset($data->gender) ? $data->gender : '';
 		$this->currentSchool = isset($data->current_school) ? $data->current_school : '';
 		$this->dob = isset($data->dob) ? new Carbon($data->dob) : null;
+		$this->years = isset($this->dob) ? $this->getYears() : null;
+		$this->months = isset($data->dob) ? $this->getMonths() : null;
 		$this->street = isset($data->street) ? $data->street : '';
 		$this->city = isset($data->city) ? $data->city : '';
 		$this->state = isset($data->state) ? $data->state : '';
@@ -55,6 +60,7 @@ class Student {
 		$this->mother = isset($data->mother) ? $data->mother : '';
 		$this->ethnicity = isset($data->ethnicity) ? $data->ethnicity : '';
 		$this->phone = isset($data->home_phone) ? $data->home_phone : '';
+
 	}
 
 	/**
@@ -201,12 +207,27 @@ class Student {
 	}
 
 	/**
-	 * simplified getter for the DOB
-	 * @return Carbon\Carbon
+	 * get the student's current age in years
+	 * @return integer
 	 */
-	public function dob()
+	public function getYears()
 	{
-		return $this->dob;
+		$now = new DateTime('now');
+		$dob = $this->getDob();
+		$diff = $dob->diff($now)->format('%y');
+		return intval($diff);
+	}
+
+	/**
+	 * get the student's current age in remainder months
+	 * @return integer
+	 */
+	public function getMonths()
+	{
+		$now = new DateTime('now');
+		$dob = $this->getDob();
+		$diff = $dob->diff($now)->format('%m');
+		return intval($diff);
 	}
 
 	/**
