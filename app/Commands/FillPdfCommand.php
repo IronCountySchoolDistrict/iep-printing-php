@@ -53,7 +53,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 						->with('student', $this->student)
 						->render();
 
-					$now = \Carbon\Carbon::now()->format('Ymd-Hms');
+					$now = \Carbon\Carbon::now()->format('Ymd-His');
 					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
 
 					$pdf->fillForm($pdf->fields())
