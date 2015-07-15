@@ -46,14 +46,15 @@ class FillPdfCommand extends Command implements SelfHandling {
 					$pdf = new Pdf($path_to_blank);
 					$pdf->setFields($existing_fields);
 					$pdf->setId($response->form->id);
-					
+
 					view("iep.forms.{$renderer}")
 						->with('pdf', $pdf)
 						->with('responses', new Response($response->response))
 						->with('student', $this->student)
 						->render();
 
-					$path_to_filled = str_random(20) . '.pdf';
+					$now = \Carbon\Carbon::now()->format('Ymd-Hms');
+					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
 
 					$pdf->fillForm($pdf->fields())
 						->flatten()
