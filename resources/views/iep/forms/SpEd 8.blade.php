@@ -1,9 +1,7 @@
 <?php
 
-$pdf->setField('your-district-and-city', config('iep.district.name') . ' - ' . config('iep.district.city') . ', ' . config('iep.district.state'));
-$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('your-district-and-city', config('iep.district.name'));
 $pdf->setField('school', $student->getCurrentSchool());
-$pdf->setField('grade', $student->getGrade());
 
 if (!empty($responses->get('copy-mailed'))) {
   $pdf->setField('copy-mailed', 'Yes');
@@ -12,7 +10,7 @@ if (!empty($responses->get('copy-mailed'))) {
 ?>
 
 @foreach ($responses->responses as $response)
-  @if ($response['type'] == 'text' || $response['type'] == 'paragraph' || $response['type'] == 'dropdown')
+  @if ($response['type'] == 'text' || $response['type'] == 'paragraph' || $response['type'] == 'dropdown' || $response['type'] == 'hidden')
     @include('iep._partials.text')
   @elseif ($response['type'] == 'checkbox')
     @include('iep._partials.checkbox')
@@ -29,3 +27,5 @@ if (!empty($responses->get('copy-mailed'))) {
     @endif
   @endif
 @endforeach
+
+@include('iep._partials.addStudent')
