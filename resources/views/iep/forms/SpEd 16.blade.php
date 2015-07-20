@@ -14,6 +14,6 @@ $pdf->addStudent($student);
       @include('iep._partials.text')
     @endif
   @elseif ($response['type'] == 'checkbox')
-    @include('iep._partials.checkbox', ['checked' => 'On'])
+    @include('iep._partials.checkbox')
   @endif
 @endforeach
