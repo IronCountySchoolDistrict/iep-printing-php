@@ -122,7 +122,7 @@ class Student {
 	 */
 	public function getLastName()
 	{
-		return $this->getLastName();
+		return $this->lastName;
 	}
 
 	/**

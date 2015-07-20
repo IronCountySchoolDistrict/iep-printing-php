@@ -1,8 +1,8 @@
 <?php
 
-  $pdf->setField('your-district-school', config('iep.district.name'));
-  $pdf->setField('your-city', config('iep.district.city'));
-  $pdf->addStudent($student);
+$pdf->setField('your-school-district', config('iep.district.name'));
+$pdf->setField('your-city', config('iep.district.city'));
+$pdf->addStudent($student);
 
 ?>
 
@@ -15,3 +15,9 @@
     @include('iep._partials.radio', ['checked' => 'On'])
   @endif
 @endforeach
+
+<?php
+
+$pdf->setField('city-state', $responses->get('city-state') . ', ' . $student->getState());
+
+?>

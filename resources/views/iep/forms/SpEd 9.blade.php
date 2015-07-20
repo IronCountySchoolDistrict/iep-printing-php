@@ -4,11 +4,11 @@ $pdf->setField('your-school-district', config('iep.district.name'));
 $pdf->setField('your-city', config('iep.district.city'));
 
 if (!empty($responses->get('sign-of-interpreter'))) {
-  $pdf->setField('verify-understands', 'Yes');
+  $pdf->setField('adult-understands', 'Yes');
 }
 
 if (!empty($responses->get('date-of-communication')) && !empty($responses->get('by'))) {
-  $pdf->setField('notice-was-translated', 'Yes');
+  $pdf->setField('notice-translated', 'Yes');
 }
 
 ?>

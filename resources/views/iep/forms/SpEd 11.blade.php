@@ -1,8 +1,10 @@
 <?php
 
-  $pdf->setField('your-district-school', config('iep.district.name'));
-  $pdf->setField('your-city', config('iep.district.city'));
-  $pdf->addStudent($student);
+$pdf->setField('your-school-district', config('iep.district.name'));
+$pdf->setField('your-city', config('iep.district.city'));
+$pdf->addStudent($student);
+$pdf->setField('years', $student->getYears());
+$pdf->setField('months', $student->getMonths());
 
 ?>
 
