@@ -41,9 +41,11 @@ class Response {
    */
   public function get($field)
   {
-    $index = array_search($field, array_column($this->responses, 'field'));
+    foreach ($this->responses as $response) {
+      if ($response['field'] == $field) return $response['value'];
+    }
 
-    return ($index >= 0) ? $this->responses[$index]['value'] : null;
+    return null;
   }
 
   /**
