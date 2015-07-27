@@ -47,19 +47,32 @@ class FillPdfCommand extends Command implements SelfHandling {
 					$pdf->setFields($existing_fields);
 					$pdf->setId($response->form->id);
 
-					view("iep.forms.{$renderer}")
+					$rendered = view("iep.forms.{$renderer}")
 						->with('pdf', $pdf)
 						->with('responses', new Response($response->response))
 						->with('student', $this->student)
 						->render();
+					$rendered = json_decode($rendered);
 
 					$now = \Carbon\Carbon::now()->format('Ymd-His');
-					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
+					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '-' . str_random(4) . '.pdf';
 
-					$pdf->fillForm($pdf->fields())
-						->flatten()
-						->needAppearances()
-						->saveAs($path_to_filled);
+					if (!empty($rendered)) {
+						foreach ($rendered as $index => $pdfFile) {
+							if ($index == 0) {
+								$pdf = new Pdf($pdfFile);
+							} else {
+								$pdf->addFile($pdfFile);
+							}
+						}
+						
+						$pdf->saveAs($path_to_filled);
+					} else {
+						$pdf->fillForm($pdf->fields())
+							->flatten()
+							->needAppearances()
+							->saveAs($path_to_filled);
+					}
 
 					if (empty($pdf->getError())) {
 						$files[] = $path_to_filled;
