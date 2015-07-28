@@ -8,17 +8,19 @@ class PdfWasFilled extends Event {
 	use SerializesModels;
 
 	public $files;
-	public $forceZip;
+	public $concatName;
+	public $fileOption;
 
 	/**
 	 * Create a new event instance.
 	 *
 	 * @return void
 	 */
-	public function __construct($files, $forceZip = false)
+	public function __construct($files, $concatName, $fileOption)
 	{
 		$this->files = $files;
-		$this->forceZip = $forceZip;
+		$this->concatName = $concatName;
+		$this->fileOption = $fileOption;
 	}
 
 }
