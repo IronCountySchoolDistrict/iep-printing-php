@@ -23,7 +23,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 		$this->student = new Student($student);
 		$this->responses = $responses;
 		$this->fileOption = $fileOption;
-		$this->concatName = $this->student->getLastFirst();
+		$this->concatName = str_slug($this->student->getLastFirst());
 	}
 
 	/**
@@ -58,7 +58,6 @@ class FillPdfCommand extends Command implements SelfHandling {
 
 					$now = \Carbon\Carbon::now()->format('Ymd-His');
 					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
-					$this->concatName = str_slug($this->concatName . ' ' . $renderer);
 
 					$pdf->fillForm($pdf->fields())
 						->flatten()
@@ -80,6 +79,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 
 		$downloadFile = '';
 		if (isset($files)) {
+			$this->concatName .= '-' . count($files) . '-forms';
 			$downloadFile = event(new PdfWasFilled($files, $this->concatName, $this->fileOption))[0];
 		}
 

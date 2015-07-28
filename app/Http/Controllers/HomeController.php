@@ -69,7 +69,7 @@ class HomeController extends Controller {
         $fileOption = (Request::has('fileOption')) ? Request::input('fileOption') : 'zip';
 
         return $this->dispatch(
-            new FillPdfCommand($student, $responses)
+            new FillPdfCommand($student, $responses, $fileOption)
         );
     }
 
