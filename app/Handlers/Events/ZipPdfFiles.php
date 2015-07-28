@@ -1,6 +1,7 @@
 <?php namespace App\Handlers\Events;
 
 use Queue;
+use App\Iep\Pdf;
 use Carbon\Carbon;
 use App\Events\PdfWasFilled;
 use App\Commands\RemoveFile;
@@ -29,16 +30,29 @@ class ZipPdfFiles {
 	{
 		$this->queueFiles($event->files);
 
-		if (count($event->files) > 1 || $event->forceZip) {
-			$outfile = str_random(16) . '.zip';
-			$infile = '';
-			foreach ($event->files as $file) {
-				$infile .= ' ' . escapeshellarg($file);
+		if (count($event->files) > 1) {
+			if ($event->fileOption == 'zip' && PHP_OS !== 'WINNT') {
+				$outfile = $event->concatName . '-' . str_random(4) . '.zip';
+				$infile = '';
+				foreach ($event->files as $file) {
+					$infile .= ' ' . escapeshellarg($file);
+				}
+
+				exec("zip $outfile $infile");
+			} else {
+				foreach ($event->files as $index => $file) {
+					if ($index == 0) {
+						$pdf = new Pdf($file);
+					} else {
+						$pdf->addFile($file);
+					}
+				}
+
+				$outfile = $event->concatName . '-' . str_random(4) . '.pdf';
+				$pdf->saveAs($outfile);
 			}
 
-			exec("zip $outfile $infile");
-
-			$this->queueFiles([$outfile]);
+			// $this->queueFiles([$outfile]);
 			return $outfile;
 		}
 

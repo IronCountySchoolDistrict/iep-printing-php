@@ -34,7 +34,8 @@ class HomeController extends Controller {
      *
      * @return array
      */
-    protected function getBlanks() {
+    protected function getBlanks()
+    {
         $forms = json_decode(Request::input('forms'));
 
         return $this->dispatch(
@@ -47,7 +48,8 @@ class HomeController extends Controller {
      *
      * @return array
      */
-    protected function printBlanks() {
+    protected function printBlanks()
+    {
         $forms = json_decode(Request::input('forms'));
 
         return $this->dispatch(
@@ -60,9 +62,11 @@ class HomeController extends Controller {
      *
      * @return array
      */
-    protected function printFillForm() {
+    protected function printFillForm()
+    {
         $student = json_decode(Request::input('student'));
         $responses = json_decode(Request::input('responses'));
+        $fileOption = (Request::has('fileOption')) ? Request::input('fileOption') : 'zip';
 
         return $this->dispatch(
             new FillPdfCommand($student, $responses)

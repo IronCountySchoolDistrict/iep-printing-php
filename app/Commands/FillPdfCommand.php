@@ -1,6 +1,5 @@
 <?php namespace App\Commands;
 
-
 use App\Iep\Pdf;
 use App\Iep\Student;
 use App\Iep\Response;
@@ -11,16 +10,20 @@ use Illuminate\Contracts\Bus\SelfHandling;
 class FillPdfCommand extends Command implements SelfHandling {
 	public $student;
 	public $responses;
+	public $fileOption;
+	public $concatName;
 
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct($student, $responses)
+	public function __construct($student, $responses, $fileOption = "zip")
 	{
 		$this->student = new Student($student);
 		$this->responses = $responses;
+		$this->fileOption = $fileOption;
+		$this->concatName = $this->student->getLastFirst();
 	}
 
 	/**
@@ -47,32 +50,20 @@ class FillPdfCommand extends Command implements SelfHandling {
 					$pdf->setFields($existing_fields);
 					$pdf->setId($response->form->id);
 
-					$rendered = view("iep.forms.{$renderer}")
+					view("iep.forms.{$renderer}")
 						->with('pdf', $pdf)
 						->with('responses', new Response($response->response))
 						->with('student', $this->student)
 						->render();
-					$rendered = json_decode($rendered);
 
 					$now = \Carbon\Carbon::now()->format('Ymd-His');
-					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '-' . str_random(4) . '.pdf';
+					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
+					$this->concatName = str_slug($this->concatName . ' ' . $renderer);
 
-					if (!empty($rendered)) {
-						foreach ($rendered as $index => $pdfFile) {
-							if ($index == 0) {
-								$pdf = new Pdf($pdfFile);
-							} else {
-								$pdf->addFile($pdfFile);
-							}
-						}
-						
-						$pdf->saveAs($path_to_filled);
-					} else {
-						$pdf->fillForm($pdf->fields())
-							->flatten()
-							->needAppearances()
-							->saveAs($path_to_filled);
-					}
+					$pdf->fillForm($pdf->fields())
+						->flatten()
+						->needAppearances()
+						->saveAs($path_to_filled);
 
 					if (empty($pdf->getError())) {
 						$files[] = $path_to_filled;
@@ -89,7 +80,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 
 		$downloadFile = '';
 		if (isset($files)) {
-			$downloadFile = event(new PdfWasFilled($files))[0];
+			$downloadFile = event(new PdfWasFilled($files, $this->concatName, $this->fileOption))[0];
 		}
 
 		return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
