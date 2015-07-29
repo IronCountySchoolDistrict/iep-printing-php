@@ -67,9 +67,10 @@ class HomeController extends Controller {
         $student = json_decode(Request::input('student'));
         $responses = json_decode(Request::input('responses'));
         $fileOption = (Request::has('fileOption')) ? Request::input('fileOption') : 'zip';
+        $watermarkOption = (Request::has('watermarkOption')) ? Request::input('watermarkOption') : 'draft';
 
         return $this->dispatch(
-            new FillPdfCommand($student, $responses, $fileOption)
+            new FillPdfCommand($student, $responses, $fileOption, $watermarkOption)
         );
     }
 

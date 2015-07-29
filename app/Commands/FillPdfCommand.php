@@ -11,6 +11,7 @@ class FillPdfCommand extends Command implements SelfHandling {
 	public $student;
 	public $responses;
 	public $fileOption;
+	public $watermarkOption;
 	public $concatName;
 
 	/**
@@ -18,11 +19,12 @@ class FillPdfCommand extends Command implements SelfHandling {
 	 *
 	 * @return void
 	 */
-	public function __construct($student, $responses, $fileOption = "zip")
+	public function __construct($student, $responses, $fileOption = "zip", $watermarkOption = "draft")
 	{
 		$this->student = new Student($student);
 		$this->responses = $responses;
 		$this->fileOption = $fileOption;
+		$this->watermarkOption = $watermarkOption;
 		$this->concatName = str_slug($this->student->getLastFirst());
 	}
 
@@ -50,19 +52,43 @@ class FillPdfCommand extends Command implements SelfHandling {
 					$pdf->setFields($existing_fields);
 					$pdf->setId($response->form->id);
 
-					view("iep.forms.{$renderer}")
+					$rendered = view("iep.forms.{$renderer}")
 						->with('pdf', $pdf)
 						->with('responses', new Response($response->response))
 						->with('student', $this->student)
+						->with('event', $this)
 						->render();
+					$rendered = json_decode($rendered);
 
 					$now = \Carbon\Carbon::now()->format('Ymd-His');
-					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '.pdf';
+					$path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '-' . str_random(4) . '.pdf';
 
-					$pdf->fillForm($pdf->fields())
-						->flatten()
-						->needAppearances()
-						->saveAs($path_to_filled);
+					if (!empty($rendered)) {
+						foreach ($rendered as $index => $pdfFile) {
+							if ($index == 0) {
+								$pdf = new $pdf($pdfFile);
+							} else {
+								$pdf->addFile($pdfFile);
+							}
+						}
+
+						$pdf->saveAs($path_to_filled);
+					} else {
+						$pdf->fillForm($pdf->fields())
+							->flatten()
+							->needAppearances()
+							->saveAs($path_to_filled);
+
+						if ($this->watermarkOption == 'draft') {
+							$pdf = new Pdf($path_to_filled);
+							$pdf->stamp(config('iep.draft_watermark'))
+								->saveAs($path_to_filled);
+						} else if ($this->watermarkOption == 'copy') {
+							$pdf = new Pdf($path_to_filled);
+							$pdf->stamp(config('iep.copy_watermark'))
+								->saveAs($path_to_filled);
+						}
+					}
 
 					if (empty($pdf->getError())) {
 						$files[] = $path_to_filled;

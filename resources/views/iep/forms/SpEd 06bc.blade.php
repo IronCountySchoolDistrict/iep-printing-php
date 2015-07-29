@@ -15,13 +15,13 @@ if ($goals > 0) {
 
 foreach ($bForms as $form) {
   $files[] = Bus::dispatch(
-      new App\Commands\FillPdfCommand($student, [$form])
+      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
   )['file'];
 }
 
 foreach ($cForms as $form) {
   $files[] = Bus::dispatch(
-    new App\Commands\FillPdfCommand($student, [$form])
+    new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
   )['file'];
 }
 
