@@ -1,3 +1,8 @@
+
+@foreach ($responses->responses as $response)
+  @include('iep._partials.text')
+@endforeach
+
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
@@ -11,7 +16,3 @@ if (!empty($responses->get('adult-understands'))) {
 }
 
 ?>
-
-@foreach ($responses->responses as $response)
-  @include('iep._partials.text')
-@endforeach
