@@ -4,27 +4,27 @@ use DateTime;
 use Carbon\Carbon;
 
 class Student {
-	private $lastFirst;
-	private $firstName;
-	private $middleName;
-	private $lastName;
-	private $studentNumber;
-	private $grade;
-	private $entryDate;
-	private $exitDate;
-	private $gender;
-	private $currentSchool;
-	private $dob;
-	private $years;
-	private $months;
-	private $street;
-	private $city;
-	private $state;
-	private $zip;
-	private $nextSchool;
-	private $enrollmentSchool;
-	private $father;
-	private $mother;
+	public $lastFirst;
+	public $firstName;
+	public $middleName;
+	public $lastName;
+	public $studentNumber;
+	public $grade;
+	public $entryDate;
+	public $exitDate;
+	public $gender;
+	public $currentSchool;
+	public $dob;
+	public $years;
+	public $months;
+	public $street;
+	public $city;
+	public $state;
+	public $zip;
+	public $nextSchool;
+	public $enrollmentSchool;
+	public $father;
+	public $mother;
 
 	/**
 	 * create new student from json string or json decoded string (stdClass)
