@@ -45,7 +45,7 @@ stop queue
 
 ### Matching Form Builder fields with PDF fields
 
-First you must name the fields in the PDF the same as you named them in the Form Builder form. For example, in Form Builder lets say you named a text field `pdf_student-name`. In the PDF you would name the field where that goes to `student-name`. When the field name is pulled out of form builder `pdf_` is stripped from the name.
+First you must name the fields in the PDF the same as you named them in the Form Builder form. For example, in Form Builder lets say you named a text field `pdf_student-name`. In the PDF, you would name the field where that goes to `student-name`. When the field name is pulled out of form builder `pdf_` is stripped from the name.
 
 ### Form Builder field types
 
@@ -65,9 +65,9 @@ Sometimes Form Builder will add a `|` character followed by more text. This is u
 
 Radios are nearly identical to checkboxes except that for each radio group only one option can be selected. For example, if we have a radio field named `pdf_radio-group1` with options `Yes, No, Maybe`. It will only come out as one of these option instead of two, or all three of them.
 
-The convention I've been folowing for the PDF side of things it to convert radios into checkboxes so these fill out, on the PDF side, the same as checkboxes do. So to continue the example of they chose `Yes`. The one that gets checked on the PDF would be the checkbox named `radio-group1:Yes`.
+The convention I've been folowing for the PDF side of things it to convert radios into checkboxes so these fill out, on the PDF side, the same as checkboxes do. Continueing the example, if they chose `Yes`. The one that gets checked on the PDF would be the checkbox named `radio-group1:Yes`.
 
-Another important note is that radio options can also have the `|` character followed by more text. However, this is the main difference between radios and checkboxes in Form Builder, if our options were as follows `Yes|1, No|2, Maybe|3`, and the person filling out hte form chose Yes. Instead of the value being `Yes|1`, as it would have been with a checkbox, it will just be `1`. The value of the radio is everything *after* the `|` character.
+An important note is that radio options can also have the `|` character followed by more text. However, this is the main difference between radios and checkboxes in Form Builder, if our options were as follows `Yes|1, No|2, Maybe|3`, and the chose Yes. Instead of the value being `Yes|1`, as it would have been with a checkbox, it will just be `1`. The value of the radio is everything *after* the `|` character.
 
 ### Blade templates (where the magic happens)
 
@@ -75,11 +75,11 @@ There is one blade template that is the "master script" for each Form Builder fo
 
 #### naming convention
 
-The blade template file must be named the same as the PDF, minus the pdf file extension, plus `blade.php`. If we have a PDF file named `SpEd 22.pdf`. Then the blade template file should be named `SpEd 22.blade.php`.
+The blade template file must be named the same as the PDF, minus the PDF file extension, plus `blade.php`. If we have a PDF file named `SpEd 22.pdf`. Then the blade template file should be named `SpEd 22.blade.php`.
 
 #### blade template syntax
 
-[Laravel documentation](http://laravel.com/docs/5.0/templates) has everything you need to know about the syntax. Instead of creating html we'll be creating php scripts for filling out the PDF.
+[Laravel documentation](http://laravel.com/docs/5.0/templates) has everything you need to know about the syntax. However, instead of creating html we'll be creating PHP scripts for filling out the PDF.
 
 Instead of actually using the blade syntax, it is fine to open PHP tags and simply use regular PHP for the script.
 
@@ -104,7 +104,7 @@ foreach ($responses->responses as $response) {
 ?>
 ```
 
-But you can levarage blade templating to include other scripts with yours so the previous script would look like this.
+But you could(and should) levarage blade templating to include other scripts with yours. So the previous script would look like this.
 
 ```php
 @foreach ($responses->responses as $response)
@@ -116,4 +116,4 @@ But you can levarage blade templating to include other scripts with yours so the
 @endforeach
 ```
 
-The `iep._partials.checkbox` is a file containing logic to handle filling in checkboxes located in `resources/views/iep/_partials/checkbox.blade.php`.
+The `iep._partials.checkbox` is a blade template file containing logic to handle filling in checkboxes located in `resources/views/iep/_partials/checkbox.blade.php`.
