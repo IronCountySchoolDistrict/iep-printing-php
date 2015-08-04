@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($checked)) $checked = 'Yes';
-if (!isset($split)) $split = "/,\s(?<=\|\d,\s)/";
+if (!isset($split)) $split = "/,\s(?<=\|[\d+],\s)/";
 
 $values = preg_split($split, $response['value']);
 $key = $response['field'];
