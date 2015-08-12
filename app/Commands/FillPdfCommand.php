@@ -79,14 +79,16 @@ class FillPdfCommand extends Command implements SelfHandling {
 							->needAppearances()
 							->saveAs($path_to_filled);
 
-						if ($this->watermarkOption == 'draft') {
-							$pdf = new Pdf($path_to_filled);
-							$pdf->stamp(config('iep.draft_watermark'))
-								->saveAs($path_to_filled);
-						} else if ($this->watermarkOption == 'copy') {
-							$pdf = new Pdf($path_to_filled);
-							$pdf->stamp(config('iep.copy_watermark'))
-								->saveAs($path_to_filled);
+						if (empty($pdf->getError())) {
+							if ($this->watermarkOption == 'draft') {
+								$pdf = new Pdf($path_to_filled);
+								$pdf->stamp(config('iep.draft_watermark'))
+									->saveAs($path_to_filled);
+							} else if ($this->watermarkOption == 'copy') {
+								$pdf = new Pdf($path_to_filled);
+								$pdf->stamp(config('iep.copy_watermark'))
+									->saveAs($path_to_filled);
+							}
 						}
 					}
 
