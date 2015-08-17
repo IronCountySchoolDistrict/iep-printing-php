@@ -16,7 +16,7 @@ class PdfWasFilled extends Event {
 	 *
 	 * @return void
 	 */
-	public function __construct($files, $concatName, $fileOption)
+	public function __construct($files, $concatName = 'blanks', $fileOption = '')
 	{
 		$this->files = $files;
 		$this->concatName = $concatName;

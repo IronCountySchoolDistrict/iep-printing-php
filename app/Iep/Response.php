@@ -1,7 +1,7 @@
 <?php namespace App\Iep;
 
 class Response {
-  public $responses;
+  public $responses = [];
 
   /**
    * creates a new instance of Response

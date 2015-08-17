@@ -32,7 +32,8 @@ class AssemblePdfCommand extends Command implements SelfHandling {
 			$path_to_blank = $formsPath . $formsFile . '.pdf';
 
 			if (file_exists($path_to_blank)) {
-				$command = 'cp ' . escapeshellarg($path_to_blank) . ' ' . escapeshellarg(str_slug($formsFile)) . '.pdf';
+				$cp = (PHP_OS == 'WINNT') ? 'copy' : 'cp';
+				$command = $cp . ' ' . escapeshellarg($path_to_blank) . ' ' . escapeshellarg(str_slug($formsFile)) . '.pdf';
 				exec($command);
 				$files[] = str_slug($formsFile) . '.pdf';
 			} else {
