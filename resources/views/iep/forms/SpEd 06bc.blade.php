@@ -24,9 +24,9 @@ switch ($responses->get('goal-amount')) {
     break;
 }
 
+$bForms = [];
+$cForms = [];
 if ($goals > 0) {
-  $bForms = [];
-  $cForms = [];
   for ($i = 1; $i <= $goals; $i++) {
     $goal = $i;
     $bForms[] = (object)[
