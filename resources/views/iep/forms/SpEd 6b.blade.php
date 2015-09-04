@@ -1,5 +1,4 @@
 <?php
-//dd($student);
 $pdf->setField('your-school-district', config('iep.district.name'));
 $pdf->setfield('your-city', $student->getSchoolCity());
 
