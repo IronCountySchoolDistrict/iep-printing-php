@@ -21,11 +21,17 @@ class FillPdfCommand extends Command implements SelfHandling {
 	 */
 	public function __construct($student, $responses, $fileOption = "zip", $watermarkOption = "draft")
 	{
-		$this->student = new Student($student);
+		if (is_a($student, "App\Iep\Student")) {
+			$this->student = $student;
+		} else {
+			$this->student = new Student($student);
+		}
+
 		$this->responses = $responses;
 		$this->fileOption = $fileOption;
 		$this->watermarkOption = $watermarkOption;
 		$this->concatName = str_slug($this->student->getLastFirst());
+
 	}
 
 	/**
@@ -35,7 +41,9 @@ class FillPdfCommand extends Command implements SelfHandling {
 	 */
 	public function handle()
 	{
+
 		foreach ($this->responses as $response) {
+
 			$formsPath = config('iep.forms_storage_path');
 			$formsFile = str_replace('IEP: ', '', $response->form->title) . '.pdf';
 

@@ -50,6 +50,8 @@ $otherServices = (int)$responses->get('services');
       (object)['field' => 'related-service-check', 'type' => 'checkbox', 'response' => $responses->get('related-service-check')],
       (object)['field' => 'service1', 'type' => 'text', 'response' => $responses->get('service5')],
       (object)['field' => 'service2', 'type' => 'text', 'response' => $responses->get('service6')],
+      (object)['field' => 'service-time1', 'type' => 'text', 'response' => $responses->get('service-time5')],
+      (object)['field' => 'service-time2', 'type' => 'text', 'response' => $responses->get('service-time6')],
       (object)['field' => 'service-frequency1', 'type' => 'radio', 'response' => $responses->get('service-frequency5')],
       (object)['field' => 'service-frequency2', 'type' => 'radio', 'response' => $responses->get('service-frequency6')],
       (object)['field' => 'service-total1', 'type' => 'text', 'response' => $responses->get('service-total5')],

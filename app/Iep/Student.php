@@ -25,6 +25,7 @@ class Student {
 	public $enrollmentSchool;
 	public $father;
 	public $mother;
+	public $schoolCity;
 
 	/**
 	 * create new student from json string or json decoded string (stdClass)
@@ -60,7 +61,8 @@ class Student {
 		$this->mother = isset($data->mother) ? $data->mother : '';
 		$this->ethnicity = isset($data->ethnicity) ? $data->ethnicity : '';
 		$this->phone = isset($data->home_phone) ? $data->home_phone : '';
-
+		$this->schoolCity = isset($data->school_city) ? $data->school_city : '';
+		
 	}
 
 	/**
@@ -368,6 +370,14 @@ class Student {
 	}
 
 	/**
+	 * Get the school's city for the student's current school
+	 * @return string
+	 */
+	public function getSchoolCity() {
+		return $this->schoolCity;
+	}
+
+	/**
 	 * gets all the properties of the class and supplements it
 	 * with extras that have functions associated with them
 	 * @return array
@@ -615,6 +625,17 @@ class Student {
 	{
 		if (is_string($mother)) {
 			$this->mother = $mother;
+		}
+	}
+
+	/**
+	 * Set the school's city for the student's current school
+	 * @param string $schoolCity
+	 */
+	public function setSchoolCity($schoolCity)
+	{
+		if (is_string($schoolCity)) {
+			$this->schoolCity = $schoolCity;
 		}
 	}
 
