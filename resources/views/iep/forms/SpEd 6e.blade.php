@@ -4,7 +4,9 @@ $pdf->setField('your-district-school', config('iep.district.name'));
 $pdf->addStudent($student);
 $pdf->setField('address', $student->getAddress());
 $pdf->setField('school', $student->getCurrentSchool());
-
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 ?>
 
 @foreach ($responses->responses as $index => $response)

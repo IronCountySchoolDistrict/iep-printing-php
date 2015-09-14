@@ -5,6 +5,9 @@ $pdf->setField('your-city', config('iep.district.city'));
 $pdf->addStudent($student);
 $pdf->setField('address', $student->getAddress());
 $pdf->setField('parents', $student->getParents());
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 
 ?>
 

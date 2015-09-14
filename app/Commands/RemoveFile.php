@@ -32,7 +32,7 @@ class RemoveFile extends Command implements SelfHandling, ShouldBeQueued {
 	{
 		foreach ($this->files as $file) {
 			$deleteFile = public_path() . DIRECTORY_SEPARATOR . $file;
-			exec("rm -f $deleteFile");
+//			exec("rm -f $deleteFile");
 		}
 	}
 

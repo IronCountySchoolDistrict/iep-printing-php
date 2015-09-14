@@ -4,7 +4,9 @@
 @endforeach
 
 <?php
-
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 $pdf->setField('your-school-district', config('iep.district.name'));
 
 if (!empty($responses->get('notice-translated'))) {

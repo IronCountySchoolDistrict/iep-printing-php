@@ -1,3 +1,9 @@
+<?php
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
+?>
+
 @foreach ($responses->responses as $response)
   @if ($response['type'] == 'text' || $response['type'] == 'dropdown' || $response['type'] == 'hidden' || $response['type'] == 'paragraph')
     @include('iep._partials.text')

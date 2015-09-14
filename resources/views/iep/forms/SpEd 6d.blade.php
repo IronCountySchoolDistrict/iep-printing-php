@@ -1,7 +1,9 @@
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
-
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 if (!empty($responses->get('student-requires-esy'))) {
   $pdf->setField('student-requires-esy', 'On');
 }

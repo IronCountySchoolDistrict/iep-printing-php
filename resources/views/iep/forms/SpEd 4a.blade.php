@@ -12,6 +12,8 @@
 $pdf->setField('your-school-district', config('iep.district.name'));
 $pdf->setField('your-city', config('iep.district.city'));
 $pdf->setField('adult-student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 
 if (!empty($responses->get('review-eval'))) {
   $pdf->setField('review-eval', 'On');
