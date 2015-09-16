@@ -2,6 +2,9 @@
 
 $pdf->setField('your-district-school', config('iep.district.name'));
 $pdf->setField('your-city', config('iep.district.city') . ', ' . config('iep.district.state'));
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 
 ?>
 

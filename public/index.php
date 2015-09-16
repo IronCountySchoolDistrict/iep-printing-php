@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: https://psa.washk12.org');
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

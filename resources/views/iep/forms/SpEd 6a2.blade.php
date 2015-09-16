@@ -3,7 +3,8 @@
 $spedServices = (int)$responses->get('sped-services');
 $relatedServices = (int)$responses->get('related-services');
 $otherServices = (int)$responses->get('services');
-/*if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
+
+if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
   $formOne = (object)[
     'form' => (object)['id' => 'SpEd 6a1 - pg1', 'title' => 'SpEd 6a1'],
     'response' => []
@@ -20,13 +21,13 @@ $otherServices = (int)$responses->get('services');
   }
 
   $formTwo = (object)[
-    'form' => (object)['id' => 'SpEd 6a1 - pg2', 'title' => 'SpEd 6a1'],
+    'form' => (object)['id' => 'SpEd 6a2 - pg2', 'title' => 'SpEd 6a2'],
     'response' => [
-      (object)['field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst()],
-      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $student->getDob()],
+      (object)['field' => 'student', 'type' => 'text', 'response' => $responses->get('student')],
+      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $responses->get('birthdate')],
       (object)['field' => 'date', 'type' => 'text', 'response' => $responses->get('date')],
       (object)['field' => 'classification', 'type' => 'text', 'response' => $responses->get('classification')],
-      (object)['field' => 'grade', 'type' => 'text', 'response' => $student->getGrade()],
+      (object)['field' => 'grade', 'type' => 'text', 'response' => $responses->get('grade')],
       (object)['field' => "sped-service1", 'type' => 'text', 'response' => $responses->get("sped-service5")],
       (object)['field' => "sped-service2", 'type' => 'text', 'response' => $responses->get('sped-service6')],
       (object)['field' => 'sped-location1', 'type' => 'radio', 'response' => $responses->get('sped-location5')],
@@ -50,8 +51,6 @@ $otherServices = (int)$responses->get('services');
       (object)['field' => 'related-service-check', 'type' => 'checkbox', 'response' => $responses->get('related-service-check')],
       (object)['field' => 'service1', 'type' => 'text', 'response' => $responses->get('service5')],
       (object)['field' => 'service2', 'type' => 'text', 'response' => $responses->get('service6')],
-      (object)['field' => 'service-time1', 'type' => 'text', 'response' => $responses->get('service-time5')],
-      (object)['field' => 'service-time2', 'type' => 'text', 'response' => $responses->get('service-time6')],
       (object)['field' => 'service-frequency1', 'type' => 'radio', 'response' => $responses->get('service-frequency5')],
       (object)['field' => 'service-frequency2', 'type' => 'radio', 'response' => $responses->get('service-frequency6')],
       (object)['field' => 'service-total1', 'type' => 'text', 'response' => $responses->get('service-total5')],
@@ -69,7 +68,7 @@ $otherServices = (int)$responses->get('services');
     ]
   ];
 
-  $forms = [$formOne];//, $formTwo];
+  $forms = [$formOne, $formTwo];
 }
 
 if (isset($forms)) {
@@ -83,12 +82,8 @@ if (isset($forms)) {
     echo json_encode($files);
   }
 } else {
-*/
   $pdf->setField('your-school-district', config('iep.district.name'));
   $pdf->setField('your-city', config('iep.district.city'));
-  $pdf->setField('student', $student->getLastFirst());
-  $pdf->setField('grade_level', $student->getGrade());
-  $pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 
   foreach ($responses->responses as $response) {
     if ($response['type'] == 'checkbox') {
@@ -104,4 +99,4 @@ if (isset($forms)) {
       ?> @include('iep._partials.text') <?php
     }
   }
-//}
+}

@@ -1,5 +1,7 @@
 <?php
-
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade_level', $student->getGrade());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 $pdf->setField('your-district-school', config('iep.district.name'). '/' .$responses->get('school'));
 $pdf->setField('your-city', config('iep.district.city'));
 if ($responses->get('consent') == 'I DO') {
