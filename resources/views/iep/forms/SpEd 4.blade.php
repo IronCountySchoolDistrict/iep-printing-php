@@ -16,4 +16,5 @@ if (!empty($responses->get('review-evaluation-re-evaluation'))) {
   $pdf->setField('review-evaluation-re-evaluation', 'On');
 }
 
+$pdf->setField('student', $student->getLastFirst());
 ?>

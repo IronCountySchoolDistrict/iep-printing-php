@@ -1,3 +1,8 @@
+<?php
+
+$pdf->setField('student', $student->getLastFirst());
+
+?>
 
 @foreach ($responses->responses as $response)
   @include('iep._partials.text')

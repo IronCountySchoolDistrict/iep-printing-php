@@ -3,7 +3,11 @@
 $pdf->setField('your-district-school', config('iep.district.name'));
 $pdf->setField('your-city', config('iep.district.city'));
 $pdf->addStudent($student);
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('dob', $student->getDob());
 $pdf->setField('address', $student->getAddress());
+$pdf->setField('phone', $student->getPhone());
+$pdf->setField('grade', $student->getGrade());
 $pdf->setField('parents', $student->getParents());
 
 ?>

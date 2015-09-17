@@ -1,7 +1,7 @@
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
-$pdf->setField('your-city', config('iep.district.city'));
+$pdf->setField('your-city', $student->getSchoolCity());
 
 if (!empty($responses->get('sign-of-interpreter'))) {
   $pdf->setField('adult-understands', 'Yes');

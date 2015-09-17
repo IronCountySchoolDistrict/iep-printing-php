@@ -23,11 +23,11 @@ if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
   $formTwo = (object)[
     'form' => (object)['id' => 'SpEd 6a1 - pg2', 'title' => 'SpEd 6a1'],
     'response' => [
-      (object)['field' => 'student', 'type' => 'text', 'response' => $responses->get('student')],
-      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $responses->get('birthdate')],
+      (object)['field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst()],
+      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $student->getDob()],
       (object)['field' => 'date', 'type' => 'text', 'response' => $responses->get('date')],
       (object)['field' => 'classification', 'type' => 'text', 'response' => $responses->get('classification')],
-      (object)['field' => 'grade', 'type' => 'text', 'response' => $responses->get('grade')],
+      (object)['field' => 'grade', 'type' => 'text', 'response' => $student->getGrade()],
       (object)['field' => "sped-service1", 'type' => 'text', 'response' => $responses->get("sped-service5")],
       (object)['field' => "sped-service2", 'type' => 'text', 'response' => $responses->get('sped-service6')],
       (object)['field' => 'sped-location1', 'type' => 'radio', 'response' => $responses->get('sped-location5')],
