@@ -2,6 +2,8 @@
 
 $pdf->setField('your-district-and-city', config('iep.district.name'));
 $pdf->setField('school', $student->getCurrentSchool());
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('grade', $student->getGrade());
 
 if (!empty($responses->get('copy-mailed'))) {
   $pdf->setField('copy-mailed', 'Yes');

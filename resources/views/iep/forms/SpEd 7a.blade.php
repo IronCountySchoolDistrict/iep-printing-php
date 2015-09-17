@@ -1,7 +1,11 @@
 <?php
 
 $pdf->setField('your-district-school', config('iep.district.name'). '/' .$responses->get('school'));
-$pdf->setField('your-city', config('iep.district.city'));
+$pdf->setField('your-city', $student->getSchoolCity());
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('dob', $student->getDob());
+$pdf->setField('grade', $student->getGrade());
+
 if ($responses->get('consent') == 'I DO') {
   $pdf->setField('i-do-signature', $responses->get('consent-signature'));
   $pdf->setField('i-do-date', $responses->get('consent-date'));

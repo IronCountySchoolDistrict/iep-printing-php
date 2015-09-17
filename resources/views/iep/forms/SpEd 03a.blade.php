@@ -25,3 +25,10 @@ if ($responses->get('consent') == 'I DO NOT') {
     @include('iep._partials.checkbox', ['split' => '/,\s+/'])
   @endif
 @endforeach
+
+<?php
+
+$pdf->setField('student-name', $student->getLastFirst());
+$pdf->setField('grade', $student->getGrade());
+
+?>

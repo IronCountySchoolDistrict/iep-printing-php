@@ -1,3 +1,9 @@
+<?php
+
+$pdf->setField('student', $student->getLastFirst());
+
+?>
+
 @foreach ($responses->responses as $response)
   @if ($response['type'] == 'text' || $response['type'] == 'paragraph' || $response['type'] == 'dropdown' || $response['type'] == 'hidden')
     @include('iep._partials.text')

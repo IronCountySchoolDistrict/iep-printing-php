@@ -1,5 +1,8 @@
 <?php
 
+$pdf->setField('student', $student->getLastFirst());
+$pdf->setField('dob', $student->getDob());
+
 $pdf->setField('your-school-district', config('iep.district.name'));
 
 if (!empty($responses->get('communication-on')) && !empty($responses->get('communication-by'))) {

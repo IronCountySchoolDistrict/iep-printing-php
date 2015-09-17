@@ -1,7 +1,8 @@
 <?php
 //dd($student);
 $pdf->setField('your-school-district', config('iep.district.name'));
-$pdf->setfield('your-city', $student->getSchoolCity());
+$pdf->setField('your-city', $student->getSchoolCity());
+$pdf->setField('student', $student->getLastFirst());
 
 ?>
 

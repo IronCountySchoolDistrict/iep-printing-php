@@ -1,3 +1,10 @@
+<?php
+
+$pdf->setField('student-name', $student->getLastFirst());
+$pdf->setField('grade', $student->getGrade());
+
+?>
+
 @foreach ($responses->responses as $response)
   @if ($response['type'] == 'checkbox')
     @if ($response['field'] == 'qualify-in')
