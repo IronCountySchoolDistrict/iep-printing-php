@@ -33,7 +33,7 @@ if (isset($forms)) {
   }
 } else {
   $pdf->setField('your-school-district', config('iep.district.name'));
-  $pdf->setField('your-city', config('iep.district.city'));
+  $pdf->setField('your-city', $student->getSchoolCity());
   foreach ($responses->responses as $response) {
     ?> @include('iep._partials.text') <?php
   }

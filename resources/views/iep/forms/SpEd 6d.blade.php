@@ -1,6 +1,7 @@
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
+$pdf->setField('your-city', $student->getSchoolCity());
 $pdf->setField('student', $student->getLastFirst());
 
 if (!empty($responses->get('student-requires-esy'))) {
