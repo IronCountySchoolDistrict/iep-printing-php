@@ -10,7 +10,7 @@
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
-$pdf->setField('your-city', config('iep.district.city'));
+$pdf->setField('your-city', $student->getSchoolCity());
 $pdf->setField('adult-student', $student->getLastFirst());
 
 if (!empty($responses->get('review-eval'))) {

@@ -4,6 +4,7 @@ $pdf->setField('student', $student->getLastFirst());
 $pdf->setField('dob', $student->getDob());
 
 $pdf->setField('your-school-district', config('iep.district.name'));
+$pdf->setField('your-city', $student->getSchoolCity());
 
 if (!empty($responses->get('communication-on')) && !empty($responses->get('communication-by'))) {
   $pdf->setField('notice-translated', 'Yes');

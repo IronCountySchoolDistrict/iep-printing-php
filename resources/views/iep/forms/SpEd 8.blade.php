@@ -1,6 +1,6 @@
 <?php
 
-$pdf->setField('your-district-and-city', config('iep.district.name'));
+$pdf->setField('your-district-and-city', config('iep.district.name') . ' - ' . $student->getSchoolCity());
 $pdf->setField('school', $student->getCurrentSchool());
 $pdf->setField('student', $student->getLastFirst());
 $pdf->setField('grade', $student->getGrade());
