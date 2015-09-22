@@ -1,7 +1,8 @@
 <?php
 
 $pdf->setField('student', $student->getLastFirst());
-$pdf->setField('dob', $student->getDob());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
+$pdf->setField('grade', $student->getGrade());
 
 $pdf->setField('your-school-district', config('iep.district.name'));
 $pdf->setField('your-city', $student->getSchoolCity());

@@ -24,7 +24,7 @@ if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
     'form' => (object)['id' => 'SpEd 6a1 - pg2', 'title' => 'SpEd 6a1'],
     'response' => [
       (object)['field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst()],
-      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $student->getDob()],
+      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $student->getDob()->format('m/d/Y')],
       (object)['field' => 'date', 'type' => 'text', 'response' => $responses->get('date')],
       (object)['field' => 'classification', 'type' => 'text', 'response' => $responses->get('classification')],
       (object)['field' => 'grade', 'type' => 'text', 'response' => $student->getGrade()],

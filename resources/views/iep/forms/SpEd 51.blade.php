@@ -9,7 +9,7 @@ $pdf->setField('city', $student->getCity());
 $pdf->setField('state', $student->getState());
 $pdf->setField('zip', $student->getZip());
 $pdf->setField('parent', $student->getParent());
-$pdf->setField('dob', $student->getDob());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 $pdf->setField('gender', $student->getGender());
 $pdf->setField('grade', $student->getGrade());
 $pdf->setField('home-phone', $student->getPhone());

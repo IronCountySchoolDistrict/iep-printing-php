@@ -2,7 +2,7 @@
 
 $pdf->setField('name', $student->getLastFirst());
 $pdf->setField('student-id', $student->getStudentNumber());
-$pdf->setField('dob', $student->getDob());
+$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 $pdf->setField('grade', $student->getGrade());
 
 ?>

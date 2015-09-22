@@ -1,7 +1,7 @@
 <?php
 
 $pdf->setField('student', $student->getLastFirst());
-$pdf->setField('birthdate', $student->getDob());
+$pdf->setField('birthdate', $student->getDob()->format('m/d/Y'));
 
 ?>
 
