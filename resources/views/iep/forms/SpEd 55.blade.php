@@ -1,0 +1,62 @@
+<?php
+
+if (empty($responses->get('page'))) {
+  $limit = 567;
+  $formsCount = 1;
+  $newForm = null;
+
+  foreach ($responses->responses as $response) {
+    if (strlen($response['value']) > $limit) {
+      $formsRequired = ceil(strlen($response['value']) / $limit);
+
+      if ($formsRequired > $formsCount) {
+        $formsCount = $formsRequired;
+      }
+    }
+  }
+
+  foreach ($responses->responses as $response) {
+    if (strlen($response['value']) > $limit) {
+      for ($i = 1; $i <= $formsCount; $i++) {
+        $content = substr($response['value'], ($i - 1) * $limit);
+        ${$response['field']}[] = str_limit($content, $limit);
+      }
+    }
+  }
+
+  for ($i = 1; $i <= $formsCount; $i++) {
+    $forms[] = (object)[
+      'form' => (object)[
+        'id' => "SpEd 6b - page $i",
+        'title' => 'SpEd 55'
+      ],
+      'response' => [
+        (object)[ 'field' => 'page', 'type' => 'text', 'response' => $i ],
+        (object)[ 'field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst() ],
+        (object)[ 'field' => 'school', 'type' => 'text', 'response' => $responses->get('school') ],
+        (object)[ 'field' => 'date', 'type' => 'text', 'response' => $responses->get('date') ],
+        (object)[ 'field' => 'target', 'type' => 'text', 'response' => $target[$i - 1] ],
+        (object)[ 'field' => 'replacement', 'type' => 'text', 'response' => $replacement[$i - 1] ],
+        (object)[ 'field' => 'reinforcement', 'type' => 'text', 'response' => $reinforcement[$i - 1] ],
+        (object)[ 'field' => 'negative', 'type' => 'text', 'response' => $negative[$i - 1] ],
+        (object)[ 'field' => 'method', 'type' => 'text', 'response' => $method[$i - 1] ],
+        (object)[ 'field' => 'environmental', 'type' => 'text', 'response' => $environmental[$i - 1] ],
+      ]
+    ];
+  }
+
+  foreach ($forms as $form) {
+    $files[] = Bus::dispatch(
+      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+    )['file'];
+  }
+
+  echo json_encode($files);
+
+} else {
+  foreach ($responses->responses as $response) {
+    ?> @include('iep._partials.text') <?php
+  }
+}
+
+?>
