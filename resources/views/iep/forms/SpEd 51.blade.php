@@ -3,7 +3,7 @@
 $pdf->setField('ssid', $student->getStudentNumber());
 $pdf->setField('first-name', $student->getFirstName());
 $pdf->setField('last-name', $student->getLastName());
-$pdf->setField('mi', strtolower(substr($student->getMiddleName()), 0, 1));
+$pdf->setField('mi', strtolower(substr($student->getMiddleName(), 0, 1)));
 $pdf->setField('street-address', $student->getStreet());
 $pdf->setField('city', $student->getCity());
 $pdf->setField('state', $student->getState());
