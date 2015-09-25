@@ -35,12 +35,12 @@ if (empty($responses->get('page'))) {
         (object)[ 'field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst() ],
         (object)[ 'field' => 'school', 'type' => 'text', 'response' => $responses->get('school') ],
         (object)[ 'field' => 'date', 'type' => 'text', 'response' => $responses->get('date') ],
-        (object)[ 'field' => 'target', 'type' => 'text', 'response' => $target[$i - 1] ],
-        (object)[ 'field' => 'replacement', 'type' => 'text', 'response' => $replacement[$i - 1] ],
-        (object)[ 'field' => 'reinforcement', 'type' => 'text', 'response' => $reinforcement[$i - 1] ],
-        (object)[ 'field' => 'negative', 'type' => 'text', 'response' => $negative[$i - 1] ],
-        (object)[ 'field' => 'method', 'type' => 'text', 'response' => $method[$i - 1] ],
-        (object)[ 'field' => 'environmental', 'type' => 'text', 'response' => $environmental[$i - 1] ],
+        (object)[ 'field' => 'target', 'type' => 'text', 'response' => isset($target[$i - 1]) ? $target[$i - 1] : '' ],
+        (object)[ 'field' => 'replacement', 'type' => 'text', 'response' => isset($replacement[$i - 1]) ? $replacement[$i - 1] : '' ],
+        (object)[ 'field' => 'reinforcement', 'type' => 'text', 'response' => isset($reinforcement[$i - 1]) ? $reinforcement[$i - 1] : '' ],
+        (object)[ 'field' => 'negative', 'type' => 'text', 'response' => isset($negative[$i - 1]) ? $negative[$i - 1] : '' ],
+        (object)[ 'field' => 'method', 'type' => 'text', 'response' => isset($method[$i - 1]) ? $method[$i - 1] : '' ],
+        (object)[ 'field' => 'environmental', 'type' => 'text', 'response' => isset($environmental[$i - 1]) ? $environmental[$i - 1] : '' ],
       ]
     ];
   }
