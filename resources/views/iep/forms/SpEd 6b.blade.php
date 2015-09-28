@@ -1,14 +1,45 @@
 <?php
-$pdf->setField('your-school-district', config('iep.district.name'));
-$pdf->setField('your-city', $student->getSchoolCity());
-$pdf->setField('student', $student->getLastFirst());
+
+$limit = 6200;
+$plaafp = $responses->get('correlate-with-transition-plan');
+
+if (!empty($responses->get('continued'))) {
+  $plaafp .= ' ' . $responses->get('continued');
+}
+
+$formsCount = (int)ceil(strlen($plaafp) / $limit);
+
+if ($formsCount > 1 && !empty($responses->get('continued'))) {
+  for ($i = 1; $i <= $formsCount; $i++) {
+    $content = substr($plaafp, ($i - 1) * $limit);
+    $limitedResponse = str_limit($content, $limit);
+
+    $forms[] = (object)[
+      'form' => (object)[
+        'id' => 'SpEd 6b',
+        'title' => 'SpEd 6b'
+      ],
+      'response' => [
+        (object)['field' => 'date-of-iep', 'type' => 'text', 'response' => $responses->get('date-of-iep')],
+        (object)['field' => 'correlate-with-transition-plan', 'type' => 'text', 'response' => $limitedResponse],
+      ],
+    ];
+  }
+
+  foreach ($forms as $form) {
+    $files[] = Bus::dispatch(
+      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+    )['file'];
+  }
+
+  echo json_encode($files);
+
+} else {
+  $pdf->setField('your-school-district', config('iep.district.name'));
+  $pdf->setField('your-city', $student->getSchoolCity());
+  $pdf->setField('student', $student->getLastFirst());
+  $pdf->setField('date-of-iep', $responses->get('date-of-iep'));
+  $pdf->setField('correlate-with-transition-plan', $plaafp);
+}
 
 ?>
-
-@foreach ($responses->responses as $response)
-  @if ($response['type'] == 'text')
-    @include('iep._partials.text')
-  @elseif ($response['type'] == 'checkbox')
-    @include('iep._partials.checkbox', ['split' => '/,\s+/'])
-  @endif
-@endforeach
