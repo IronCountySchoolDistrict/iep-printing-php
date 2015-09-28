@@ -36,11 +36,11 @@ if (empty($responses->get('page'))) {
         (object)[ 'field' => 'school', 'type' => 'text', 'response' => $responses->get('school') ],
         (object)[ 'field' => 'date', 'type' => 'text', 'response' => $responses->get('date') ],
         (object)[ 'field' => 'target', 'type' => 'text', 'response' => isset($target[$i - 1]) ? $target[$i - 1] : $responses->get('target') ],
-        (object)[ 'field' => 'replacement', 'type' => 'text', 'response' => isset($replacement[$i - 1]) ? $target[$i - 1] : $responses->get('replacement') ],
-        (object)[ 'field' => 'reinforcement', 'type' => 'text', 'response' => isset($reinforcement[$i - 1]) ? $target[$i - 1] : $responses->get('reinforcement') ],
-        (object)[ 'field' => 'negative', 'type' => 'text', 'response' => isset($negative[$i - 1]) ? $target[$i - 1] : $responses->get('negative') ],
-        (object)[ 'field' => 'method', 'type' => 'text', 'response' => isset($method[$i - 1]) ? $target[$i - 1] : $responses->get('method') ],
-        (object)[ 'field' => 'environmental', 'type' => 'text', 'response' => isset($environmental[$i - 1]) ? $target[$i - 1] : $responses->get('environmental') ],
+        (object)[ 'field' => 'replacement', 'type' => 'text', 'response' => isset($replacement[$i - 1]) ? $replacement[$i - 1] : $responses->get('replacement') ],
+        (object)[ 'field' => 'reinforcement', 'type' => 'text', 'response' => isset($reinforcement[$i - 1]) ? $reinforcement[$i - 1] : $responses->get('reinforcement') ],
+        (object)[ 'field' => 'consequences', 'type' => 'text', 'response' => isset($consequences[$i - 1]) ? $consequences[$i - 1] : $responses->get('consequences') ],
+        (object)[ 'field' => 'method', 'type' => 'text', 'response' => isset($method[$i - 1]) ? $method[$i - 1] : $responses->get('method') ],
+        (object)[ 'field' => 'environmental', 'type' => 'text', 'response' => isset($environmental[$i - 1]) ? $environmental[$i - 1] : $responses->get('environmental') ],
       ]
     ];
   }
