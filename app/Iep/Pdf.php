@@ -6,6 +6,15 @@ class Pdf extends \mikehaertl\pdftk\Pdf {
 	public $id;
 	public $fields = [];
 
+	public function getField($key)
+	{
+		if (isset($this->fields[$key])) {
+			return $this->fields[$key];
+		}
+
+		return null;
+	}
+
 	public function getId()
 	{
 		return $this->id;

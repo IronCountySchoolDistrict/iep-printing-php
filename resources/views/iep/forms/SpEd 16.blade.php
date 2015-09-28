@@ -15,6 +15,12 @@ $pdf->setField('student', $student->getLastFirst());
       @include('iep._partials.text')
     @endif
   @elseif ($response['type'] == 'checkbox')
-    @include('iep._partials.checkbox')
+    @if (strpos($response['field'], 'list-question') !== false)
+      @if (empty($pdf->getField(substr($response['field'], 0, -6))))
+        <?php $pdf->setField(substr($response['field'], 0, -6), $response['value'] . '.') ?>
+      @endif
+    @else
+      @include('iep._partials.checkbox')
+    @endif
   @endif
 @endforeach
