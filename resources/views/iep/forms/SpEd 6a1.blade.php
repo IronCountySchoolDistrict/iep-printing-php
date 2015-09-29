@@ -23,8 +23,6 @@ if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
   $formTwo = (object)[
     'form' => (object)['id' => 'SpEd 6a1 - pg2', 'title' => 'SpEd 6a1'],
     'response' => [
-      (object)['field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst()],
-      (object)['field' => 'birthdate', 'type' => 'text', 'response' => $student->getDob()->format('m/d/Y')],
       (object)['field' => 'date', 'type' => 'text', 'response' => $responses->get('date')],
       (object)['field' => 'classification', 'type' => 'text', 'response' => $responses->get('classification')],
       (object)['field' => 'grade', 'type' => 'text', 'response' => $student->getGrade()],
@@ -86,19 +84,22 @@ if (isset($forms)) {
 } else {
   $pdf->setField('your-school-district', config('iep.district.name'));
   $pdf->setField('your-city', $student->getSchoolCity());
-
-  foreach ($responses->responses as $response) {
-    if ($response['type'] == 'checkbox') {
-      ?> @include('iep._partials.checkbox', ['split' => '/,\s+/']) <?php
-    } else if ($response['type'] == 'radio') {
-      if (isset($pdf->fields[$response['field'] .':'. $response['value']])) {
-        $pdf->fields[$response['field'] .':'. $response['value']] = 'Yes';
-      } else {
-        $pdf->fields[$response['field'] .':O'] = 'Yes';
-        $pdf->fields[$response['field'] .':other'] = $response['value'];
-      }
-    } else {
-      ?> @include('iep._partials.text') <?php
-    }
-  }
+  $pdf->setField('student', $student->getLastFirst());
+  $pdf->setField('birthdate', $student->getDob()->format('m/d/Y'));
+?>
+  @foreach ($responses->responses as $response)
+    @if ($response['type'] == 'checkbox')
+      @include('iep._partials.checkbox', ['split' => '/,\s+/'])
+    @elseif ($response['type'] == 'radio')
+      @if (isset($pdf->fields[$response['field'] .':'. $response['value']]))
+        <?php $pdf->fields[$response['field'] .':'. $response['value']] = 'Yes'; ?>
+      @else
+        <?php $pdf->fields[$response['field'] .':O'] = 'Yes'; ?>
+        <?php $pdf->fields[$response['field'] .':other'] = $response['value']; ?>
+      @endif
+    @else
+      @include('iep._partials.text')
+    @endif
+  @endforeach
+<?php
 }
