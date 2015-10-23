@@ -1,7 +1,7 @@
 <?php
 
 if (empty($responses->get('page'))) {
-  $limit = 567;
+  $limit = 527;
   $formsCount = 1;
   $newForm = null;
 
