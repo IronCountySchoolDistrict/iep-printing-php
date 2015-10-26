@@ -109,7 +109,7 @@ if ($goals > 2) {
           (object)[ 'field' => 'page', 'type' => 'text', 'response' => $i ],
           (object)[ 'field' => 'goal-amount', 'type' => 'text', 'response' => $goals ],
           (object)[ 'field' => 'date-of-iep', 'type' => 'text', 'response' => $responses->get('date-of-iep') ],
-          (object)[ 'field' => 'goal1', 'type' => 'text', 'response' => $responses->get('goal1') ],
+          (object)[ 'field' => 'goal1', 'type' => 'text', 'response' => empty($responses->get('goal1')) ? 1 : $responses->get('goal1') ],
           (object)[ 'field' => 'goal1-description', 'type' => 'text', 'response' => isset(${'goal1-description'}[$i - 1]) ? ${'goal1-description'}[$i - 1] : $responses->get("goal1-description") ],
           (object)[ 'field' => 'goal1-measured', 'type' => 'checkbox', 'response' => $responses->get("goal1-measured") ],
           (object)[ 'field' => 'goal1-measured-other', 'type' => 'text', 'response' => $responses->get("goal1-measured-other") ],
@@ -129,7 +129,7 @@ if ($goals > 2) {
 
       if ($goals > 1) {
         $lastIndex = count($forms) - 1;
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => $responses->get('goal2') ];
+        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => (empty($responses->get('goal2')) && $goals > 1) ? 2 : $responses->get('goal2') ];
         $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-description', 'type' => 'text', 'response' => isset(${'goal2-description'}[$i - 1]) ? ${'goal2-description'}[$i - 1] : $responses->get("goal2-description") ];
         $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured', 'type' => 'checkbox', 'response' => $responses->get("goal2-measured") ];
         $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured-other', 'type' => 'text', 'response' => $responses->get("goal2-measured-other") ];
