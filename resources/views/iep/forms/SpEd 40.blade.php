@@ -2,10 +2,11 @@
 
 $textTypes = ['text', 'dropdown', 'paragraph'];
 foreach ($textTypes as $type) {
-  $fields = $responses->find('type', $type);
-  foreach ($fields as $field) {
-    $pdf->setField($field['field'], $field['value']);
-  }
+    $fields = $responses->find('type', $type);
+
+    foreach ($fields as $field) {
+        $pdf->setField($field['field'], $field['value']);
+    }
 }
 
 $pdf->addStudent($student);
@@ -37,7 +38,7 @@ $split = "/,\s(?<=\|\d,\s)/";
 foreach ($checkboxFields as $checkboxField) {
   $values = preg_split($split, $checkboxField['value']);
   foreach ($values as $value) {
-    if (isset($pdf->fields[$checkboxField['field'].':'.$value])) {
+	if (isset($pdf->fields[$checkboxField['field'].':'.$value])) {
   		$pdf->fields[$checkboxField['field'].':'.$value] = 'Yes';
   	}
   }

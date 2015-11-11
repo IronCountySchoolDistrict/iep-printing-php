@@ -55,7 +55,7 @@ if ($goals > 2) {
 
   foreach ($forms as $form) {
     $files[] = Bus::dispatch(
-      new App\Iep\Legacy\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+      new App\Iep\Legacy\Commands\FillPdfCommand($student, json_encode([$form]), $event->fileOption, $event->watermarkOption)
     )['file'];
   }
 
@@ -149,7 +149,7 @@ if ($goals > 2) {
 
     foreach ($forms as $form) {
       $files[] = Bus::dispatch(
-        new App\Iep\Legacy\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+        new App\Iep\Legacy\Commands\FillPdfCommand($student, json_encode([$form]), $event->fileOption, $event->watermarkOption)
       )['file'];
     }
 
