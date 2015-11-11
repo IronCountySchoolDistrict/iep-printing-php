@@ -28,7 +28,7 @@ if ($formsCount > 1 && !empty($responses->get('continued'))) {
 
   foreach ($forms as $form) {
     $files[] = Bus::dispatch(
-      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+      new App\Iep\Legacy\Commands\FillPdfCommand($student, json_encode([$form]), $event->fileOption, $event->watermarkOption)
     )['file'];
   }
 

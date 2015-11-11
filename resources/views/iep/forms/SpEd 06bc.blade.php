@@ -66,11 +66,11 @@ if ($goals > 0) {
 }
 
 $files[] = Bus::dispatch(
-  new App\Commands\FillPdfCommand($student, [$bForm], $event->fileOption, $event->watermarkOption)
+  new App\Iep\Legacy\Commands\FillPdfCommand($student, [$bForm], $event->fileOption, $event->watermarkOption)
 )['file'];
 
 $files[] = Bus::dispatch(
-  new App\Commands\FillPdfCommand($student, [$cForm], $event->fileOption, $event->watermarkOption)
+  new App\Iep\Legacy\Commands\FillPdfCommand($student, [$cForm], $event->fileOption, $event->watermarkOption)
 )['file'];
 
 echo json_encode($files);

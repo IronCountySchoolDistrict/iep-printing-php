@@ -1,72 +1,51 @@
-<?php namespace App\Iep;
+<?php
 
-use DateTime;
+namespace App\Iep;
+
 use Carbon\Carbon;
 
 class Student {
-	public $lastFirst;
-	public $firstName;
-	public $middleName;
-	public $lastName;
-	public $studentNumber;
-	public $grade;
-	public $entryDate;
-	public $exitDate;
-	public $gender;
-	public $currentSchool;
-	public $dob;
-	public $years;
-	public $months;
-	public $street;
-	public $city;
-	public $state;
-	public $zip;
-	public $nextSchool;
-	public $enrollmentSchool;
-	public $father;
-	public $mother;
-	public $schoolCity;
 
 	/**
-	 * create new student from json string or json decoded string (stdClass)
+	 * create a new student with json data
 	 *
-	 * @param mixed $data
+	 * @param mixed $data json_string or stdClass
 	 */
-	public function __construct($data)
-	{
+	public function __construct($data) {
 		if (is_string($data)) {
 			$data = json_decode($data);
 		}
 
-		$this->lastFirst = isset($data->lastfirst) ? $data->lastfirst : '';
-		$this->firstName = isset($data->first_name) ? $data->first_name : '';
-		$this->middleName = isset($data->middle_name) ? $data->middle_name : '';
-		$this->lastName = isset($data->last_name) ? $data->last_name : '';
-		$this->studentNumber = isset($data->student_number) ? $data->student_number : 0;
-		$this->grade = (isset($data->grade)) ? $data->grade : 0;
-		$this->entryDate = isset($data->entrydate) ? new Carbon($data->entrydate) : null;
-		$this->exitDate = isset($data->exitdate) ? new Carbon($data->exitdate) : null;
-		$this->gender = isset($data->gender) ? $data->gender : '';
-		$this->currentSchool = isset($data->current_school) ? $data->current_school : '';
-		$this->dob = isset($data->dob) ? new Carbon($data->dob) : null;
-		$this->years = isset($this->dob) ? $this->getYears() : null;
-		$this->months = isset($data->dob) ? $this->getMonths() : null;
-		$this->street = isset($data->street) ? $data->street : '';
-		$this->city = isset($data->city) ? $data->city : '';
-		$this->state = isset($data->state) ? $data->state : '';
-		$this->zip = isset($data->zip) ? $data->zip : '';
-		$this->nextSchool = isset($data->next_school) ? $data->next_school : '';
-		$this->enrollmentSchool = isset($data->enrollment_school) ? $data->enrollment_school : '';
-		$this->father = isset($data->father) ? $data->father : '';
-		$this->mother = isset($data->mother) ? $data->mother : '';
-		$this->ethnicity = isset($data->ethnicity) ? $data->ethnicity : '';
-		$this->phone = isset($data->home_phone) ? $data->home_phone : '';
-		$this->schoolCity = isset($data->school_city) ? $data->school_city : '';
-		
+		foreach ($data as $key => $value) {
+			$propName = camel_case($key);
+			$propVal = $value;
+
+			if (strpos($key, 'date') !== false || $key == 'dob') {
+				try {
+					$propVal = new Carbon($value);	
+				} catch (Exception $e) {}
+			}
+
+			$this->{$propName} = $propVal;
+		}
+	}
+
+	/**
+	 * general getter for property values
+	 *
+	 * @param string $property
+	 */
+	public function get($property) {
+		if (property_exists($this, $property)) {
+			return $this->{$property};
+		}
+
+		return;
 	}
 
 	/**
 	 * get first name and last name combined
+	 *
 	 * @return string
 	 */
 	public function getFirstLast()
@@ -76,6 +55,7 @@ class Student {
 
 	/**
 	 * get the full name First Middle(if !empty) Last
+	 *
 	 * @return string
 	 */
 	public function getFullName()
@@ -93,15 +73,17 @@ class Student {
 
 	/**
 	 * get the lastname, firstname middleaname
+	 *
 	 * @return string
 	 */
 	public function getLastFirst()
 	{
-		return $this->lastFirst;
+		return $this->lastfirst;
 	}
 
 	/**
 	 * get the first name
+	 *
 	 * @return string
 	 */
 	public function getFirstName()
@@ -111,6 +93,7 @@ class Student {
 
 	/**
 	 * get the middle name
+	 *
 	 * @return string
 	 */
 	public function getMiddleName()
@@ -120,6 +103,7 @@ class Student {
 
 	/**
 	 * get the last name
+	 *
 	 * @return string
 	 */
 	public function getLastName()
@@ -129,6 +113,7 @@ class Student {
 
 	/**
 	 * get the student number
+	 *
 	 * @return integer
 	 */
 	public function getStudentNumber()
@@ -138,6 +123,7 @@ class Student {
 
 	/**
 	 * Get the current grade of the student
+	 *
 	 * @return integer
 	 */
 	public function getGrade()
@@ -147,6 +133,7 @@ class Student {
 
 	/**
 	 * get the entry date
+	 *
 	 * @return Carbon\Carbon
 	 */
 	public function getEntryDate()
@@ -156,6 +143,7 @@ class Student {
 
 	/**
 	 * simplified getter for the entry date
+	 *
 	 * @return Carbon\Carbon
 	 */
 	public function entryDate()
@@ -165,6 +153,7 @@ class Student {
 
 	/**
 	 * get the exit date
+	 *
 	 * @return Carbon\Carbon
 	 */
 	public function getExitDate()
@@ -174,6 +163,7 @@ class Student {
 
 	/**
 	 * simplified getter for the exit date
+	 *
 	 * @return Carbon\Carbon
 	 */
 	public function exitDate()
@@ -183,6 +173,7 @@ class Student {
 
 	/**
 	 * get the gender 'M' or 'F'
+	 *
 	 * @return string
 	 */
 	public function getGender()
@@ -192,6 +183,7 @@ class Student {
 
 	/**
 	 * get the current school
+	 *
 	 * @return string
 	 */
 	public function getCurrentSchool()
@@ -201,6 +193,7 @@ class Student {
 
 	/**
 	 * get the date of birth
+	 *
 	 * @return Carbon\Carbon
 	 */
 	public function getDob()
@@ -210,6 +203,7 @@ class Student {
 
 	/**
 	 * get the student's current age in years
+	 *
 	 * @return integer
 	 */
 	public function getYears()
@@ -222,6 +216,7 @@ class Student {
 
 	/**
 	 * get the student's current age in remainder months
+	 *
 	 * @return integer
 	 */
 	public function getMonths()
@@ -234,6 +229,7 @@ class Student {
 
 	/**
 	 * get the street address
+	 *
 	 * @return string
 	 */
 	public function getStreet()
@@ -243,6 +239,7 @@ class Student {
 
 	/**
 	 * get the city
+	 *
 	 * @return string
 	 */
 	public function getCity()
@@ -252,6 +249,7 @@ class Student {
 
 	/**
 	 * get the zipcode
+	 *
 	 * @return string
 	 */
 	public function getZip()
@@ -261,6 +259,7 @@ class Student {
 
 	/**
 	 * alternate getter for the zipcode
+	 *
 	 * @return string
 	 */
 	public function getZipcode()
@@ -270,6 +269,7 @@ class Student {
 
 	/**
 	 * get the state e.g. Utah
+	 *
 	 * @return string
 	 */
 	public function getState()
@@ -279,6 +279,7 @@ class Student {
 
 	/**
 	 * get the full address in one line
+	 *
 	 * @return string
 	 */
 	public function getAddress()
@@ -300,6 +301,7 @@ class Student {
 
 	/**
 	 * get the school of enrollment
+	 *
 	 * @return string
 	 */
 	public function getEnrollmentSchool()
@@ -309,6 +311,7 @@ class Student {
 
 	/**
 	 * get the name of the mother
+	 *
 	 * @return string
 	 */
 	public function getMother()
@@ -318,6 +321,7 @@ class Student {
 
 	/**
 	 * get the name of the father
+	 *
 	 * @return string
 	 */
 	public function getFather()
@@ -327,6 +331,7 @@ class Student {
 
 	/**
 	 * get one of the parents, mother is prioritized
+	 *
 	 * @return string
 	 */
 	public function getParent()
@@ -338,7 +343,9 @@ class Student {
 
 	/**
 	 * get both parents, one if only one available
+	 *
 	 * @param string $separator String to separate mother's name and father's name
+	 *
 	 * @return string
 	 */
 	public function getParents($separator = '/')
@@ -354,6 +361,7 @@ class Student {
 
 	/**
 	 * Get the ethnicity of the student
+	 *
 	 * @return string
 	 */
 	public function getEthnicity()
@@ -363,6 +371,7 @@ class Student {
 
 	/**
 	 * Get the home phone number for the student
+	 *
 	 * @return string
 	 */
 	public function getPhone() {
@@ -371,6 +380,7 @@ class Student {
 
 	/**
 	 * Get the school's city for the student's current school
+	 *
 	 * @return string
 	 */
 	public function getSchoolCity() {
@@ -380,6 +390,7 @@ class Student {
 	/**
 	 * gets all the properties of the class and supplements it
 	 * with extras that have functions associated with them
+	 *
 	 * @return array
 	 */
 	public function getProperties() {
@@ -394,6 +405,7 @@ class Student {
 
 	/**
 	 * Extra function to get the student name "lastname, firstname"
+	 *
 	 * @return string
 	 */
 	public function getStudent()
@@ -403,6 +415,7 @@ class Student {
 
 	/**
 	 * Get the student name "lastname, firstname"
+	 *
 	 * @return string
 	 */
 	public function getName()
@@ -412,6 +425,7 @@ class Student {
 
 	/**
 	 * set the lastname, firstname middlename
+	 *
 	 * @param $name
 	 */
 	public function setLastFirst($name)
@@ -425,6 +439,7 @@ class Student {
 
 	/**
 	 * set the first name
+	 *
 	 * @param $name
 	 * @return void
 	 */
@@ -437,9 +452,11 @@ class Student {
 
 	/**
 	 * set the middle name
+	 *
 	 * @param $name
 	 */
-	public function setMiddleName($name) {
+	public function setMiddleName($name)
+	{
 		if (is_string($name)) {
 			$this->middleName = $name;
 		}
@@ -447,6 +464,7 @@ class Student {
 
 	/**
 	 * set the last name
+	 *
 	 * @param $name
 	 */
 	public function setLastName($name)
@@ -458,6 +476,7 @@ class Student {
 
 	/**
 	 * set the student number
+	 *
 	 * @param $number
 	 */
 	public function setStudentNumber($number)
@@ -469,6 +488,7 @@ class Student {
 
 	/**
 	 * Set the current grade of the student
+	 *
 	 * @param integer $grade
 	 */
 	public function setGrade($grade)
@@ -480,6 +500,7 @@ class Student {
 
 	/**
 	 * set the entry date
+	 *
 	 * @param mixed $date
 	 */
 	public function setEntryDate($date)
@@ -489,6 +510,7 @@ class Student {
 
 	/**
 	 * set the exit date
+	 *
 	 * @param mixed $date
 	 */
 	public function setExitDate($date)
@@ -498,6 +520,7 @@ class Student {
 
 	/**
 	 * set the gender
+	 *
 	 * @param string $gender
 	 */
 	public function setGender($gender)
@@ -511,6 +534,7 @@ class Student {
 
 	/**
 	 * set the current school
+	 *
 	 * @param string $school
 	 */
 	public function setCurrentSchool($school)
@@ -522,6 +546,7 @@ class Student {
 
 	/**
 	 * set the date of birth
+	 *
 	 * @param mixed $date
 	 */
 	public function setDob($date)
@@ -531,6 +556,7 @@ class Student {
 
 	/**
 	 * set the street address
+	 *
 	 * @param string $street
 	 */
 	public function setStreet($street)
@@ -542,6 +568,7 @@ class Student {
 
 	/**
 	 * set the city
+	 *
 	 * @param string $city
 	 */
 	public function setCity($city)
@@ -553,6 +580,7 @@ class Student {
 
 	/**
 	 * set the state
+	 *
 	 * @param string $state
 	 */
 	public function setState($state)
@@ -564,6 +592,7 @@ class Student {
 
 	/**
 	 * set the zipcode
+	 *
 	 * @param mixed $zip
 	 */
 	public function setZip($zip)
@@ -577,6 +606,7 @@ class Student {
 
 	/**
 	 * alternate setter for the zipcode
+	 * 
 	 * @param mixed $zip
 	 */
 	public function setZipcode($zip)
@@ -586,6 +616,7 @@ class Student {
 
 	/**
 	 * set the next school
+	 *
 	 * @param string $school
 	 */
 	public function setNextSchool($school)
@@ -597,6 +628,7 @@ class Student {
 
 	/**
 	 * set the school of enrollment
+	 *
 	 * @param string $school
 	 */
 	public function setEnrollmentSchool($school)
@@ -608,6 +640,7 @@ class Student {
 
 	/**
 	 * set the name of the father of the student
+	 *
 	 * @param string $father
 	 */
 	public function setFather($father)
@@ -619,6 +652,7 @@ class Student {
 
 	/**
 	 * set the name of the mother of the student
+	 *
 	 * @param string $mother
 	 */
 	public function setMother($mother)
@@ -630,6 +664,7 @@ class Student {
 
 	/**
 	 * Set the school's city for the student's current school
+	 *
 	 * @param string $schoolCity
 	 */
 	public function setSchoolCity($schoolCity)
@@ -641,8 +676,9 @@ class Student {
 
 	/**
 	 * sets the date to the property if the date is valid
+	 *
 	 * @param Carbon\Carbon $propertyValue
-	 * @param mixed $date
+	 * @param mixed $date 
 	 * @return Carbon\Carbon
 	 */
 	protected function setDate($propertyValue, $date)

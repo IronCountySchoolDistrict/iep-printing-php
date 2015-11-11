@@ -74,7 +74,7 @@ if ($spedServices > 4 || $relatedServices > 4 || $otherServices > 4) {
 if (isset($forms)) {
   foreach ($forms as $form) {
     $files[] = Bus::dispatch(
-      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+      new App\Iep\Legacy\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
     )['file'];
   }
 
