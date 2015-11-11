@@ -22,7 +22,7 @@ class Student {
 
 			if (strpos($key, 'date') !== false || $key == 'dob') {
 				try {
-					$propVal = new Carbon($value);	
+					$propVal = new Carbon($value);
 				} catch (Exception $e) {}
 			}
 
@@ -208,7 +208,7 @@ class Student {
 	 */
 	public function getYears()
 	{
-		$now = new DateTime('now');
+		$now = Carbon::now();
 		$dob = $this->getDob();
 		$diff = $dob->diff($now)->format('%y');
 		return intval($diff);
@@ -375,7 +375,7 @@ class Student {
 	 * @return string
 	 */
 	public function getPhone() {
-		return $this->phone;
+		return $this->homePhone;
 	}
 
 	/**
@@ -606,7 +606,7 @@ class Student {
 
 	/**
 	 * alternate setter for the zipcode
-	 * 
+	 *
 	 * @param mixed $zip
 	 */
 	public function setZipcode($zip)
@@ -678,7 +678,7 @@ class Student {
 	 * sets the date to the property if the date is valid
 	 *
 	 * @param Carbon\Carbon $propertyValue
-	 * @param mixed $date 
+	 * @param mixed $date
 	 * @return Carbon\Carbon
 	 */
 	protected function setDate($propertyValue, $date)
