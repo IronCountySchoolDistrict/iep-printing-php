@@ -44,14 +44,11 @@ class FillPdfCommand extends Job implements SelfHandling
     public function handle()
     {
         foreach ($this->responses as $response) {
-            $formsPath = config('iep.forms_storage_path');
-            $formsFile = str_replace('IEP: ', '', $response->form->title) . '.pdf';
-
-            $path_to_blank = $formsPath . $formsFile;
-            $renderer = str_replace('IEP: ', '', str_replace('.', '', $response->form->title));
+            $path_to_blank = $this->getBlankPath($response->form->title);
+            $renderer = $this->getViewName($response->form->title);
 
             if (file_exists($path_to_blank)) {
-                if (view()->exists("iep.forms.{$renderer}")) {
+                if (view()->exists($renderer)) {
                     $pdf = new Pdf($path_to_blank);
 
                     $existing_fields = $pdf->getDataFields();
@@ -60,7 +57,7 @@ class FillPdfCommand extends Job implements SelfHandling
                     $pdf->setFields($existing_fields);
                     $pdf->setId($response->form->id);
 
-                    $rendered = view("iep.forms.{$renderer}")
+                    $rendered = view($renderer)
                         ->with('pdf', $pdf)
                         ->with('responses', new Response($response->response))
                         ->with('student', $this->student)
@@ -68,8 +65,7 @@ class FillPdfCommand extends Job implements SelfHandling
                         ->render();
                     $rendered = json_decode($rendered);
 
-                    $now = \Carbon\Carbon::now()->format('Ymd-His');
-                    $path_to_filled = str_slug($this->student->getLastFirst() . ' ' . $response->form->title) . '-' . $now . '-' . str_random(4) . '.pdf';
+                    $path_to_filled = $this->getFilledPath($response->form->title);
 
                     if (!empty($rendered)) {
                         foreach ($rendered as $index => $pdfFile) {
@@ -120,5 +116,18 @@ class FillPdfCommand extends Job implements SelfHandling
         }
 
         return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
+    }
+
+    protected function getBlankPath($formTitle) {
+        return config('iep.forms_storage_path') . str_replace('IEP: ', '', $formTitle) . '.pdf';
+    }
+
+    protected function getViewName($formTitle) {
+        return "iep.forms." . str_replace('IEP: ', '', str_replace('.', '', $formTitle));
+    }
+
+    protected function getFilledPath($formTitle) {
+        $now = \Carbon\Carbon::now()->format('Ymd-His');
+        return str_slug($this->student->getLastFirst() . ' ' . $formTitle) . '-' . $now . '-' . str_random(4) . '.pdf';
     }
 }
