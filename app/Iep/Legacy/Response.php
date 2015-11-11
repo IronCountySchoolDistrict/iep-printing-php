@@ -34,7 +34,7 @@ class Response {
       if ($response[$key] == $value) $matches[] = $response;
     }
 
-    return (isset($matches)) ? $matches : null;
+    return (isset($matches)) ? $matches : [];
   }
 
   /**
