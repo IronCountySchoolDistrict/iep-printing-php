@@ -31,7 +31,7 @@ class ZipPdfFiles
 	 */
 	public function handle(PdfWasFilled $event)
 	{
-		$this->queueFiles($event->files);
+		$this->queueFiles($event->files); 
 
 		if (count($event->files) > 1) {
 			if ($event->fileOption == 'zip') {
