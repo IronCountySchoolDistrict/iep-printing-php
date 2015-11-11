@@ -3,6 +3,7 @@
 namespace App\Iep\Legacy;
 
 use Carbon\Carbon;
+use App\Iep\Student;
 
 class Pdf extends \mikehaertl\pdftk\Pdf {
     public $id;
