@@ -221,7 +221,7 @@ class Student {
 	 */
 	public function getMonths()
 	{
-		$now = new DateTime('now');
+		$now = Carbon::now();
 		$dob = $this->getDob();
 		$diff = $dob->diff($now)->format('%m');
 		return intval($diff);
@@ -685,8 +685,6 @@ class Student {
 	{
 		if ($date instanceof Carbon) {
 			$propertyValue = $date;
-		} else if ($date instanceof DateTime) {
-			$propertyValue = new Carbon($date);
 		} else if (is_string($date)) {
 			try {
 				$date = new Carbon($date);
