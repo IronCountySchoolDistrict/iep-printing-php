@@ -19,6 +19,11 @@ class BaseController extends Controller {
 				return str_slug($request->input('slugify'));
 			}
 
+			$action = $request->input('action');
+			$info = $this->{$action}($request);
+
+			return response()->json($info);
+
 			return 'IEP Printing';
 		} else if ($request->isMethod('post')) {
 			$action = $request->input('action');
@@ -75,5 +80,14 @@ class BaseController extends Controller {
 		return $this->dispatchFrom(
 			FillPdfCommand::class, $request
 		);
+	}
+
+	/**
+	 * generate the token for the session
+	 *
+	 * @return string
+	 */
+	public function token() {
+		return response()->json(csrf_token());
 	}
 }
