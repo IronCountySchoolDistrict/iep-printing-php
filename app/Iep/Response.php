@@ -28,91 +28,75 @@ class Response {
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 */
 	public function renderPdf(Student $student) {
-		if (view()->exists($this->getHtmlView())) {
-			$html = view($this->getViewName())
+		$html = view($this->getHtmlView())
+			->with('responses', $this->responses)
+			->with('student', $student)
+			->render();
+		// return $html; // remove this (just for testing)
+
+		$pdfOptions = [
+			'margin-top' => 10,
+			'margin-bottom' => 10,
+			'margin-left' => 10,
+			'margin-right' => 10,
+		];
+
+		if ($this->headerViewEixsts()) {
+			$header = view($this->getHeaderView())
 				->with('responses', $this->responses)
 				->with('student', $student)
 				->render();
 
-			$pdf = new Pdf;
-			$pdf->addPage($html);
-
-			$savePath = $this->getSavePath($student->get('lastfirst'));
-
-			if (!$pdf->saveAs($savePath)) {
-				throw new Exception($pdf->getError());
-			}
-
-			return $savePath;
-		} else if (view()->exists($this->getPdfView())) {
-			$blankPdfPath = config('iep.forms_storage_path') . str_replace('IEP: ', '', $this->title) . '.pdf';
-
-			if (file_exists($blankPdfPath)) {
-				$pdftk = new Pdftk($blankPdfPath);
-
-				$existingFields = $pdftk->getDataFields();
-
-				$pdftk = new Pdftk($blankPdfPath);
-				$pdftk->setFields($existingFields);
-				$pdftk->setId($this->id);
-
-				$rendered = view($this->getPdfView())
-					->with('pdf', $pdftk)
-					->with('responses', $this->responses)
-					->with('student', $student)
-					->render();
-				$rendered = json_decode($rendered);
-
-				$filledPdfPath = $this->getSavePath($student->get('lastfirst'));
-
-				if (!empty($rendered)) {
-					ddd($rendered);
-					foreach ($rendered as $index => $pdfFile) {
-						if ($index == 0) {
-							$pdftk = new Pdftk($pdfFile);
-						} else {
-							$pdftk->addFile($pdfFile);
-						}
-					}
-
-					$pdftk->saveAs($filledPdfPath);
-					if (!empty($pdftk->getError())) {
-						ddd($pdftk->getError());
-					}
-				} else {
-					$pdftk->fillForm($pdftk->fields())
-						->flatten()
-						->needAppearances()
-						->saveAs($filledPdfPath);
-				}
-
-				if (!empty($pdftk->getError())) {
-					throw new Exception($pdftk->getError());
-				}
-
-				return $filledPdfPath;
-			} else {
-				throw new Exception("Pdf file not found.");
-			}
+			$pdfOptions['header-html'] = $header;
+			$pdfOptions['header-spacing'] = 3;
 		}
-		
-		throw new Exception("No renderer for \"$this->title.\"");
+
+		$pdf = new Pdf($pdfOptions);
+		$pdf->addPage($html);
+
+		$savePath = $this->getSavePath($student->get('lastfirst'));
+
+		if (!$pdf->saveAs($savePath)) {
+			throw new Exception($pdf->getError());
+		}
+
+		return $savePath;
 	}
 
 	/**
-	 * 
+	 *
+	 *
+	 */
+	public function viewExists() {
+		return view()->exists($this->getHtmlView());
+	}
+
+	/**
+	 *
+	 *
+	 */
+	protected function headerViewEixsts() {
+		return view()->exists($this->getHeaderView());
+	}
+
+	/**
+	 *
 	 *
 	 */
 	protected function getHtmlView() {
 		return 'iep.html.' . str_slug($this->title);
 	}
 
+	protected function getHeaderView() {
+		return 'iep.html.headers.' . str_slug($this->title);
+	}
+
 	/**
-	 * 
+	 *
 	 *
 	 */
 	protected function getPdfView() {
@@ -120,7 +104,7 @@ class Response {
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 */
 	protected function getSavePath($studentName) {
