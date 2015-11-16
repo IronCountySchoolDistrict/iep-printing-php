@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Bus;
 use Exception;
 use ZipArchive;
 use App\Jobs\Job;
@@ -9,12 +10,14 @@ use App\Iep\Pdftk;
 use App\Iep\Student;
 use App\Iep\Response;
 use Illuminate\Contracts\Bus\SelfHandling;
+use App\Iep\Legacy\Commands\FillPdfCommand;
 
 class PrintPdf extends Job implements SelfHandling
 {
 
     protected $student;
     protected $responses;
+    protected $jsonResponses;
     protected $fileOption;
     protected $watermarkOption;
     protected $files;
@@ -29,10 +32,12 @@ class PrintPdf extends Job implements SelfHandling
         $this->student = new Student($student);
 
         if (is_string($responses)) $responses = json_decode($responses);
+
         foreach ($responses as $response) {
             $this->responses[] = new Response($response);
+            $this->jsonResponses[] = json_encode([$response]);
         }
-
+        
         $this->fileOption = $fileOption;
         $this->watermarkOption = $watermarkOption;
     }
@@ -44,33 +49,32 @@ class PrintPdf extends Job implements SelfHandling
      */
     public function handle()
     {
-        foreach ($this->responses as $response) {
+        foreach ($this->responses as $index => $response) {
             // try {
-                // generate pdf
-                $this->files[] = $response->renderPdf($this->student);
+                if ($response->viewExists()) {
+                    return $response->renderPdf($this->student);
+                    $this->files[] = $response->renderPdf($this->student);
 
-                // add watermark to the generated pdf
-                if ($this->watermarkOption !== 'final') {
-                    $file = $this->files[count($this->files) - 1];
-                    $this->watermarkPdf($file);
-                }
-
-                // zip or concat generated pdfs
-                if (count($this->files) > 1) {
-                    if ($this->fileOption == 'zip') {
-                        $downloadFile = $this->createZip();
-                    } else {
-                        $downloadFile = $this->concatFiles();
+                    if ($this->watermarkOption !== 'final') {
+                        $file = $this->files[count($this->files) - 1];
+                        $this->watermarkPdf($file);
                     }
+                } else {
+                    // legacy PrintPdf Command Job
+                    $this->files[] = Bus::dispatch(
+                        new FillPdfCommand($this->student, $this->jsonResponses[$index], $this->fileOption, $this->watermarkOption)
+                    )['file'];
                 }
             // } catch (Exception $e) {
             //     throw new Exception($e);
             //     // $error[$response->id] = $e->getMessage();
             // }
         }
-        
 
-        return ['file' => isset($downloadFile) ? $downloadFile : '', 'error' => (isset($error)) ? $error : []];
+        $downloadFile = $this->groupFiles();
+
+
+        return ['file' => $downloadFile, 'error' => (isset($error)) ? $error : []];
     }
 
 
@@ -82,6 +86,22 @@ class PrintPdf extends Job implements SelfHandling
      */
     protected function getOutFile($extension = 'zip') {
         return str_slug($this->student->get('lastfirst') . ' ' . str_random(4)) . '.' . $extension;
+    }
+
+    /**
+     * figure out how we should group
+     *
+     */
+    protected function groupFiles() {
+        if (count($this->files) > 1) {
+            if ($this->fileOption == 'zip') {
+                return $this->createZip();
+            } else {
+                return $this->concatFiles();
+            }
+        }
+
+        return isset($this->files[0]) ? $this->files[0] : '';
     }
 
     /**
@@ -135,16 +155,15 @@ class PrintPdf extends Job implements SelfHandling
     * @param $file Path to the file
     */
     protected function watermarkPdf($file) {
-        $pdftk = new Pdftk($file); // open the file
+        $pdftk = new Pdftk($file);
 
-        // apply watermark
         if ($this->watermarkOption == 'draft') {
             $pdftk->stamp(config('iep.draft_watermark'));
         } else if ($this->watermarkOption == 'copy') {
             $pdftk->stamp(config('iep.copy_watermark'));
         }
 
-        $pdftk->saveAs($file); // save the file
+        $pdftk->saveAs($file);
 
         if (!empty($pdftk->getError())) {
             throw new Exception('Error applying watermark to pdf.');
