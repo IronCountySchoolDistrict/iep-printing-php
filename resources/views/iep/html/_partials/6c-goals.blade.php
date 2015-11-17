@@ -1,7 +1,7 @@
 <br />
 
 <div class="row">
-    <div class="col-xs-4" style="font-size: 18px">
+    <div class="col-xs-4" style="font-size: 15px; font-weight: bold">
         <div class="left">
             <span style="">Measurable Annual Goal #:</span>
         </div>

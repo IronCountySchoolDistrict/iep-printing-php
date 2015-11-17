@@ -52,7 +52,7 @@ class Response {
 				->render();
 
 			$pdfOptions['header-html'] = $header;
-			$pdfOptions['header-spacing'] = 3;
+			$pdfOptions['header-spacing'] = 2;
 		}
 
 		$pdf = new Pdf($pdfOptions);
