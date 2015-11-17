@@ -37,7 +37,7 @@ class PrintPdf extends Job implements SelfHandling
             $this->responses[] = new Response($response);
             $this->jsonResponses[] = json_encode([$response]);
         }
-        
+
         $this->fileOption = $fileOption;
         $this->watermarkOption = $watermarkOption;
     }
@@ -50,9 +50,9 @@ class PrintPdf extends Job implements SelfHandling
     public function handle()
     {
         foreach ($this->responses as $index => $response) {
-            // try {
+            try {
                 if ($response->viewExists()) {
-                    return $response->renderPdf($this->student);
+                    // return $response->renderPdf($this->student); // for testing: return html
                     $this->files[] = $response->renderPdf($this->student);
 
                     if ($this->watermarkOption !== 'final') {
@@ -65,10 +65,10 @@ class PrintPdf extends Job implements SelfHandling
                         new FillPdfCommand($this->student, $this->jsonResponses[$index], $this->fileOption, $this->watermarkOption)
                     )['file'];
                 }
-            // } catch (Exception $e) {
-            //     throw new Exception($e);
-            //     // $error[$response->id] = $e->getMessage();
-            // }
+            } catch (Exception $e) {
+                // throw new Exception($e);
+                $error[$response->id] = $e->getMessage();
+            }
         }
 
         $downloadFile = $this->groupFiles();
