@@ -43,6 +43,8 @@ class Response {
 			'margin-bottom' => 10,
 			'margin-left' => 10,
 			'margin-right' => 10,
+
+			'user-style-sheet' => public_path('css/app.css'),
 		];
 
 		if ($this->headerViewEixsts()) {

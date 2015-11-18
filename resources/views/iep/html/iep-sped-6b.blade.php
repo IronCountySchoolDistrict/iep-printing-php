@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>IEP: SpEd 6b</title>
     </head>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
+    
     <body>
         <div class="row">
             <div class="col-xs-6">

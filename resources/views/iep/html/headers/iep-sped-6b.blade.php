@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
         @include('iep.html._partials.header-script')
     </head>
     <body onload="header()">
