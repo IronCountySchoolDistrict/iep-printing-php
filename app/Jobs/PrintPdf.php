@@ -60,13 +60,12 @@ class PrintPdf extends Job implements SelfHandling
                         $this->watermarkPdf($file);
                     }
                 } else {
-                    // legacy PrintPdf Command Job
+                    // do legacy PrintPdf Command Job
                     $this->files[] = Bus::dispatch(
                         new FillPdfCommand($this->student, $this->jsonResponses[$index], $this->fileOption, $this->watermarkOption)
                     )['file'];
                 }
             } catch (Exception $e) {
-                // throw new Exception($e);
                 $error[$response->id] = $e->getMessage();
             }
         }
