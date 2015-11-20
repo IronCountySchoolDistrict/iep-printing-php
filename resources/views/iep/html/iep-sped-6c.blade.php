@@ -15,8 +15,8 @@
                     <span>{{ config('iep.district.name') }}</span>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <span class="pull-right">SpEd 6c 04.08</span>
+            <div class="col-xs-6 text-right">
+                <span>SpEd 6c 04.08</span>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="row center-input">
+        <div class="row text-center">
             <h3>Individualized Education Program (IEP): Goals</h3>
             <h4>(Use multiple sheets as necessary)</h4>
         </div>

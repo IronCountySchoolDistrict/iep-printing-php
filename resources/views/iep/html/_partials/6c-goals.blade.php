@@ -20,28 +20,17 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <span style="font-weight: bold">Methods of how the student's progress towards this goal will be measured:</span>
-        <div style="display: inline-block">
+        <span>
+            <span style="font-weight: bold">Methods of how the student's progress towards this goal will be measured:</span>
             @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Test Scores']) Test scores
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Grades']) Grades
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Work Sample']) Work sample
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Checklist']) Checklist
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Curriculum based assessment']) Curriculum based assessment
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Behavior observations']) Behavior observations
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Other (Specify)|OTH']) Other (specify) {{ str_repeat('&nbsp;', 2) }}<span class="underline">{{ $responses->get("goal$goal-measured-other") }}</span>
         </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Grades']) Grades
-        </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Work Sample']) Work sample
-        </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Checklist']) Checklist
-        </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Curriculum based assessment']) Curriculum based assessment
-        </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Behavior observations']) Behavior observations
-        </div>
-        <div style="display: inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-measured"), 'needle' => 'Other (Specify)|OTH']) Other (specify) {{ str_repeat('&nbsp;', 2) }}<span class="underline">{{ $responses->get("goal$goal-measured-other") }}</span>
-        </div>
+        </span>
     </div>
 </div>
 
@@ -49,22 +38,13 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <span style="font-weight: bold">Parents will be informed of student's progress at least as often as non-disabled students by:</span>
-        <div style="display:inline-block">
+        <span>
+            <span style="font-weight: bold">Parents will be informed of student's progress at least as often as non-disabled students by:</span>
             @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Parent/Teacher Conference']) Parent/Teacher Conference
-        </div>
-
-        <div style="display:inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Progress Report']) Progress Reports
-        </div>
-
-        <div style="display:inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Email']) Email
-        </div>
-
-        <div style="display:inline-block">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Other (Specify)|OTH']) Other (specify) {{ str_repeat('&nbsp;', 2) }}<span class="underline">{{ $responses->get("goal$goal-report-other") }}</span>
-        </div>
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Progress Report']) Progress Reports
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Email']) Email
+            &nbsp;@include('iep.html._partials.checkbox', ['haystack' => $responses->get("goal$goal-report"), 'needle' => 'Other (Specify)|OTH']) Other (specify) {{ str_repeat('&nbsp;', 2) }}<span class="underline">{{ $responses->get("goal$goal-report-other") }}</span>
+        </span>
     </div>
 </div>
 

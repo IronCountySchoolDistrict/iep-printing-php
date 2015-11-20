@@ -5755,6 +5755,8 @@ button.close {
 
 .left {
   float: left; }
+  .left span {
+    width: 100%; }
 
 .right {
   width: auto;
@@ -5774,5 +5776,14 @@ button.close {
 .right-input {
   text-align: right;
   padding-right: 2pt; }
+
+.text-left {
+  text-align: left; }
+
+.text-right {
+  text-align: right; }
+
+.text-center {
+  text-align: center; }
 
 /*# sourceMappingURL=app.css.map */

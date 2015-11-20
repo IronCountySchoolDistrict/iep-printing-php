@@ -1,9 +1,11 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// @import "node_modules/flexboxgrid/css/flexboxgrid";
-
 .left {
     float: left;
+
+    span {
+        width: 100%;
+    }
 }
 .right {
     width: auto;
@@ -23,4 +25,13 @@
 .right-input {
     text-align: right;
     padding-right: 2pt;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
 }

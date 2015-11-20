@@ -15,8 +15,8 @@
                     <span>{{ $student->get('lastfirst') }}</span>
                 </div>
             </div>
-            <div class="col-xs-5">
-                <span class="pull-right">SpEd 6c 04.08</span>
+            <div class="col-xs-5 text-right">
+                <span>SpEd 6c 04.08</span>
             </div>
         </div>
     </body>

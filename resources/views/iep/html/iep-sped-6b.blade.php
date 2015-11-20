@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>IEP: SpEd 6b</title>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
     </head>
-    
+
     <body>
         <div class="row">
             <div class="col-xs-6">
@@ -15,8 +16,8 @@
                     <span>{{ config('iep.district.name') }}</span>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <span style="float: right">SpEd 6b 10.15</span>
+            <div class="col-xs-6 text-right">
+                <span>SpEd 6b 10.15</span>
             </div>
         </div>
         <div class="row">
