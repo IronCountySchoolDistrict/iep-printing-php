@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="col-xs-7">
-                <div class="left">
+                <div class="left" style="width: 175pt">
                     <span>Signature of Interpreter, if used</span>
                 </div>
                 <div class="right text-right">
