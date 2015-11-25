@@ -29,7 +29,7 @@ class FillPdfCommand extends Job implements SelfHandling
         } else {
             $this->student = new Student($student);
         }
-
+        
         $this->responses = json_decode($responses);
         $this->fileOption = $fileOption;
         $this->watermarkOption = $watermarkOption;
