@@ -5,15 +5,7 @@
         <title>IEP: SpEd 6a1</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
         <style>
-            .sped-services td, .related-services td, .services td {
-                border-top: none !important;
-            }
-            .sped-services th, .related-services th, .services th {
-                border-bottom: none !important;
-            }
-            .special-factors .row {
-                margin-top: 3px;
-            }
+
         </style>
     </head>
     <body>
@@ -108,22 +100,20 @@
                     <li><span style="font-weight:bold">Special education services</span> (e.g. reading comp., math calc., social skills)</li>
                 </div>
 
-                <table class="table table-condensed sped-services">
+                <table class="table table-bordered table-condensed sped-services">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Location</th>
-                            <th>Amount of Time</th>
-                            <th>Frequency</th>
+                            <th style="width: 41%"></th>
+                            <th style="width: 21%">Location</th>
+                            <th style="width: 17%">Amount of Time</th>
+                            <th style="width: 21%">Frequency</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for ($i = 1; $i <= 6; $i++)
                             <tr>
                                 <td>
-                                    <div class="right underline left-input">
-                                        <span>{{ $responses->get("sped-service$i") }}</span>
-                                    </div>
+                                    <span>{{ $responses->get("sped-service$i") }}</span>
                                 </td>
                                 <td>
                                     <div class="left">
@@ -135,7 +125,7 @@
                                             @include('iep.html._partials.checkbox', ['haystack' => 'O', 'needle' => 'not here']) O
                                         @endif
                                     </div>
-                                    <div class="right underline center-input">
+                                    <div class="right underline left-input">
                                         <span>
                                             @if (!in_array($responses->get("sped-location$i"), ['G', 'S']))
                                                 {{ $responses->get("sped-location$i") }}
@@ -143,10 +133,8 @@
                                         </span>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="right underline center-input">
-                                        <span>{{ $responses->get("sped-time$i") }}</span>
-                                    </div>
+                                <td class="text-center">
+                                    <span>{{ $responses->get("sped-time$i") }}</span>
                                 </td>
                                 <td>
                                     <div class="left">
@@ -154,7 +142,7 @@
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'W']) W
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'M']) M
                                     </div>
-                                    <div class="right underline center-input">
+                                    <div class="right underline left-input">
                                         <span>{{ $responses->get("sped-total$i") }}</span>
                                     </div>
                                 </td>
@@ -166,22 +154,20 @@
                 <div>
                     <li><span style="font-weight:bold">Related services</span> (if required for student to benefit from special education)</li>
                 </div>
-                <table class="table table-condensed related-services">
+                <table class="table table-bordered table-condensed related-services">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Location</th>
-                            <th>Amount of Time</th>
-                            <th>Frequency</th>
+                            <th style="width: 41%"></th>
+                            <th style="width: 21%">Location</th>
+                            <th style="width: 17%">Amount of Time</th>
+                            <th style="width: 21%">Frequency</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for ($i = 1; $i <= 6; $i++)
                             <tr>
                                 <td>
-                                    <div class="right underline left-input">
-                                        <span>{{ $responses->get("related-service$i") }}</span>
-                                    </div>
+                                    <span>{{ $responses->get("related-service$i") }}</span>
                                 </td>
                                 <td>
                                     <div class="left">
@@ -193,7 +179,7 @@
                                             @include('iep.html._partials.checkbox', ['haystack' => 'O', 'needle' => 'not here']) O
                                         @endif
                                     </div>
-                                    <div class="right underline center-input">
+                                    <div class="right underline left-input">
                                         <span>
                                             @if ($responses->get("related-location$i") == 'O')
                                                 {{ $responses->get("related-location$i") }}
@@ -201,10 +187,8 @@
                                         </span>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="right underline center-input">
-                                        <span>{{ $responses->get("related-time$i") }}</span>
-                                    </div>
+                                <td class="text-center">
+                                    <span>{{ $responses->get("related-time$i") }}</span>
                                 </td>
                                 <td>
                                     <div class="left">
@@ -212,7 +196,7 @@
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'W']) W
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'M']) M
                                     </div>
-                                    <div class="right underline center-input">
+                                    <div class="right underline left-input">
                                         <span>{{ $responses->get("related-total$i") }}</span>
                                     </div>
                                 </td>
@@ -227,26 +211,22 @@
                 <div style="margin-top:10px">
                     <li><span style="font-weight:bold">Program modifications or supports for school personnel and/or supplementary aids and services to student or on behalf of student in regular education programs</span></li>
                 </div>
-                <table class="table table-condensed services">
+                <table class="table table-bordered table-condensed services">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Amount of Time</th>
-                            <th>Frequency</th>
+                            <th style="width: 62%"></th>
+                            <th style="width: 17%">Amount of Time</th>
+                            <th style="width: 21%">Frequency</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for ($i = 1; $i <= 6; $i++)
                             <tr>
                                 <td>
-                                    <div class="right underline left-input">
-                                        <span>{{ $responses->get("service$i") }}</span>
-                                    </div>
+                                    <span>{{ $responses->get("service$i") }}</span>
                                 </td>
-                                <td>
-                                    <div class="right underline center-input">
-                                        <span>{{ $responses->get("service-time$i") }}</span>
-                                    </div>
+                                <td class="text-center">
+                                    <span>{{ $responses->get("service-time$i") }}</span>
                                 </td>
                                 <td>
                                     <div class="left">
@@ -254,7 +234,7 @@
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'W']) W
                                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'M']) M
                                     </div>
-                                    <div class="right underline center-input">
+                                    <div class="right underline left-input">
                                         <span>{{ $responses->get("service-total$i") }}</span>
                                     </div>
                                 </td>
