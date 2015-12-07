@@ -55,7 +55,10 @@
             </div>
         </div>
 
-        <?php $goalsAmount = (int)$responses->get('goal-amount') ?>
+        <?php
+            $goalsAmount = (int)$responses->get('goal-amount');
+            if ($goalsAmount < 2) $goalsAmount = 2;
+        ?>
 
         @for($goal = 1; $goal <= $goalsAmount; $goal++)
             @include('iep.html._partials.6c-goals')

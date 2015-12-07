@@ -63,16 +63,16 @@
                 <th style="text-align: center">Date/Data</th>
             </tr>
             <tr>
-                <td align="center">{{ $responses->get("goal$goal-progress-date1") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-date2") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-date3") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-date4") }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-date1")) ? $responses->get("goal$goal-progress-date1") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-date2")) ? $responses->get("goal$goal-progress-date2") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-date3")) ? $responses->get("goal$goal-progress-date3") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-date4")) ? $responses->get("goal$goal-progress-date4") : '&nbsp;' }}</td>
             </tr>
             <tr>
-                <td align="center">{{ $responses->get("goal$goal-progress-code1") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-code2") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-code3") }}</td>
-                <td align="center">{{ $responses->get("goal$goal-progress-code4") }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-code1")) ? $responses->get("goal$goal-progress-code1") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-code2")) ? $responses->get("goal$goal-progress-code2") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-code3")) ? $responses->get("goal$goal-progress-code3") : '&nbsp;' }}</td>
+                <td align="center">{{ (null !== $responses->get("goal$goal-progress-code4")) ? $responses->get("goal$goal-progress-code4") : '&nbsp;' }}</td>
             </tr>
         </table>
     </div>
