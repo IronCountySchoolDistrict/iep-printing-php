@@ -59,7 +59,7 @@
                 <p>For students 16 and over (or younger if appropriate) correlate with Transition Plan on PLAAFP and Goals.</p>
                 <ul>
                     <li>For school age students (5-22 years old), describe how the student's disability affects student's involvement and progress in the general education curriculum.</li>
-                    <li>For preschool age students, describe how the disability affects the student's participation in appropriate activites.</li>
+                    <li>For preschool age students, describe how the disability affects the student's participation in appropriate activities.</li>
                 </ul>
             </div>
             <div class="col-xs-12">

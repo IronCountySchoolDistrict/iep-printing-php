@@ -172,7 +172,7 @@
             </div>
             <div class="col-xs-12" style="margin-bottom: 10px">
                 <div class="left">
-                    @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('sped-teacher'))) ? 'no' : 'yes']) Spedical Education Teacher
+                    @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('sped-teacher'))) ? 'no' : 'yes']) Special Education Teacher
                 </div>
                 <div class="right underline left-input">
                     <span>{{ $responses->get('sped-teacher') }}</span>
@@ -308,7 +308,7 @@
         <div class="row" style="margin-top: 10px">
             <div class="col-xs-10 col-xs-offset-1 text-center">
                 <p class="text-italic" style="text-decoration: underline">
-                    If any IEP team membre will not be attending the IEP meeting, complete and attach the form "IEP team member not attending" prior to the meeting.
+                    If any IEP team member will not be attending the IEP meeting, complete and attach the form "IEP team member not attending" prior to the meeting.
                 </p>
             </div>
 

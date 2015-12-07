@@ -107,7 +107,7 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <span>On the basis of the data reviewed, the particpants have determined:</span>
+                <span>On the basis of the data reviewed, the participants have determined:</span>
                 <table class="table table-condensed">
                     <tr>
                         <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => '1'])</td>
@@ -268,7 +268,7 @@
                     @include('iep.html._partials.checkbox', ['haystack' => $responses->get('attended'), 'needle' => 'Did not attend (document efforts to involve parent/adult student)'])
                     Did not attend (document efforts to involve parent/adult student) OR
                     @include('iep.html._partials.checkbox', ['haystack' => $responses->get('attended'), 'needle' => 'Participated via telephone, video conference, or other means'])
-                    Particpated via telephone, video conference or other means AND
+                    Participated via telephone, video conference or other means AND
                     <span>
                         @if (!empty($responses->get('copy-mailed')))
                             &#x2611;

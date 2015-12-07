@@ -364,7 +364,7 @@
         <div class="row">
             <div class="col-xs-4">
                 Attendance:
-                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('attendance'), 'needle' => 'Problem']) Problem 
+                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('attendance'), 'needle' => 'Problem']) Problem
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('attendance'), 'needle' => 'No Problem']) No Problem
             </div>
             <div class="col-xs-8">

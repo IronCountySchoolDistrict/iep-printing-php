@@ -53,7 +53,7 @@
             </div>
             <div class="col-xs-3">
                 <div class="left">
-                    Birthdate
+                    Birth&nbsp;date
                 </div>
                 <div class="right underline center-input">
                     <span>{{ $student->get('dob')->format('m/d/Y') }}</span>
@@ -340,7 +340,7 @@
                 <div class="row">
                     <ul>
                         <li>
-                            Assistive techonology access needed in the home in order to receive FAPE?
+                            Assistive technology access needed in the home in order to receive FAPE?
                             {{ str_repeat('&nbsp;', 5) }}
                             @include('iep.html._partials.checkbox', ['haystack' => $responses->get('assistive-technology-access'), 'needle' => 'Yes']) Yes
                             {{ str_repeat('&nbsp;', 5) }}
