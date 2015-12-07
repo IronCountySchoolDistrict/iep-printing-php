@@ -63,5 +63,14 @@
         @for($goal = 1; $goal <= $goalsAmount; $goal++)
             @include('iep.html._partials.6c-goals')
         @endfor
+
+        <div class="row" style="margin-top: 15px">
+            <div class="col-xs-12">
+                <span class="text-bold">Comments</span>
+            </div>
+            <div class="col-xs-12 box" style="min-height: 4cm; margin-top: 0">
+                <p>{{ $responses->get('comments') }}</p>
+            </div>
+        </div>
     </body>
 </html>
