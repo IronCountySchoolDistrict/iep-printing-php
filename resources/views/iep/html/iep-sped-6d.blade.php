@@ -5,7 +5,7 @@
         <title>IEP: SpEd 6d</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
         <style>
-
+            
         </style>
     </head>
     <body>
@@ -324,6 +324,23 @@
                     Copy of this document was mailed to parent/adult student on (date)
                     <span class="underline" style="font-size: 1em">{{ !empty($responses->get('date')) ? str_repeat('&nbsp;', 20) : $responses->get('date') }}</span>
                 </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 box" style="padding-top: 10px">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <div class="right underline">&nbsp;</div>
+                    </div>
+                    <div class="col-xs-10">
+                        I have received a copy of the Procedural Safeguards and a copy of this document
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <span style="font-size: 0.9em">Parent initials</span>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
