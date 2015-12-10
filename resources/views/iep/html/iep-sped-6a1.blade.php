@@ -5,7 +5,7 @@
         <title>IEP: SpEd 6a1</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
         <style>
-
+            /*body {width:23cm}*/
         </style>
     </head>
     <body>

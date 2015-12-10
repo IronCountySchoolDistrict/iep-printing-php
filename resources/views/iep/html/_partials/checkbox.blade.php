@@ -1,6 +1,6 @@
 
 @if (strpos($haystack, $needle) !== false)
-    <span>&#x2611;</span> {{-- checked --}}
+    <span class="ballot-box-checked">&#x2611;</span>
 @else
-    <span>&#x2610;</span> {{-- not checked --}}
+    <span class="ballot-box">&#x2610;</span>
 @endif
