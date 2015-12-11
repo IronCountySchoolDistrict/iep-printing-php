@@ -91,6 +91,12 @@ class Response {
 	 *
 	 */
 	protected function getHtmlView() {
+		$basePath = config('iep.html_renderer_path');
+
+		if (view()->exists($basePath . '.' . str_slug($this->title))) {
+			return $basePath . '.' . str_slug($this->title);
+		}
+
 		return 'iep.html.' . str_slug($this->title);
 	}
 

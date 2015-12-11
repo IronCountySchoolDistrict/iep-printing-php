@@ -14,4 +14,5 @@ return [
 	'blanks_storage_path' => str_finish(env('IEP_BLANKS_STORAGE_PATH', storage_path('forms')), DIRECTORY_SEPARATOR),
 	'draft_watermark' => env('IEP_DRAFT_WATERMARK', storage_path('forms/watermarks/draft.pdf')),
 	'copy_watermark' => env('IEP_COPY_WATERMARK', storage_path('forms/watermarks/copy.pdf')),
+	'html_renderer_path' => env('IEP_HTML_RENDERER_PATH', '')
 ];
