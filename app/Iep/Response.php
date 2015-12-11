@@ -43,9 +43,7 @@ class Response {
 			'margin-bottom' => 10,
 			'margin-left' => 10,
 			'margin-right' => 10,
-			'zoom' => '0.75',
-
-			// 'user-style-sheet' => public_path('css/app.css'),
+			'zoom' => config('iep.html_renderer_zoom'),
 		];
 
 		if ($this->headerViewEixsts()) {
