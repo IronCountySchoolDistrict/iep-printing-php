@@ -66,11 +66,15 @@
             </ul>
         </div>
         <div class="col-xs-12">
-            <p>
-                {{ $responses->get('correlate-with-transition-plan') }}
-                {{ $responses->get('continued') }}
-                {{ $responses->get('continued2') }}
-            </p>
+            <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('correlate-with-transition-plan') }}</p>
+            
+            @if (!empty($responses->get('continued')))
+                <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('continued') }}</p>
+            @endif
+
+            @if (!empty($responses->get('continued2')))
+                <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('continued2') }}</p>
+            @endif
         </div>
     </div>
 
