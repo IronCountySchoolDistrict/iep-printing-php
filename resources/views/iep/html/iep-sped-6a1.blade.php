@@ -9,6 +9,8 @@
         /*body {width:23cm}*/
     </style>
 @endsection
+
+@section('content')
     <div class="row">
         <div class="col-xs-6">
             <div class="left">
