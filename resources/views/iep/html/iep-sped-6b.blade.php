@@ -69,6 +69,7 @@
             <p>
                 {{ $responses->get('correlate-with-transition-plan') }}
                 {{ $responses->get('continued') }}
+                {{ $responses->get('continued2') }}
             </p>
         </div>
     </div>
