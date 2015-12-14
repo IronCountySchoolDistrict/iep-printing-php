@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use URL;
 use App\Jobs\PrintPdf;
 use Illuminate\Http\Request;
 use App\Iep\Legacy\Commands\FillPdfCommand;
@@ -39,6 +40,29 @@ class BaseController extends Controller {
 	 * action for /print-pdf for filling and printing pdfs
 	 */
 	public function printPdf(Request $request) {
+		if (isset($_GET['testing'])) {
+			if (file_exists(base_path('tests/data/forms/' . str_slug($request->get('form')) . '.json'))) {
+				$student = file_get_contents(base_path('tests/data/student.json'));
+				$responses = file_get_contents(base_path('tests/data/forms/' . str_slug($request->get('form')) . '.json'));
+				$fileOption = ($request->has('fileOption')) ? $request->get('fileOption') : 'concat';
+				$watermarkOption = ($request->has('watermarkOption')) ? $request->get('watermarkOption') : 'final';
+				
+				$info = $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
+
+				if (isset($_GET['html'])) {
+					return $info;
+				}
+
+				if (!empty($info['file'])) {
+					return '<a href="' . URL::to($info['file']) . '">' . URL::to($info['file']) . '</a>';
+				} else {
+					ddd($info);
+				}
+			} else {
+				return 'must specify form with existing test data in testing mode. e.g. iep-sped-1';
+			}
+		}
+
 		return $this->dispatchFrom(PrintPdf::class, $request);
 	}
 

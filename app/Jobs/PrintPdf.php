@@ -52,7 +52,10 @@ class PrintPdf extends Job implements SelfHandling
         foreach ($this->responses as $index => $response) {
             try {
                 if ($response->viewExists()) {
-                    // return $response->renderPdf($this->student); // for testing: return html
+                    if (isset($_GET['html'])) {
+                        return $response->renderPdf($this->student);
+                    }
+                    
                     $this->files[] = $response->renderPdf($this->student);
 
                     if ($this->watermarkOption !== 'final') {

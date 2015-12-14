@@ -36,7 +36,10 @@ class Response {
 			->with('responses', $this->responses)
 			->with('student', $student)
 			->render();
-		// return $html; // remove this (just for testing)
+
+		if (isset($_GET['html'])) {
+			return $html;
+		}
 
 		$pdfOptions = [
 			'margin-top' => 10,
