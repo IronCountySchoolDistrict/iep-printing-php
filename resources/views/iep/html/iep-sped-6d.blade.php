@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="left">
-                        @include('iep.html._partials.checkbox', ['haystack' => $responses->get('student-requires-esy'), 'needle' => 'Student requires ESY services (Attach description of goals and services, amount, frequency and Form 6g)'])&nbsp;
+                        @include('iep.html._partials.checkbox', ['haystack' => $responses->get('student-requires-esy'), 'needle' => 'amount'])&nbsp;
                     </div>
                     <div class="right">
                         Student requires ESY services (Attach description of goals and end of current school year services, amount and frequency.)

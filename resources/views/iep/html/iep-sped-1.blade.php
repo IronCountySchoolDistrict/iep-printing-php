@@ -141,27 +141,27 @@
             <label>Academic</label>
             <ul>
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Written Expression']) Written Expression
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Written Expression/Sentence structure']) Written Expression
                     <ul>
                         <li>Sentence structure</li>
                     </ul>
                 </li>
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Mathematics']) Mathematics
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Mathematics/Basic mathematics or problem solving']) Mathematics
                     <ul>
                         <li>Basic mathematics</li>
                         <li>Problem solving</li>
                     </ul>
                 </li>
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Reading']) Reading
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Reading fluency/decoding']) Reading
                     <ul>
                         <li>Fluency</li>
                         <li>Decoding</li>
                     </ul>
                 </li>
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Pre-Academics']) Pre-academics
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('academic'), 'needle' => 'Pre-Academics letter/number/color identification']) Pre-academics
                     <ul>
                         <li>Letter/number/color identification</li>
                     </ul>

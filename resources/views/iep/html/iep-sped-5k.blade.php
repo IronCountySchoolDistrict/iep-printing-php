@@ -291,17 +291,17 @@
             </div>
 
             <div class="row" style="padding-top: 10px">
-                <div class="col-xs-8">
+                <div class="col-xs-12">
                     <p>
                         9.{{ str_repeat('&nbsp;', 2) }}Methods used in LEA to determine existence of Specific Learning Disability:
+                        <span class="left-input">
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Discrepancy']) Discrepancy
+                            {{ str_repeat('&nbsp;', 1) }}
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Rtl']) Rtl
+                            {{ str_repeat('&nbsp;', 1) }}
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Combination']) Combination
+                        </span>
                     </p>
-                </div>
-                <div class="col-xs-4">
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Discrepancy']) Discrepancy
-                    {{ str_repeat('&nbsp;', 1) }}
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Rtl']) Rtl
-                    {{ str_repeat('&nbsp;', 1) }}
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('methods-used-in-lea'), 'needle' => 'Combination']) Combination
                 </div>
             </div>
         </div>

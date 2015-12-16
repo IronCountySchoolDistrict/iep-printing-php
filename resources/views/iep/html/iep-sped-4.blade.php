@@ -4,10 +4,7 @@
 
 @section('stylesheet')
     @parent
-
-    <style>
-
-    </style>
+    <style></style>
 @endsection
 
 @section('content')
@@ -69,7 +66,7 @@
         <div class="col-xs-11 col-xs-offset-1">
             <div class="row">
                 <div class="col-xs-1">
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('review-evaluation-re-evaluation'), 'needle' => 'Review evaluation'])
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('review-evaluation-re-evaluation'), 'needle' => 'Review evaluation/re-evaluation data and consider your student\'s eligibility for special education and related services'])
                 </div>
                 <div class="col-xs-11">
                     Review evaluation/re-evaluation data and consider your student's eligibility for special education and related services.
@@ -81,7 +78,7 @@
                 </div>
 
                 <div class="col-xs-1">
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'Discuss/develop an individualized IEP for your student, and consider the educational placement of your student (Enclosed is a copy of the Procedural Safeguards)|1'])
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'and consider the educational placement of your student (Enclosed is a copy of the Procedural Safeguards)|1'])
                 </div>
                 <div class="col-xs-11">
                     Discuss / develop an individualized education program (IEP) for your student, and consider the educational placement of your student.
@@ -99,7 +96,7 @@
                 <div class="col-xs-11 col-xs-offset-1">
                     <div class="row">
                         <div class="col-xs-1">
-                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'An outside agency representative will be invited, as described below, with your consent (see attached consent form)|3'])
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'with your consent (see attached consent form)|3'])
                         </div>
                         <div class="col-xs-11">
                             An outside agency representative will be invited, as described below, with your consent (see attached consent form).

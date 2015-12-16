@@ -146,11 +146,11 @@
                     <div class="col-xs-11 col-xs-offset-1">
                         <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('paid-for-by-other'), 'needle' => 'No'])</span> No
                         <br>
-                        <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('paid-for-by-other'), 'needle' => 'Yes'])</span> Yes (Requires consent to invite agency/agencies to IEP meeting and documentation of agency invitation).
+                        <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('paid-for-by-other'), 'needle' => 'Yes (Requires consent to invite agency/agencies to IEP meeting and documentation of agency invitation)'])</span> Yes (Requires consent to invite agency/agencies to IEP meeting and documentation of agency invitation).
                         <div class="row">
                             <div class="col-xs-11 col-xs-offset-1">
                                 <div class="left">
-                                    List agency/agencies:
+                                    List&nbsp;agency/agencies:
                                 </div>
                                 <div class="right left-input">
                                     {{ $responses->get('list-agencies') }}
