@@ -3,7 +3,7 @@
 $pdf->setField('student-name', $student->getLastFirst());
 $pdf->setField('student-id', $student->getStudentNumber());
 $pdf->setField('birthdate', $student->getDob()->format('m/d/Y'));
-$pdf->setField('gender', $student->getGender());
+$pdf->setField('gender', $student->get('gender'));
 $pdf->setField('ethnicity', $student->getEthnicity());
 $pdf->setField('grade-level', $student->getGrade());
 $pdf->setField('guardian', $student->getParent());
