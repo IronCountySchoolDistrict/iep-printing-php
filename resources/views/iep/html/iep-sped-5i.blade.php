@@ -82,7 +82,7 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('definition'), 'needle' => 'All requirements of Rule II.J.8 must be documented below or attached'])
+                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('definition'), 'needle' => 'All requirements of Rule II.J.8 must be documented below or attached.'])
             </div>
             <div class="right left-input text-bold">
                 <span class="text-underline">All requirements of Rule II.J.8 must be documented below or attached.</span>
