@@ -279,16 +279,16 @@
                         <td>{{ $responses->get('k-access') }}</td>
                         <td>{{ $responses->get('1-access') }}</td>
                         <td>{{ $responses->get('2-access') }}</td>
-                        <td>{{ $responses->get('3-sage-math') }}</td>
-                        <td>{{ $responses->get('4-sage-math') }}</td>
-                        <td>{{ $responses->get('5-sage-math') }}</td>
-                        <td>{{ $responses->get('6-sage-math') }}</td>
-                        <td>{{ $responses->get('7-sage-math') }}</td>
-                        <td>{{ $responses->get('8-sage-math') }}</td>
-                        <td>{{ $responses->get('9-sage-math') }}</td>
-                        <td>{{ $responses->get('10-sage-math') }}</td>
-                        <td>{{ $responses->get('11-sage-math') }}</td>
-                        <td>{{ $responses->get('12-sage-math') }}</td>
+                        <td>{{ $responses->get('3-access') }}</td>
+                        <td>{{ $responses->get('4-access') }}</td>
+                        <td>{{ $responses->get('5-access') }}</td>
+                        <td>{{ $responses->get('6-access') }}</td>
+                        <td>{{ $responses->get('7-access') }}</td>
+                        <td>{{ $responses->get('8-access') }}</td>
+                        <td>{{ $responses->get('9-access') }}</td>
+                        <td>{{ $responses->get('10-access') }}</td>
+                        <td>{{ $responses->get('11-access') }}</td>
+                        <td>{{ $responses->get('12-access') }}</td>
                     </tr>
                     <tr>
                         <td class="text-center" rowspan="4" style="vertical-align: middle">College &amp; Career Readiness</td>
