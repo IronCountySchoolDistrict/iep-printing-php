@@ -42,7 +42,7 @@ class Response {
 		}
 
 		$pdfOptions = [
-			'margin-top' => 10,
+			'margin-top' => 20,
 			'margin-bottom' => 10,
 			'margin-left' => 10,
 			'margin-right' => 10,
