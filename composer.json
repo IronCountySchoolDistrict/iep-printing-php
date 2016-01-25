@@ -10,7 +10,8 @@
         "mikehaertl/phpwkhtmltopdf": "^2.1",
         "raveren/kint": "^1.0",
         "mikehaertl/php-pdftk": "^0.2.4",
-        "pda/pheanstalk": "~3.0"
+        "pda/pheanstalk": "~3.0",
+        "yajra/laravel-oci8": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
