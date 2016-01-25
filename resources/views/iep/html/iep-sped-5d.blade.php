@@ -5,10 +5,8 @@
 @section('stylesheet')
     @parent
     <style>
-        /*body { width: 23.2cm }*/
-        .background-5d {
-            background-color: #F5F5F5;
-        }
+        /*body { width: 24.13cm }*/
+        .background-5d { background-color: #F5F5F5 }
     </style>
 @endsection
 
@@ -404,6 +402,92 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('sped-teacher-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('adult-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 60%">
+                Special Education Teacher Signature
+            </div>
+            <div style="float: left; width: 32%" class="text-center">
+                <small>{{ $responses->get('sped-teacher-sign') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 51%">
+                Parent/Adult Student Signature
+            </div>
+            <div style="float: left; width: 41%" class="text-center">
+                <small>{{ $responses->get('adult-sign') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+        <div class="col-xs-6 col-xs-offset-6">
+            <small>(signature acknowledges receipt of copy)</small>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('sign1-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('sign2-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 16%">
+                Signature
+            </div>
+            <div style="float: left; width: 76%" class="text-center">
+                <small>{{ $responses->get('sign1') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 16%">
+                Signature
+            </div>
+            <div style="float: left; width: 76%" class="text-center">
+                <small>{{ $responses->get('sign2') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px">
+        <div class="col-xs-12">
+            *Note: If parent/adult student signature is missing, then parent/adult student:
+            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'Did not attend (document efforts to involve parent/adult student)'])</span>
+            Did not attend (document efforts to involve parent/adult student) <span class="text-bold text-underline">OR</span>
+            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'Participated via telephone'])</span>
+            Participated via telephone, video conference or other means <span class="text-bold text-underline">AND</span>
+            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'Copy of this document was mailed to parent/adult student'])</span>
+            Copy of this document was mailed to parent/adult student on (date)
+            <span class="text-underline">{{ str_repeat('&nbsp;', 5) }}{{ (!empty($responses->get('copy-mailed-date'))) ? $responses->get('note-date') : str_repeat('&nbsp;', 10) }}{{ str_repeat('&nbsp;', 5) }}</span>
         </div>
     </div>
 @endsection
