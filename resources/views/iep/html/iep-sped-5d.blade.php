@@ -5,7 +5,7 @@
 @section('stylesheet')
     @parent
     <style>
-        /*body { width: 24.13cm }*/
+        body { width: 24.13cm }
         .background-5d { background-color: #F5F5F5 }
     </style>
 @endsection
@@ -471,6 +471,41 @@
             </div>
             <div style="float: left; width: 76%" class="text-center">
                 <small>{{ $responses->get('sign2') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('sign3-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="right underline text-right">
+                {{ $responses->get('sign4-date') }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 16%">
+                Signature
+            </div>
+            <div style="float: left; width: 76%" class="text-center">
+                <small>{{ $responses->get('sign3') }}</small>
+            </div>
+            <div style="float: right; width: 8%" class="text-right">
+                Date
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div style="float: left; width: 16%">
+                Signature
+            </div>
+            <div style="float: left; width: 76%" class="text-center">
+                <small>{{ $responses->get('sign4') }}</small>
             </div>
             <div style="float: right; width: 8%" class="text-right">
                 Date
