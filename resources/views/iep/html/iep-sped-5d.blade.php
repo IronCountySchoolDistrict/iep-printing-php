@@ -5,7 +5,7 @@
 @section('stylesheet')
     @parent
     <style>
-        body { width: 24.13cm }
+        /*body { width: 24.13cm }*/
         .background-5d { background-color: #F5F5F5 }
     </style>
 @endsection
