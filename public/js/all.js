@@ -71,7 +71,7 @@ function loadIep() {
       'iep=' + iepid,
       'frn=' + frn
     ];
-    window.fetch('/iep?' + params.join('&'))
+    window.fetch('iep?' + params.join('&'))
       .then(status)
       .then(html)
       .then(function(html) {
@@ -150,7 +150,7 @@ function createIep() {
   $('.new-iep-modal .btn').prop('disabled', true);
   $('.new-iep-modal .btn-success > i').removeClass('hide');
 
-  window.fetch('/iep', {
+  window.fetch('iep', {
     method: 'POST',
     body: JSON.stringify({
       start_date: inputElement.val(),
@@ -188,7 +188,7 @@ function printForms() {
     });
   });
 
-  window.fetch('/iep/print', {
+  window.fetch('iep/print', {
     method: 'POST',
     body: JSON.stringify({
       selected: selected,
@@ -256,12 +256,12 @@ function deleteIep() {
 
   var iepid = $('.iep-snippet.active').prop('id');
 
-  window.fetch('/iep/response-count?iep=' + iepid)
+  window.fetch('iep/response-count?iep=' + iepid)
     .then(status)
     .then(json)
     .then(function(count) {
       if (count < 1) {
-        window.fetch('/iep/delete', {
+        window.fetch('iep/delete', {
           method: 'POST',
           body: JSON.stringify({
             iep: iepid
@@ -303,7 +303,7 @@ function activateIep(event) {
   if (confirm('Activating this IEP will cause the currently active IEP (if any) to become inactive and read-only. Are you sure you want to activate this IEP?')) {
     var iepid = $(event.target).parents('.iep-snippet').prop('id');
 
-    window.fetch('/iep/activate', {
+    window.fetch('iep/activate', {
       method: 'POST',
       body: JSON.stringify({
         iep: iepid,

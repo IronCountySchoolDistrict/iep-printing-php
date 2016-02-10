@@ -47,7 +47,7 @@
           <input type="checkbox" name="response[]" value="{{ $form->responseid }}" data-form-id="{{ $form->formid }}" data-form-type="{{ $form->form_type }}" data-form-title="{{ $form->form_title }}">
         </td>
         <td data-search="{{ $form->responseid ? 'green' : 'blue' }}">
-          <img src="{{ $form->responseid ? '/img/flag-green.png' : '/img/flag-blue.png' }}" title="Last Entry: {{ $form->modified_on }}" />
+          <img src="{{ $form->responseid ? secure_asset('img/flag-green.png') : secure_asset('img/flag-blue.png') }}" title="Last Entry: {{ $form->modified_on }}" />
         </td>
         <td>
           <a href="{{ config('iep.powerschool_url') }}admin/formbuilder/students/studentform.html?formid={{ $form->formid }}&amp;type={{ $form->form_type }}&amp;responseid={{ $form->responseid }}&amp;iep={{ $iep }}&amp;frn={{ $frn }}" target="_blank">
