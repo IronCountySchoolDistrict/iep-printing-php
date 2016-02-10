@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" charset="utf-8">
+    <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" charset="utf-8">
   </head>
   <body>
     <div class="container-fluid">
@@ -69,6 +69,6 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.1/icheck.min.js"></script>
 
-    <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
+    <script type="text/javascript" src="{{ secure_asset('js/all.js') }}"></script>
   </body>
 </html>
