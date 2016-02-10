@@ -1,5 +1,5 @@
 <div class="row" style="padding-left: 10px; padding-top: 10px;">
-  <div class="col-xs-4">
+  <div class="col-xs-12">
     <div class="pull-left">
       <span>File: </span>
       <span title="All forms will be concatenated into a single PDF file">
@@ -21,7 +21,7 @@
         <input type="radio" name="watermarkOption" value="copy"> Copy
       </span>
     </div>
-    <div class="pull-right">
+    <div class="pull-left" style="margin-left: 20px">
       <button id="btnPrintSelection" type="submit" class="btn btn-primary"><i class="fa fa-spinner fa-pulse fa-fw hide"></i> Print Selected</button>
     </div>
   </div>
