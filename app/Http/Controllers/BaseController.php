@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use URL;
+use App\Iep\Student;
 use App\Jobs\PrintPdf;
 use Illuminate\Http\Request;
 use App\Iep\Legacy\Commands\FillPdfCommand;
@@ -16,7 +17,6 @@ class BaseController extends Controller {
 	 * action when $_GET the homepage
 	 */
 	public function index(Request $request) {
-    ddd(DB::table('users')->where('last_name', 'Wallingford')->get());
 		if ($request->isMethod('get')) {
 			if ($request->has('slugify')) {
 				return str_slug($request->input('slugify'));
@@ -65,7 +65,12 @@ class BaseController extends Controller {
 			}
 		}
 
-		return $this->dispatchFrom(PrintPdf::class, $request);
+		$student = is_string($request->get('student')) ? Student::where('id', $request->get('student'))->first() : $request->get('student');
+		$responses = is_string($request->get('responses')) ? json_decode($request->get('responses')) : $request->get('responses');
+		$fileOption = $request->get('fileOption');
+		$watermarkOption = $request->get('watermarkOption');
+
+		return $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
 	}
 
 	/**
