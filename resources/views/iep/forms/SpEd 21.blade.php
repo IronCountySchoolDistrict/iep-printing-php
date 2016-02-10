@@ -1,14 +1,15 @@
 <?php
 
 $pdf->setField('your-school-district', config('iep.district.name'));
-$pdf->setField('your-city', $student->getSchoolCity());
-$pdf->addStudent($student);
+$pdf->setField('your-city', config('iep.district.city'));
 $pdf->setField('student', $student->getLastFirst());
-$pdf->setField('dob', $student->getLastFirst());
-$pdf->setField('street', $student->getStreet());
-$pdf->setField('city-state', $student->getCity() . ', ' . $student->getState());
-$pdf->setField('zip', $student->getZip());
-$pdf->setField('telephone', $student->getPhone());
+$pdf->setField('dob', $student->dob->format('m/d/Y'));
+$pdf->setField('street', $student->street);
+$pdf->setField('city-state', $student->city . ', ' . $student->state);
+$pdf->setField('zip', $student->zip);
+$pdf->setField('telephone', $student->home_phone);
+$pdf->setField('current-school', $student->getSchoolName());
+$pdf->setField('city', $student->getSchoolCity());
 
 ?>
 
@@ -21,9 +22,3 @@ $pdf->setField('telephone', $student->getPhone());
     @include('iep._partials.radio', ['checked' => 'On'])
   @endif
 @endforeach
-
-<?php
-
-$pdf->setField('city-state', $responses->get('city-state') . ', ' . $student->getState());
-
-?>

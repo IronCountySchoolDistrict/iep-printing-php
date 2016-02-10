@@ -1,9 +1,10 @@
 <?php
 
 $pdf->setField('name', $student->getLastFirst());
-$pdf->setField('student-id', $student->getStudentNumber());
+$pdf->setField('student-id', $student->student_number);
 $pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 $pdf->setField('grade', $student->getGrade());
+$pdf->setField('school', $student->getSchoolName());
 
 ?>
 

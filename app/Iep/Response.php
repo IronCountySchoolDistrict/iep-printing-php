@@ -18,11 +18,11 @@ class Response {
 	 *
 	 */
 	public function __construct($response) {
-		$this->id = $response->form->id;
-		$this->title = $response->form->title;
-		$this->description = isset($response->form->description) ? $response->form->description : '';
-		$this->type = isset($response->form->type) ? $response->form->type : '';
-		$this->responses = new Collection($response->response);
+		$this->id = $response->formid;
+		$this->title = $response->title;
+		$this->description = isset($response->description) ? $response->description : '';
+		$this->type = isset($response->type) ? $response->type : '';
+		$this->responses = new Collection($response->responses);
 
 		return $this;
 	}
@@ -62,7 +62,7 @@ class Response {
 		$pdf = new Pdf($pdfOptions);
 		$pdf->addPage($html);
 
-		$savePath = $this->getSavePath($student->get('lastfirst'));
+		$savePath = $this->getSavePath($student->lastfirst);
 
 		if (!$pdf->saveAs($savePath)) {
 			throw new Exception($pdf->getError());

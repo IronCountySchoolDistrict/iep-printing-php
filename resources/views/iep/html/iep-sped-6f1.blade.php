@@ -85,7 +85,7 @@
                 Student:
             </div>
             <div class="right underline left-input">
-                <span>{{ $student->get('lastfirst') }}</span>
+                <span>{{ $student->lastfirst }}</span>
             </div>
         </div>
         <div class="col-xs-6 text-right">

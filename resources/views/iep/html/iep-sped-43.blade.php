@@ -28,7 +28,7 @@
                 Student
             </div>
             <div class="right underline left-input">
-                {{ $student->get('lastfirst') }}
+                {{ $student->lastfirst }}
             </div>
         </div>
         <div class="col-xs-3 col-xs-offset-1">

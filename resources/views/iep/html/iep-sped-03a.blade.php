@@ -34,7 +34,7 @@
                 Student&nbsp;Name
             </div>
             <div class="right underline left-input">
-                {{ $student->get('lastfirst') }}
+                {{ $student->lastfirst }}
             </div>
         </div>
         <div class="col-xs-4">
@@ -42,7 +42,7 @@
                 Date&nbsp;of&nbsp;Birth
             </div>
             <div class="right underline center-input">
-                {{ $student->get('dob')->format('m/d/Y') }}
+                {{ $student->dob->format('m/d/Y') }}
             </div>
         </div>
         <div class="col-xs-8">
@@ -50,7 +50,7 @@
                 Grade
             </div>
             <div class="right underline left-input">
-                {{ $student->get('grade') }}
+                {{ $student->grade }}
             </div>
         </div>
         <div class="col-xs-4">

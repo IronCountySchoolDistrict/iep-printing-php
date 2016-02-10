@@ -14,7 +14,6 @@ use App\Iep\Legacy\Commands\FillPdfCommand;
 
 class PrintPdf extends Job implements SelfHandling
 {
-
     protected $student;
     protected $responses;
     protected $jsonResponses;
@@ -29,15 +28,12 @@ class PrintPdf extends Job implements SelfHandling
      */
     public function __construct($student, $responses, $fileOption, $watermarkOption)
     {
-        $this->student = new Student($student);
-
-        if (is_string($responses)) $responses = json_decode($responses);
-
         foreach ($responses as $response) {
             $this->responses[] = new Response($response);
             $this->jsonResponses[] = json_encode([$response]);
         }
 
+        $this->student = $student;
         $this->fileOption = $fileOption;
         $this->watermarkOption = $watermarkOption;
     }
@@ -55,7 +51,7 @@ class PrintPdf extends Job implements SelfHandling
                     if (isset($_GET['html'])) {
                         return $response->renderPdf($this->student);
                     }
-                    
+
                     $this->files[] = $response->renderPdf($this->student);
 
                     if ($this->watermarkOption !== 'final') {
@@ -77,7 +73,8 @@ class PrintPdf extends Job implements SelfHandling
                     }
                 }
             } catch (Exception $e) {
-                $error[$response->id] = $e->getMessage();
+              // throw $e;
+              $error[$response->id] = $e->getMessage();
             }
         }
 
@@ -95,7 +92,7 @@ class PrintPdf extends Job implements SelfHandling
      * @return string
      */
     protected function getOutFile($extension = 'zip') {
-        return str_slug($this->student->get('lastfirst') . ' ' . str_random(4)) . '.' . $extension;
+        return str_slug($this->student->lastfirst . ' ' . str_random(4)) . '.' . $extension;
     }
 
     /**
@@ -153,7 +150,7 @@ class PrintPdf extends Job implements SelfHandling
         $pdftk->saveAs($outFile);
 
         if (!empty($pdftk->getError())) {
-            throw new Exception('Error concatenating all forms.');
+            throw new Exception('Error concatenating all forms. ' . $pdftk->getError());
         }
 
         return $outFile;

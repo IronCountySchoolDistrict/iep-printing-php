@@ -2,6 +2,7 @@
 
 $pdf->setField('student-name', $student->getLastFirst());
 $pdf->setField('grade', $student->getGrade());
+$pdf->setField('school', $student->getSchoolName());
 
 ?>
 

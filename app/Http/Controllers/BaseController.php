@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use URL;
+use App\Iep\Student;
 use App\Jobs\PrintPdf;
 use Illuminate\Http\Request;
 use App\Iep\Legacy\Commands\FillPdfCommand;
@@ -46,7 +48,7 @@ class BaseController extends Controller {
 				$responses = file_get_contents(base_path('tests/data/forms/' . str_slug($request->get('form')) . '.json'));
 				$fileOption = ($request->has('fileOption')) ? $request->get('fileOption') : 'concat';
 				$watermarkOption = ($request->has('watermarkOption')) ? $request->get('watermarkOption') : 'final';
-				
+
 				$info = $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
 
 				if (isset($_GET['html'])) {
@@ -63,7 +65,12 @@ class BaseController extends Controller {
 			}
 		}
 
-		return $this->dispatchFrom(PrintPdf::class, $request);
+		$student = is_string($request->get('student')) ? Student::where('id', $request->get('student'))->first() : $request->get('student');
+		$responses = is_string($request->get('responses')) ? json_decode($request->get('responses')) : $request->get('responses');
+		$fileOption = $request->get('fileOption');
+		$watermarkOption = $request->get('watermarkOption');
+
+		return $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
 	}
 
 	/**

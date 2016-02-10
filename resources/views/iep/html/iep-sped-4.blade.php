@@ -43,7 +43,7 @@
                 To the parent(s) of
             </div>
             <div class="right underline left-input">
-                <span>{{ $student->get('lastfirst') }}</span>
+                <span>{{ $student->getLastFirst() }}</span>
             </div>
         </div>
         <div class="col-xs-4">
