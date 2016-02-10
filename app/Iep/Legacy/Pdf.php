@@ -67,32 +67,6 @@ class Pdf extends \mikehaertl\pdftk\Pdf {
 		}
 	}
 
-	public function addStudent(Student $student)
-	{
-		foreach ($this->fields as $name => $value) {
-			if (empty($value)) {
-				$closest = ['distance' => 100, 'word' => ''];
-				foreach ($student->getProperties() as $propertyName) {
-					$distance = levenshtein(strtolower($name), $propertyName);
-					if ($distance < $closest['distance']) {
-						$closest = ['distance' => $distance, 'word' => $propertyName];
-					}
-					if ($distance == 0) break;
-				}
-
-				if ($closest['distance'] < 3) {
-					$function = camel_case('get_' . $closest['word']);
-
-					$this->fields[$name] = $student->{$function}();
-
-					if ($this->fields[$name] instanceof Carbon) {
-						$this->fields[$name] = $this->fields[$name]->format('m/d/Y');
-					}
-				}
-			}
-		}
-	}
-
 	public function save()
 	{
 		$filepath = public_path() . DIRECTORY_SEPARATOR . 'download' . DIRECTORY_SEPARATOR . str_random(20) . '.pdf';

@@ -24,12 +24,7 @@ class FillPdfCommand extends Job implements SelfHandling
      */
     public function __construct($student, $responses, $fileOption = 'zip', $watermarkOption = 'final')
     {
-        if (is_a($student, "App\Iep\Student")) {
-            $this->student = $student;
-        } else {
-            $this->student = new Student($student);
-        }
-        
+        $this->student = $student;
         $this->responses = json_decode($responses);
         $this->fileOption = $fileOption;
         $this->watermarkOption = $watermarkOption;
@@ -44,8 +39,8 @@ class FillPdfCommand extends Job implements SelfHandling
     public function handle()
     {
         foreach ($this->responses as $response) {
-            $path_to_blank = $this->getBlankPath($response->form->title);
-            $renderer = $this->getViewName($response->form->title);
+            $path_to_blank = $this->getBlankPath($response->title);
+            $renderer = $this->getViewName($response->title);
 
             if (file_exists($path_to_blank)) {
                 if (view()->exists($renderer)) {
@@ -55,17 +50,17 @@ class FillPdfCommand extends Job implements SelfHandling
 
                     $pdf = new Pdf($path_to_blank);
                     $pdf->setFields($existing_fields);
-                    $pdf->setId($response->form->id);
+                    $pdf->setId($response->formid);
 
                     $rendered = view($renderer)
                         ->with('pdf', $pdf)
-                        ->with('responses', new Response($response->response))
+                        ->with('responses', new Response($response->responses))
                         ->with('student', $this->student)
                         ->with('event', $this)
                         ->render();
                     $rendered = json_decode($rendered);
 
-                    $path_to_filled = $this->getFilledPath($response->form->title);
+                    $path_to_filled = $this->getFilledPath($response->title);
 
                     if (!empty($rendered)) {
                         foreach ($rendered as $index => $pdfFile) {
@@ -102,10 +97,10 @@ class FillPdfCommand extends Job implements SelfHandling
                         $error[$pdf->getId()] = $pdf->getError();
                     }
                 } else {
-                    $error[$response->form->id] = 'There is no renderer for this form.';
+                    $error[$response->formid] = 'There is no renderer for this form.';
                 }
             } else {
-                $error[$response->form->id] = 'There is no pdf file for this form.';
+                $error[$response->formid] = 'There is no pdf file for this form.';
             }
         }
 

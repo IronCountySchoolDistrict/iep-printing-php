@@ -9,7 +9,7 @@
     <body onload="header()">
         <div class="row" id="header">
             <div class="col-xs-7">
-                {{ $student->get('lastfirst') }}
+                {{ $student->lastfirst }}
             </div>
             <div class="col-xs-5 text-right">
                 @yield('form')

@@ -34,7 +34,7 @@
                 <label>School:</label>
             </div>
             <div class="right underline left-input">
-                {{ (empty($responses->get('school'))) ? $student->get('currentSchool') : $responses->get('school') }}
+                {{ (empty($responses->get('school'))) ? $student->getSchoolName() : $responses->get('school') }}
             </div>
         </div>
         <div class="col-xs-4">

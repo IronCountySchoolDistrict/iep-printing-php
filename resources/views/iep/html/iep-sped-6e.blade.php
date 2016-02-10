@@ -17,7 +17,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-8">
-            {{ config('iep.district.name') }} - {{ $student->get('currentSchool') }}
+            {{ config('iep.district.name') }} - {{ $student->getSchoolName() }}
         </div>
         <div class="col-xs-4 text-right">
             SpEd 6e 07.12
@@ -35,12 +35,12 @@
             <table class="table table-bordered table-condensed">
                 <tbody>
                     <tr>
-                        <td><span class="text-bold">Student name:</span> {{ $student->get('lastfirst') }}</td>
-                        <td><span class="text-bold">Grade:</span> {{ $student->get('grade') }}</td>
-                        <td><span class="text-bold">DOB:</span> {{ $student->get('dob')->format('m/d/Y') }}</td>
+                        <td><span class="text-bold">Student name:</span> {{ $student->lastfirst }}</td>
+                        <td><span class="text-bold">Grade:</span> {{ $student->grade }}</td>
+                        <td><span class="text-bold">DOB:</span> {{ $student->dob->format('m/d/Y') }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><span class="text-bold">School:</span> {{ $student->get('currentSchool') }}</td>
+                        <td colspan="2"><span class="text-bold">School:</span> {{ $student->getSchoolName() }}</td>
                         <td><span class="text-bold">Date of IEP:</span> {{ $responses->get('date-of-iep') }}</td>
                     </tr>
                 </tbody>

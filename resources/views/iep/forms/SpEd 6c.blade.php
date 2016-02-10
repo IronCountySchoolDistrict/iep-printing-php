@@ -8,11 +8,9 @@ if ($goals > 2) {
     $goal2 = $i;
 
     $forms[] = (object)[
-      'form' => (object)[
-        'id' => 'SpEd 6c',
-        'title' => 'SpEd 6c'
-      ],
-      'response' => [
+      'formid' => 'SpEd 6c',
+      'title' => 'SpEd 6c',
+      'responses' => [
         (object)[ 'field' => 'goal-amount', 'type' => 'text', 'response' => ($goal2 <= $goals) ? 2 : 1 ],
         (object)[ 'field' => 'date-of-iep', 'type' => 'text', 'response' => $responses->get('date-of-iep') ],
         (object)[ 'field' => 'goal1', 'type' => 'text', 'response' => $goal1 ],
@@ -35,21 +33,21 @@ if ($goals > 2) {
 
     if ($goal2 <= $goals) {
       $lastIndex = count($forms) - 1;
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => $goal2 ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-description', 'type' => 'text', 'response' => $responses->get("goal$goal2-description") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured', 'type' => 'checkbox', 'response' => $responses->get("goal$goal2-measured") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured-other', 'type' => 'text', 'response' => $responses->get("goal$goal2-measured-other") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-report', 'type' => 'checkbox', 'response' => $responses->get("goal$goal2-report") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-report-other', 'type' => 'text', 'response' => $responses->get("goal$goal2-report-other") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date1', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date1") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code1', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code1") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date2', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date2") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code2', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code2") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date3', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date3") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code3', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code3") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date4', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date4") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code4', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code4") ];
-      $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-short-term-objectives', 'type' => 'text', 'response' => $responses->get("goal$goal2-short-term-objectives") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => $goal2 ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-description', 'type' => 'text', 'response' => $responses->get("goal$goal2-description") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-measured', 'type' => 'checkbox', 'response' => $responses->get("goal$goal2-measured") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-measured-other', 'type' => 'text', 'response' => $responses->get("goal$goal2-measured-other") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-report', 'type' => 'checkbox', 'response' => $responses->get("goal$goal2-report") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-report-other', 'type' => 'text', 'response' => $responses->get("goal$goal2-report-other") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date1', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date1") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code1', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code1") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date2', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date2") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code2', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code2") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date3', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date3") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code3', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code3") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date4', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-date4") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code4', 'type' => 'text', 'response' => $responses->get("goal$goal2-progress-code4") ];
+      $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-short-term-objectives', 'type' => 'text', 'response' => $responses->get("goal$goal2-short-term-objectives") ];
     }
   }
 
@@ -101,11 +99,9 @@ if ($goals > 2) {
 
     for ($i = 1; $i <= $formsCount; $i++) {
       $forms[] = (object)[
-        'form' => (object)[
-          'id' => 'SpEd 6c',
-          'title' => 'SpEd 6c',
-        ],
-        'response' => [
+        'formid' => 'SpEd 6c',
+        'title' => 'SpEd 6c',
+        'responses' => [
           (object)[ 'field' => 'page', 'type' => 'text', 'response' => $i ],
           (object)[ 'field' => 'goal-amount', 'type' => 'text', 'response' => $goals ],
           (object)[ 'field' => 'date-of-iep', 'type' => 'text', 'response' => $responses->get('date-of-iep') ],
@@ -129,21 +125,21 @@ if ($goals > 2) {
 
       if ($goals > 1) {
         $lastIndex = count($forms) - 1;
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => (empty($responses->get('goal2')) && $goals > 1) ? 2 : $responses->get('goal2') ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-description', 'type' => 'text', 'response' => isset(${'goal2-description'}[$i - 1]) ? ${'goal2-description'}[$i - 1] : $responses->get("goal2-description") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured', 'type' => 'checkbox', 'response' => $responses->get("goal2-measured") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-measured-other', 'type' => 'text', 'response' => $responses->get("goal2-measured-other") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-report', 'type' => 'checkbox', 'response' => $responses->get("goal2-report") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-report-other', 'type' => 'text', 'response' => $responses->get("goal2-report-other") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date1', 'type' => 'text', 'response' => $responses->get("goal2-progress-date1") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code1', 'type' => 'text', 'response' => $responses->get("goal2-progress-code1") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date2', 'type' => 'text', 'response' => $responses->get("goal2-progress-date2") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code2', 'type' => 'text', 'response' => $responses->get("goal2-progress-code2") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date3', 'type' => 'text', 'response' => $responses->get("goal2-progress-date3") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code3', 'type' => 'text', 'response' => $responses->get("goal2-progress-code3") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-date4', 'type' => 'text', 'response' => $responses->get("goal2-progress-date4") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-progress-code4', 'type' => 'text', 'response' => $responses->get("goal2-progress-code4") ];
-        $forms[$lastIndex]->response[] = (object)[ 'field' => 'goal2-short-term-objectives', 'type' => 'text', 'response' => isset(${'goal2-short-term-objectives'}[$i - 1]) ? ${'goal2-short-term-objectives'}[$i - 1] : $responses->get("goal2-short-term-objectives") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2', 'type' => 'text', 'response' => (empty($responses->get('goal2')) && $goals > 1) ? 2 : $responses->get('goal2') ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-description', 'type' => 'text', 'response' => isset(${'goal2-description'}[$i - 1]) ? ${'goal2-description'}[$i - 1] : $responses->get("goal2-description") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-measured', 'type' => 'checkbox', 'response' => $responses->get("goal2-measured") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-measured-other', 'type' => 'text', 'response' => $responses->get("goal2-measured-other") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-report', 'type' => 'checkbox', 'response' => $responses->get("goal2-report") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-report-other', 'type' => 'text', 'response' => $responses->get("goal2-report-other") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date1', 'type' => 'text', 'response' => $responses->get("goal2-progress-date1") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code1', 'type' => 'text', 'response' => $responses->get("goal2-progress-code1") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date2', 'type' => 'text', 'response' => $responses->get("goal2-progress-date2") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code2', 'type' => 'text', 'response' => $responses->get("goal2-progress-code2") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date3', 'type' => 'text', 'response' => $responses->get("goal2-progress-date3") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code3', 'type' => 'text', 'response' => $responses->get("goal2-progress-code3") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-date4', 'type' => 'text', 'response' => $responses->get("goal2-progress-date4") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-progress-code4', 'type' => 'text', 'response' => $responses->get("goal2-progress-code4") ];
+        $forms[$lastIndex]->responses[] = (object)[ 'field' => 'goal2-short-term-objectives', 'type' => 'text', 'response' => isset(${'goal2-short-term-objectives'}[$i - 1]) ? ${'goal2-short-term-objectives'}[$i - 1] : $responses->get("goal2-short-term-objectives") ];
       }
     }
 

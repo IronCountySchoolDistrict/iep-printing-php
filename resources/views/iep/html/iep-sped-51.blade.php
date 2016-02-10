@@ -52,22 +52,22 @@
             <div class="row" style="margin-bottom: 0">
                 <div class="col-xs-2">
                     <div class="right underline left-input">
-                        <span>{{ $student->get('studentNumber') }}</span>
+                        <span>{{ $student->student_number }}</span>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="right underline left-input">
-                        <span>{{ $student->get('firstName') }}</span>
+                        <span>{{ $student->first_name }}</span>
                     </div>
                 </div>
                 <div class="col-xs-5">
                     <div class="right underline left-input">
-                        <span>{{ $student->get('lastName') }}</span>
+                        <span>{{ $student->last_name }}</span>
                     </div>
                 </div>
                 <div class="col-xs-1">
                     <div class="right underline left-input">
-                        <span>{{ strtoupper(substr($student->getMiddleName(), 0, 1)) }}</span>
+                        <span>{{ strtoupper(substr($student->middle_name, 0, 1)) }}</span>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                         Street Address
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->getStreet() }}</span>
+                        <span>{{ $student->street }}</span>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                         City
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('city') }}</span>
+                        <span>{{ $student->city }}</span>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -111,7 +111,7 @@
                         State
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('state') }}</span>
+                        <span>{{ $student->state }}</span>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -119,7 +119,7 @@
                         Zip
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('zip') }}</span>
+                        <span>{{ $student->zip }}</span>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                         Home Phone
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->getPhone() }}</span>
+                        <span>{{ $student->home_phone }}</span>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                         Parent/Guardian email
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('parentEmail') }}</span>
+                        <span>{{ $student->parent_email }}</span>
                     </div>
                 </div>
                 <div class="col-xs-4">
@@ -157,7 +157,7 @@
                         Work Phone
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('parentWorkPhone') }}</span>
+                        <span>{{ $student->getParentWorkPhone() }}</span>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                         Date of Birth
                     </div>
                     <div class="right underline center-input">
-                        <span>{{ $student->get('dob')->format('m/d/Y') }}</span>
+                        <span>{{ $student->dob->format('m/d/Y') }}</span>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -184,7 +184,7 @@
                         Gender
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->getGender() }}</span>
+                        <span>{{ $student->gender }}</span>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -192,7 +192,7 @@
                         Grade
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->getGrade() }}</span>
+                        <span>{{ $student->grade_level }}</span>
                     </div>
                 </div>
             </div>
@@ -211,7 +211,7 @@
                         School #
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $responses->get('school-num') }}</span>
+                        <span>{{ $student->schoolid }}</span>
                     </div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
                         Ethnicity
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->get('ethnicity') }}</span>
+                        <span>{{ $student->ethnicity }}</span>
                     </div>
                 </div>
                 <div class="col-xs-6">

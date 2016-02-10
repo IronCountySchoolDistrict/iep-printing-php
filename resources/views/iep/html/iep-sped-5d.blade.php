@@ -15,7 +15,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-8">
-            {{ config('iep.district.name') }} - {{ $student->get('schoolCity') }}
+            {{ config('iep.district.name') }} - {{ $student->getSchoolCity() }}
         </div>
         <div class="col-xs-4 text-right">
             SpEd 5d 09.14
@@ -34,7 +34,7 @@
                 Student
             </div>
             <div class="right underline left-input">
-                {{ $student->get('lastfirst') }}
+                {{ $student->lastfirst }}
             </div>
         </div>
         <div class="col-xs-4">
@@ -50,7 +50,7 @@
                 School
             </div>
             <div class="right underline left-input">
-                {{ $student->get('currentSchool') }}
+                {{ $student->getSchoolName() }}
             </div>
         </div>
         <div class="col-xs-3">
@@ -66,7 +66,7 @@
                 DOB
             </div>
             <div class="right underline center-input">
-                {{ $student->get('dob')->format('m/d/Y') }}
+                {{ $student->dob->format('m/d/Y') }}
             </div>
         </div>
     </div>

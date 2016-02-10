@@ -15,5 +15,6 @@ return [
 	'draft_watermark' => env('IEP_DRAFT_WATERMARK', storage_path('forms/watermarks/draft.pdf')),
 	'copy_watermark' => env('IEP_COPY_WATERMARK', storage_path('forms/watermarks/copy.pdf')),
 	'html_renderer_path' => env('IEP_HTML_RENDERER_PATH', ''),
-	'html_renderer_zoom' => env('IEP_HTML_RENDERER_ZOOM', 1)
+	'html_renderer_zoom' => env('IEP_HTML_RENDERER_ZOOM', 1),
+  'powerschool_url' => str_finish(env('POWERSCHOOL_URL', 'https://pstest.irondistrict.org/'), DIRECTORY_SEPARATOR)
 ];

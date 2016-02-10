@@ -30,7 +30,7 @@
                 Your City
             </div>
             <div class="right underline left-input">
-                {{ $student->get('schoolCity') }}
+                {{ $student->getSchoolCity() }}
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
                 Student's&nbsp;Date&nbsp;of&nbsp;Birth:
             </div>
             <div class="right underline center-input">
-                {{ $student->get('dob')->format('m/d/Y') }}
+                {{ $student->dob->format('m/d/Y') }}
             </div>
         </div>
         <div class="col-xs-7">
