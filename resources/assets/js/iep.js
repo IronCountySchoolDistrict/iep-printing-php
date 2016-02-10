@@ -187,7 +187,7 @@ function printForms() {
     .then(json)
     .then(function(data) {
       if (data.file.length > 0) {
-        var win = window.open('/' + data.file, '_blank');
+        var win = window.open(data.file, '_blank');
         if (win) {
           win.focus();
         } else {
