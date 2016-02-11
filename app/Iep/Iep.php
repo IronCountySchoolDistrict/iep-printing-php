@@ -20,8 +20,8 @@ class Iep extends Model
 
     public function getFormattedStartDate() {
       $fourWeeksAgo = new Carbon('4 weeks ago');
-      $fourWeeksFromNow = new Carbon();
-      $fourWeeksFromNow->addWeeks(4);
+      $fourWeeksFromNow = Carbon::now()->addWeeks(4);
+      
       if ($this->start_date->between($fourWeeksAgo, $fourWeeksFromNow)) {
         return $this->start_date->diffForHumans();
       }
