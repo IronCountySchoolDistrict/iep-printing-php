@@ -20,16 +20,20 @@ class PowerSchoolController extends Controller {
   }
 
   public function attachResponse(Request $request) {
-    $iep = Iep::where('id', $request->json('iep'))
-      ->where('studentsdcid', $this->getStudentDcid($request->json('frn')))
-      ->first();
-    $user = User::where('dcid', $request->json('userdcid'))->first();
+    if (!empty($request->json('responseid'))) {
+      $iep = Iep::where('id', $request->json('iep'))
+        ->where('studentsdcid', $this->getStudentDcid($request->json('frn')))
+        ->first();
+      $user = User::where('dcid', $request->json('userdcid'))->first();
 
-    if ($iep && $user) {
-      $iep->attachResponse($request->json('responseid'), $user);
+      if ($iep && $user) {
+        $iep->attachResponse($request->json('responseid'), $user);
+      }
+
+      return 1;
     }
 
-    return 1;
+    return 0;
   }
 
   public function update(Request $request) {
@@ -52,7 +56,7 @@ class PowerSchoolController extends Controller {
       } catch (Exception $e) {
         $field = $e->getMessage();
       }
-      
+
       $iep->{$field} = $value;
       $iep->save();
     }
