@@ -4,6 +4,8 @@ namespace App\Iep;
 
 use DB;
 use Carbon\Carbon;
+use App\Iep\FormBuilder\Form;
+use App\Iep\FormBuidler\Response;
 use Illuminate\Database\Eloquent\Model;
 
 class Iep extends Model
@@ -162,5 +164,36 @@ class Iep extends Model
       $response->whencreated = new Carbon();
 
       $response->save();
+
+      $fbResponse = Response::find($responseid);
+      if ($fbResponse->form->form_title == 'IEP: SpEd 6a1') {
+        $this->updateStartDate($fbResponse);
+      } else if ($fbResponse->form->form_title == 'IEP: SpEd 51') {
+        $this->updateCaseManager($fbResponse);
+      }
+    }
+
+    protected function updateStartDate($fbResponse) {
+      $data = $this->getResponseData($fbResponse->id);
+      foreach ($data as $row) {
+        if ($row->field == 'date') {
+          try {
+            $iep->start_date = new Carbon($row->response);
+            $iep->save();
+          } catch (InvalidArgumentException $e) {}
+        }
+      }
+    }
+
+    protected function updateCaseManager($fbResponse) {
+      $data = $this->getResponseData($fbResponse->id);
+      foreach ($data as $row) {
+        if ($row->field == 'sped-teacher') {
+          if (!empty(trim($row->response))) {
+            $iep->case_manager = $row->response;
+            $iep->save();
+          }
+        }
+      }
     }
 }
