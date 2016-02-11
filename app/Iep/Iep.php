@@ -5,7 +5,7 @@ namespace App\Iep;
 use DB;
 use Carbon\Carbon;
 use App\Iep\FormBuilder\Form;
-use App\Iep\FormBuidler\Response;
+use App\Iep\FormBuilder\Response;
 use Illuminate\Database\Eloquent\Model;
 
 class Iep extends Model
