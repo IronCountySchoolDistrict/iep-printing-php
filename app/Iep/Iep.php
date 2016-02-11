@@ -19,13 +19,14 @@ class Iep extends Model
     }
 
     public function getFormattedStartDate() {
-      $fourWeeks = new Carbon('4 weeks ago');
-
-      if ($this->start_date->lt($fourWeeks)) {
-        return $this->start_date->toFormattedDateString();
+      $fourWeeksAgo = new Carbon('4 weeks ago');
+      $fourWeeksFromNow = new Carbon();
+      $fourWeeksFromNow->addWeeks(4);
+      if ($this->start_date->between($fourWeeksAgo, $fourWeeksFromNow)) {
+        return $this->start_date->diffForHumans();
       }
 
-      return $this->start_date->diffForHumans();
+      return $this->start_date->toFormattedDateString();
     }
 
     public function getFormattedExpireDate() {
@@ -178,8 +179,8 @@ class Iep extends Model
       foreach ($data as $row) {
         if ($row->field == 'date') {
           try {
-            $iep->start_date = new Carbon($row->response);
-            $iep->save();
+            $this->start_date = new Carbon($row->response);
+            $this->save();
           } catch (InvalidArgumentException $e) {}
         }
       }
@@ -190,8 +191,8 @@ class Iep extends Model
       foreach ($data as $row) {
         if ($row->field == 'sped-teacher') {
           if (!empty(trim($row->response))) {
-            $iep->case_manager = $row->response;
-            $iep->save();
+            $this->case_manager = $row->response;
+            $this->save();
           }
         }
       }
