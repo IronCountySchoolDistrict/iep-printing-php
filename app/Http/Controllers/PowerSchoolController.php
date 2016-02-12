@@ -6,7 +6,9 @@ use Exception;
 use App\Iep\Iep;
 use App\Iep\User;
 use Carbon\Carbon;
+use App\Iep\Student;
 use Illuminate\Http\Request;
+use App\Iep\FormBuilder\Form;
 
 class PowerSchoolController extends Controller {
 
@@ -37,31 +39,19 @@ class PowerSchoolController extends Controller {
   }
 
   public function update(Request $request) {
-    $iep = Iep::where('id', $request->json('iep'))
-      ->where('studentsdcid', $this->getStudentDcid($request->json('frn')))
-      ->first();
-    $field = substr($request->json('field'), 5);
-    $value = trim($request->json('value'));
+    $iep = Iep::where('id', $request->json('iep'))->with('iepResponse')->first();
+    $student = Student::where('id', $request->json('studentid'))->first();
+    $user = User::where('dcid', $request->json('userdcid'))->first();
+    $form = Form::where('id', $request->json('formid'))->with(['responses' => function($query) use($student) {
+      $query->where('student_id', $student->id)
+        ->orderBy('whencreated', 'desc')->first();
+    }])->first();
 
-    if ($iep && !empty($value)) {
-      try {
-        if ($field == 'date') {
-          $field = 'start_date';
-          $value = new Carbon($value);
-        } else if ($field == 'sped-teacher') {
-          $field = 'case_manager';
-        } else {
-          throw new Exception("bad field: \"$field\";");
-        }
-      } catch (Exception $e) {
-        $field = $e->getMessage();
-      }
-
-      $iep->{$field} = $value;
-      $iep->save();
+    if ($iep->attach($form, $student, $user)) {
+      return (int)$form->responses[0]->id;
     }
 
-    return json_encode($field);
+    return 0;
   }
 
   protected function getStudentDcid($frn) {

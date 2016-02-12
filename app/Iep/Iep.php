@@ -21,7 +21,7 @@ class Iep extends Model
     public function getFormattedStartDate() {
       $fourWeeksAgo = new Carbon('4 weeks ago');
       $fourWeeksFromNow = Carbon::now()->addWeeks(4);
-      
+
       if ($this->start_date->between($fourWeeksAgo, $fourWeeksFromNow)) {
         return $this->start_date->diffForHumans();
       }
@@ -152,6 +152,31 @@ class Iep extends Model
         });
 
         return true;
+      }
+
+      return false;
+    }
+
+    public function attach($form, $student, $user) {
+      if (isset($form->responses[0])) {
+        $response = IepResponse::where('u_fb_form_response_id', $form->responses[0]->id)->first();
+        if (is_null($response)) {
+          $response = new IepResponse();
+          $response->u_sped_iepid = $this->id;
+          $response->u_fb_form_response_id = $form->responses[0]->id;
+          $response->whocreated = $user->lastfirst;
+          $response->whencreated = new Carbon();
+
+          $response->save();
+
+          if ($form->form_title == 'IEP: SpEd 6a1') {
+            $this->updateStartDate($form->responses[0]);
+          } else if ($form->form_title == 'IEP: SpEd 51') {
+            $this->updateCaseManager($form->responses[0]);
+          }
+
+          return true;
+        }
       }
 
       return false;
