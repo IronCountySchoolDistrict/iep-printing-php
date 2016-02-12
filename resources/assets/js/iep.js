@@ -180,13 +180,13 @@ function printForms() {
     body: JSON.stringify({
       selected: selected,
       student: student,
-      fileOption: $('input[name=fileOption]').val(),
-      watermarkOption: $('input[name=watermarkOption]').val()
+      fileOption: $('input[name=fileOption]:checked').val(),
+      watermarkOption: $('input[name=watermarkOption]:checked').val()
     })
   }).then(status)
     .then(json)
     .then(function(data) {
-      if (data.file.length > 0) {
+      if (typeof data.file !== 'undefined' && data.file.length > 0) {
         var win = window.open(data.file, '_blank');
         if (win) {
           win.focus();
@@ -209,6 +209,9 @@ function printForms() {
         row.find('.form-error').text(data.error[key]);
       }
 
+      togglePrintBtn('enable');
+    }).catch(function(error) {
+      console.log(error);
       togglePrintBtn('enable');
     });
 }
