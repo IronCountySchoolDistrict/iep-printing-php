@@ -329,7 +329,9 @@ function activateIep(event) {
 
 $(document).ready(function() {
   resizeContent();
-  loadIep();
+  if ($('.iep-snippet.active').length > 0) {
+    loadIep();
+  }
 
   $(window).on('resize', resizeContent);
   $('.new-iep-modal input[type=text]').datepicker({
