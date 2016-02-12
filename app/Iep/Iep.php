@@ -141,9 +141,10 @@ class Iep extends Model
     public function activate($student) {
       if ($this->canActivate()) {
         DB::transaction(function() use($student) {
-          $activeIep = Iep::where('is_active', 1)
-            ->where('studentsdcid', '=', $student->dcid)
-            ->update(['is_active' => 0]);
+          $activeIep = Iep::where([
+            'is_active' => 1,
+            'studentsdcid' => $student->dcid
+          ])->update(['is_active' => 0]);
 
           $this->is_active = 1;
           $this->activated_at = new Carbon();
