@@ -42,9 +42,14 @@ class PowerSchoolController extends Controller {
     $iep = Iep::where('id', $request->json('iep'))->with('iepResponse')->first();
     $student = Student::where('id', $request->json('studentid'))->first();
     $user = User::where('dcid', $request->json('userdcid'))->first();
-    $form = Form::where('id', $request->json('formid'))->with(['responses' => function($query) use($student) {
-      $query->where('student_id', $student->id)
-        ->orderBy('whencreated', 'desc')->first();
+
+    $form = Form::where('id', $request->json('formid'))->with(['responses' => function($query) use($student, $request) {
+      if (!empty($request->json('responseid'))) {
+        $query->where('id', $request->json('responseid'))->first();
+      } else {
+        $query->where('student_id', $student->id)
+          ->orderBy('whencreated', 'desc')->first();
+      }
     }])->first();
 
     if ($iep->attach($form, $student, $user)) {

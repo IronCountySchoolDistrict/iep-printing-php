@@ -169,13 +169,13 @@ class Iep extends Model
 
           $response->save();
 
-          if ($form->form_title == 'IEP: SpEd 6a1') {
-            $this->updateStartDate($form->responses[0]);
-          } else if ($form->form_title == 'IEP: SpEd 51') {
-            $this->updateCaseManager($form->responses[0]);
-          }
-
           return true;
+        }
+
+        if ($form->form_title == 'IEP: SpEd 6a1') {
+          $this->updateStartDate($form->responses[0]);
+        } else if ($form->form_title == 'IEP: SpEd 51') {
+          $this->updateCaseManager($form->responses[0]);
         }
       }
 
