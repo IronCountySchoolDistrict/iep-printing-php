@@ -52,7 +52,7 @@ class PowerSchoolController extends Controller {
       }
     }])->first();
 
-    if ($iep->attach($form, $student, $user)) {
+    if ($iep->attach($form, $user)) {
       return (int)$form->responses[0]->id;
     }
 

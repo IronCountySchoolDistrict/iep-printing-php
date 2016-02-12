@@ -157,32 +157,31 @@ class Iep extends Model
       return false;
     }
 
-    public function attach($form, $student, $user) {
+    public function attach($form, $user) {
       if (isset($form->responses[0])) {
         $response = IepResponse::where('u_fb_form_response_id', $form->responses[0]->id)->first();
         if (is_null($response)) {
-          $response = new IepResponse();
-          $response->u_sped_iepid = $this->id;
-          $response->u_fb_form_response_id = $form->responses[0]->id;
-          $response->whocreated = $user->lastfirst;
-          $response->whencreated = new Carbon();
-
-          $response->save();
+          $this->attachResponse($form->responses[0]->id, $user);
+          $this->updateIep($form);
 
           return true;
         }
 
-        if ($form->form_title == 'IEP: SpEd 6a1') {
-          $this->updateStartDate($form->responses[0]);
-        } else if ($form->form_title == 'IEP: SpEd 51') {
-          $this->updateCaseManager($form->responses[0]);
-        }
+        $this->updateIep($form);
       }
 
       return false;
     }
 
-    public function attachResponse($responseid, $user) {
+    protected function updateIep($form) {
+      if ($form->form_title == 'IEP: SpEd 6a1') {
+        $this->updateStartDate($form->responses[0]);
+      } else if ($form->form_title == 'IEP: SpEd 51') {
+        $this->updateCaseManager($form->responses[0]);
+      }
+    }
+
+    protected function attachResponse($responseid, $user) {
       $response = new IepResponse();
       $response->u_sped_iepid = $this->id;
       $response->u_fb_form_response_id = $responseid;
@@ -190,13 +189,6 @@ class Iep extends Model
       $response->whencreated = new Carbon();
 
       $response->save();
-
-      $fbResponse = Response::find($responseid);
-      if ($fbResponse->form->form_title == 'IEP: SpEd 6a1') {
-        $this->updateStartDate($fbResponse);
-      } else if ($fbResponse->form->form_title == 'IEP: SpEd 51') {
-        $this->updateCaseManager($fbResponse);
-      }
     }
 
     protected function updateStartDate($fbResponse) {
