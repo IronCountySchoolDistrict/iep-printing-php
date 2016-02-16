@@ -161,7 +161,7 @@ function createIep() {
     .then(html)
     .then(function(data) {
       $('.iep-list .scroll-content').prepend(data);
-      $('.iep-list .iep-snippet').first().find('#activate-iep').on('click', activateIep);
+      $('.iep-list .iep-snippet').first().find('.activate-iep').on('click', activateIep);
       $('.new-iep-modal').modal('hide');
       $('.new-iep-modal input').val('');
       $('.new-iep-modal .btn').prop('disabled', false);
@@ -300,6 +300,7 @@ function deleteIep() {
 }
 
 function activateIep(event) {
+  console.log('activate');
   event.stopPropagation();
   event.preventDefault();
 
@@ -347,7 +348,7 @@ $(document).ready(function() {
   $('.new-iep-modal .btn-success').on('click', createIep);
   $('.delete-iep-modal .btn-danger').on('click', deleteIep);
   $('.iep-snippet').on('click', iepSnippetClickHandler);
-  $('#activate-iep').on('click', activateIep);
+  $('.activate-iep').on('click', activateIep);
 });
 
 //# sourceMappingURL=all.js.map

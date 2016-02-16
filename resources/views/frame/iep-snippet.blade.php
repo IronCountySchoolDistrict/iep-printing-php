@@ -5,7 +5,7 @@
     CaseManager: <span class="case-manager">{{ $iep->case_manager }}</span>
     @if (is_null($iep->activated_at) && $iep->getExpireDate()->gt(new \Carbon\Carbon()))
       <div class="pull-right">
-        <a href="javascript:void(0);" id="activate-iep">Activate this IEP</a>
+        <a href="javascript:void(0);" class="activate-iep">Activate this IEP</a>
       </div>
     @endif
   </h6>
