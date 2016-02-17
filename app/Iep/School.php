@@ -2,7 +2,7 @@
 
 namespace App\Iep;
 
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class School extends Model {
   protected $table = 'SCHOOLS';

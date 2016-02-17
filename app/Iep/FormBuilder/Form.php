@@ -2,7 +2,7 @@
 
 namespace App\Iep\FormBuilder;
 
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class Form extends Model {
   protected $table = 'U_FB_FORM';

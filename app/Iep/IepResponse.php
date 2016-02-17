@@ -4,7 +4,7 @@ namespace App\Iep;
 
 use DB;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class IepResponse extends Model {
   protected $table = 'U_SPED_IEP_RESPONSE';

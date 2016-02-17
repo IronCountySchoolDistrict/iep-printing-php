@@ -2,7 +2,7 @@
 
 namespace App\Iep\FormBuilder;
 
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class Response extends Model {
   protected $table = 'U_FB_FORM_RESPONSE';
@@ -11,5 +11,9 @@ class Response extends Model {
 
   public function form() {
     return $this->belongsTo('App\Iep\FormBuilder\Form', 'u_fb_form_id');
+  }
+
+  public function student() {
+    return $this->belongsTo('App\Iep\Student', 'student_id');
   }
 }

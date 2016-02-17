@@ -3,7 +3,7 @@
 namespace App\Iep;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class Student extends Model {
   protected $table = 'STUDENTS';
@@ -16,6 +16,10 @@ class Student extends Model {
 
   public function studentCoreField() {
     return $this->hasOne('App\Iep\StudentCoreField', 'studentsdcid', 'dcid');
+  }
+
+  public function fb_responses() {
+    return $this->hasMany('App\Iep\FormBuilder\Response', 'student_id', 'id');
   }
 
   public function getLastFirst() {
