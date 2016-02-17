@@ -30,7 +30,7 @@ class FrameController extends Controller {
       return view('frame.index', $data);
     }
 
-    abort(500);
+    return 'IEP Printing!';
   }
 
   public function iep(Request $request) {
