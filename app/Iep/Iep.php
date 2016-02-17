@@ -6,7 +6,7 @@ use DB;
 use Carbon\Carbon;
 use App\Iep\FormBuilder\Form;
 use App\Iep\FormBuilder\Response;
-use Illuminate\Database\Eloquent\Model;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 class Iep extends Model
 {
@@ -192,19 +192,19 @@ class Iep extends Model
       $response->save();
     }
 
-    protected function updateStartDate($fbResponse) {
+    public function updateStartDate($fbResponse) {
       $data = $this->getResponseData($fbResponse->id);
       foreach ($data as $row) {
         if ($row->field == 'date') {
           try {
-            $this->start_date = new Carbon($row->response);
+            $this->start_date = new Carbon(trim($row->response, '{}[]()!@#$%^&*-_+=,.<>/?\'";:|\\'));
             $this->save();
-          } catch (InvalidArgumentException $e) {}
+          } catch (\Exception $e) {}
         }
       }
     }
 
-    protected function updateCaseManager($fbResponse) {
+    public function updateCaseManager($fbResponse) {
       $data = $this->getResponseData($fbResponse->id);
       foreach ($data as $row) {
         if ($row->field == 'sped-teacher') {
