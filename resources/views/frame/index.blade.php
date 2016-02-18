@@ -22,7 +22,7 @@
             </div>
             <div class="panel-body panel-no-padding">
               <div class="iep-container row no-gutter">
-                <div class="col-xs-5 col-sm-4 col-md-4 no-padding">
+                <div class="col-xs-5 col-sm-4 col-md-4 col-lg-3 no-padding">
                   <div class="iep-sidebar">
                     <div class="iep-list scroll-pane has-scrollbar">
                       <div class="scroll-content">
@@ -43,7 +43,7 @@
                   </div>
                 </div>
 
-                <div class="col-xs-7 col-sm-8 col-md-8 no-padding">
+                <div class="col-xs-7 col-sm-8 col-md-8 col-lg-9 no-padding">
                   <div class="iep scroll-pane has-scrollbar"></div>
                 </div>
               </div>
