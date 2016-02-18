@@ -31,3 +31,8 @@ Route::any('/print-pdf', 'BaseController@printPdf');
 Route::any('/get-blanks', 'BaseController@getBlanks');
 Route::any('/print-blanks', 'BaseController@printBlanks');
 Route::get('/token', 'BaseController@token');
+
+// learning center
+Route::get('/learning', function() {
+  return view('learning.index');
+});
