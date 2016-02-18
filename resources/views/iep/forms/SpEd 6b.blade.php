@@ -15,11 +15,9 @@ if ($formsCount > 1 && !empty($responses->get('continued'))) {
     $limitedResponse = str_limit($content, $limit);
 
     $forms[] = (object)[
-      'form' => (object)[
-        'id' => 'SpEd 6b',
-        'title' => 'SpEd 6b'
-      ],
-      'response' => [
+      'formid' => 'SpEd 6b',
+      'title' => 'SpEd 6b',
+      'responses' => [
         (object)['field' => 'date-of-iep', 'type' => 'text', 'response' => $responses->get('date-of-iep')],
         (object)['field' => 'correlate-with-transition-plan', 'type' => 'text', 'response' => $limitedResponse],
       ],
@@ -28,7 +26,7 @@ if ($formsCount > 1 && !empty($responses->get('continued'))) {
 
   foreach ($forms as $form) {
     $files[] = Bus::dispatch(
-      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+      new App\Iep\Legacy\Commands\FillPdfCommand($student, json_encode([$form]), $event->fileOption, $event->watermarkOption)
     )['file'];
   }
 

@@ -3,8 +3,9 @@
 for ($i = 1; $i < 5; $i++) {
   if (!empty($responses->get('team-members-name' . $i))) {
     $forms[] = (object)[
-      'form' => (object)[ 'id' => "SpEd 6i - member $i", 'title' => "SpEd 6i" ],
-      'response' => [
+      'formid' => "SpEd 6i - member $i",
+      'title' => "SpEd 6i",
+      'responses' => [
         (object)['field' => 'student', 'type' => 'text', 'response' => $student->getLastFirst()],
         (object)['field' => 'scheduled-for', 'type' => 'text', 'response' => $responses->get('scheduled-for')],
         (object)['field' => 'scheduled-on', 'type' => 'text', 'response' => $responses->get('scheduled-on')],
@@ -24,7 +25,7 @@ for ($i = 1; $i < 5; $i++) {
 if (isset($forms)) {
   foreach ($forms as $form) {
     $files[] = Bus::dispatch(
-      new App\Commands\FillPdfCommand($student, [$form], $event->fileOption, $event->watermarkOption)
+      new App\Iep\Legacy\Commands\FillPdfCommand($student, json_encode([$form]), $event->fileOption, $event->watermarkOption)
     )['file'];
   }
 

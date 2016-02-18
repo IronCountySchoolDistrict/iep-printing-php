@@ -1,66 +1,123 @@
-<?php namespace App\Iep;
+<?php
+
+namespace App\Iep;
+
+use Exception;
+use Carbon\Carbon;
 
 class Response {
-  public $responses = [];
 
-  /**
-   * creates a new instance of Response
-   *
-   * @return void
-   */
-  public function __construct($responses)
-  {
-    foreach ($responses as $response) {
-      $this->responses[] = [
-        'field' => $response->field,
-        'type' => $response->type,
-        'value' => $response->response
-      ];
-    }
-  }
+	public $id;
+	public $title;
+	public $description;
+	public $type;
+	public $responses;
 
-  /**
-   * gets responses that match the arguments
-   * @param $key The array key e.g. 'feild', 'type', or 'value'
-   * @param $value What the key's value should be
-   * @return array|null
-   */
-  public function find($key, $value)
-  {
-    foreach ($this->responses as $response) {
-      if ($response[$key] == $value) $matches[] = $response;
-    }
+	/**
+	 * Create a new Response instance.
+	 *
+	 */
+	public function __construct($response) {
+		$this->id = $response->formid;
+		$this->title = $response->title;
+		$this->description = isset($response->description) ? $response->description : '';
+		$this->type = isset($response->type) ? $response->type : '';
+		$this->responses = new Collection($response->responses);
 
-    return (isset($matches)) ? $matches : null;
-  }
+		return $this;
+	}
 
-  /**
-   * gets the value of the given field
-   * @param string $field
-   * @return string
-   */
-  public function get($field)
-  {
-    foreach ($this->responses as $response) {
-      if ($response['field'] == $field) return $response['value'];
-    }
+	/**
+	 *
+	 *
+	 */
+	public function renderPdf(Student $student) {
+		$html = view($this->getHtmlView())
+			->with('responses', $this->responses)
+			->with('student', $student)
+			->render();
 
-    return null;
-  }
+		if (isset($_GET['html'])) {
+			return $html;
+		}
 
-  /**
-   * Executes a callback over each item
-   * @param callable $callback
-   * @return $this
-   */
-  public function each(callable $callback) {
-    foreach ($this->responses as $key => $response) {
-      if ($callback($response, $key) === false) {
-        break;
-      }
-    }
+		$pdfOptions = [
+			'margin-top' => 20,
+			'margin-bottom' => 10,
+			'margin-left' => 10,
+			'margin-right' => 10,
+			'zoom' => config('iep.html_renderer_zoom'),
+		];
 
-    return $this;
-  }
+		if ($this->headerViewEixsts()) {
+			$header = view($this->getHeaderView())
+				->with('responses', $this->responses)
+				->with('student', $student)
+				->render();
 
+			$pdfOptions['header-html'] = $header;
+			$pdfOptions['header-spacing'] = 2;
+		}
+
+		$pdf = new Pdf($pdfOptions);
+		$pdf->addPage($html);
+
+		$savePath = $this->getSavePath($student->lastfirst);
+
+		if (!$pdf->saveAs($savePath)) {
+			throw new Exception($pdf->getError());
+		}
+
+		return $savePath;
+	}
+
+	/**
+	 *
+	 *
+	 */
+	public function viewExists() {
+		return view()->exists($this->getHtmlView());
+	}
+
+	/**
+	 *
+	 *
+	 */
+	protected function headerViewEixsts() {
+		return view()->exists($this->getHeaderView());
+	}
+
+	/**
+	 *
+	 *
+	 */
+	protected function getHtmlView() {
+		$basePath = config('iep.html_renderer_path');
+
+		if (view()->exists($basePath . '.' . str_slug($this->title))) {
+			return $basePath . '.' . str_slug($this->title);
+		}
+
+		return 'iep.html.' . str_slug($this->title);
+	}
+
+	protected function getHeaderView() {
+		return 'iep.html.headers.' . str_slug($this->title);
+	}
+
+	/**
+	 *
+	 *
+	 */
+	protected function getPdfView() {
+		return 'iep.forms.' . str_replace('IEP: ', '', str_replace('.', '', $this->title));
+	}
+
+	/**
+	 *
+	 *
+	 */
+	protected function getSavePath($studentName) {
+		return str_slug(Carbon::now()->format('Ymd-His') . ' ' . str_random(6) . ' ' . $studentName . ' ' . $this->title) . '.pdf';
+	}
 }
