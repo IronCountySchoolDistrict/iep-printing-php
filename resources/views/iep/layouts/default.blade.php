@@ -5,7 +5,7 @@
         <title>
             @yield('title')
         </title>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}" charset="utf-8">
+        <link rel="stylesheet" href="{{ elixir('css/app.css') }}" charset="utf-8">
         @yield('stylesheet')
     </head>
     <body>
