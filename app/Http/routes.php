@@ -18,6 +18,7 @@ Route::post('/iep', 'FrameController@save');
 Route::post('/iep/print', 'FrameController@print');
 Route::post('/iep/delete', 'FrameController@delete');
 Route::post('/iep/activate', 'FrameController@activate');
+Route::get('/iep/print-test', 'FrameController@printTest');
 Route::get('/iep/response-count', 'FrameController@responseCount');
 
 // originate from powerschool

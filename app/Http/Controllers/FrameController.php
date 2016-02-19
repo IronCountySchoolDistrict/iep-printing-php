@@ -69,6 +69,33 @@ class FrameController extends Controller {
     return $info;
   }
 
+  public function printTest(Request $request) {
+    $fileOption = $request->get('fileOption') ?: 'concat';
+    $watermarkOption = $request->get('watermarkOption') ?: 'final';
+    $student = Student::orderByRaw('DBMS_RANDOM.RANDOM')->firstOrFail();
+    $form = [
+      (object)[
+        'formid' => $request->get('formid'),
+        'title' => $request->get('title'),
+        'responseid' => $request->get('responseid')
+      ]
+    ];
+
+    $responses = Iep::getFormData($form);
+
+    $info = $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
+
+    if (isset($_GET['html'])) {
+      return $info;
+    }
+
+    if (!empty($info['file'])) {
+      return '<h2><a target="_blank" href="'.asset($info['file']).'">'.$info['file'].'</a></h2>';
+    }
+
+    return $info;
+  }
+
   public function responseCount(Request $request) {
     return Iep::find($request->get('iep'))->iepResponse->count();
   }
