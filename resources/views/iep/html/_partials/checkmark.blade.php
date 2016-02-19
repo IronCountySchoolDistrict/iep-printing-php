@@ -1,4 +1,7 @@
-
-@if (strpos($haystack, $needle) !== false)
-    <span class="checkmark">&#10004;</span>
-@endif
+<span class="checkmark">
+  @if (strpos($haystack, $needle) !== false)
+    &#10004;
+  @else
+    &nbsp;
+  @endif
+</span>
