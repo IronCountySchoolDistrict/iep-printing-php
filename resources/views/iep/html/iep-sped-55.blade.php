@@ -50,7 +50,7 @@
         School:
       </div>
       <div class="right underline left-input">
-        {{ $student->getSchoolCity() }}
+        {{ $student->getSchoolName() }}
       </div>
     </div>
     <div class="col-xs-3">
