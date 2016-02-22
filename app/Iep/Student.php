@@ -48,6 +48,17 @@ class Student extends Model {
     return $this->father;
   }
 
+  public function getParents() {
+    $parents = '';
+    if (!empty($this->father)) $parents .= $this->father;
+
+    if (!empty($this->mother)) $parents .= " and $this->mother";
+
+    if (starts_with($parents, ' and ')) $parents = substr($parents, 5);
+
+    return $parents;
+  }
+
   public function getYears() {
     return $this->dob->diffInYears(new Carbon());
   }
