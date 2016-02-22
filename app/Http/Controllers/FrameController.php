@@ -72,7 +72,9 @@ class FrameController extends Controller {
   public function printTest(Request $request) {
     $fileOption = $request->get('fileOption') ?: 'concat';
     $watermarkOption = $request->get('watermarkOption') ?: 'final';
-    $student = Student::orderByRaw('DBMS_RANDOM.RANDOM')->firstOrFail();
+    $student = \Cache::remember('printTestStudent', 1440, function() {
+      return Student::orderByRaw('DBMS_RANDOM.RANDOM')->firstOrFail();
+    });
     $form = [
       (object)[
         'formid' => $request->get('formid'),
@@ -80,8 +82,10 @@ class FrameController extends Controller {
         'responseid' => $request->get('responseid')
       ]
     ];
-
-    $responses = Iep::getFormData($form);
+    $cacheKey = 'printtestformdata' . $request->get('formid') . $request->get('responseid');
+    $responses = \Cache::remember($cacheKey, 1440, function() use($form) {
+      return Iep::getFormData($form);
+    });
 
     $info = $this->dispatch(new PrintPdf($student, $responses, $fileOption, $watermarkOption));
 
