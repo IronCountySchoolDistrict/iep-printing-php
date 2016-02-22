@@ -46,14 +46,13 @@ class IepCreate extends Command
     public function handle()
     {
       if ($this->argument('studentsdcid')) {
-        $student = $this->getStudent($this->argument('studentsdcid'));
-        dd($student);
+        $spedStudents = $this->getStudent($this->argument('studentsdcid'));
+      } else if ($this->option('all')) {
+        $spedStudents = $this->getSpedStudents();
       }
 
-      if ($this->option('all')) {
-        $spedStudents = $this->getSpedStudents();
-
-        foreach ($spedStudents as $spedStudent) {
+      if ($total = count($spedStudents)) {
+        foreach ($spedStudents as $index => $spedStudent) {
           \DB::transaction(function() use($spedStudent) {
             $forms = $this->getSpedForms($spedStudent->id);
             $iep = $this->createIep($spedStudent->dcid, $spedStudent->created_by);
@@ -70,6 +69,21 @@ class IepCreate extends Command
               $this->createIepResponse($iep->id, $form->id);
             }
           });
+
+          $this->logPercent($total, $index);
+        }
+        $this->logPercent($total, $index, true);
+      }
+    }
+
+    protected function logPercent($total, $count, $force = false) {
+      $percent = round((($count + 1) / $total) * 100);
+
+      if ($force) {
+        $this->info($percent . '%');
+      } else {
+        if ($count % 50 == 0) {
+          $this->info($percent . '%');
         }
       }
     }
@@ -100,7 +114,7 @@ class IepCreate extends Command
     }
 
     protected function getStudent($studentsdcid) {
-      return Student::where(['dcid' => $studentsdcid])->first();
+      return Student::where(['dcid' => $studentsdcid])->get();
     }
 
     protected function getSpedStudents() {
@@ -160,7 +174,6 @@ class IepCreate extends Command
         		WHERE
         			form_title LIKE 'IEP%'
             AND id > 0
-            AND publish = 'true'
         	)
         AND u_fb_form_response.student_id = ?";
 
