@@ -3,6 +3,7 @@
 @section('stylesheet')
     @parent
     <style>
+        /*body { width: 241.3mm }*/
         tr td:last-child, td.meeting-dates {
             width: 192px;
         }
@@ -88,8 +89,8 @@
 
             <div class="row" style="margin-top: 10px">
                 <div class="col-xs-12">
-                    <div class="left" style="width: 29mm">
-                        Street Address
+                    <div class="left">
+                        Street&nbsp;Address
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $student->street }}</span>
@@ -134,8 +135,8 @@
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="left" style="width: 25mm">
-                        Home Phone
+                    <div class="left">
+                        Home&nbsp;Phone
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $student->home_phone }}</span>
@@ -145,16 +146,16 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="left" style="width: 44mm">
-                        Parent/Guardian email
+                    <div class="left">
+                        Parent/Guardian&nbsp;email
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $student->parent_email }}</span>
+                        <span>{{ $student->guardianemail }}</span>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="left" style="width: 24mm">
-                        Work Phone
+                    <div class="left">
+                        Work&nbsp;Phone
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $student->getParentWorkPhone() }}</span>
@@ -164,8 +165,8 @@
 
             <div class="row">
                 <div class="col-xs-4">
-                    <div class="left" style="width: 25mm">
-                        Date of Birth
+                    <div class="left">
+                        Date&nbsp;of&nbsp;Birth
                     </div>
                     <div class="right underline center-input">
                         <span>{{ $student->dob->format('m/d/Y') }}</span>
@@ -199,16 +200,16 @@
 
             <div class="row">
                 <div class="col-xs-7">
-                    <div class="left" style="width: 38mm">
-                        Service School Site
+                    <div class="left">
+                        Service&nbsp;School&nbsp;Site
                     </div>
                     <div class="right underline left-input">
-                        <span>{{ $responses->get('service-school-site') }}</span>
+                        <span>{{ $student->getSchoolName() }}</span>
                     </div>
                 </div>
                 <div class="col-xs-5">
-                    <div class="left" style="width: 18mm">
-                        School #
+                    <div class="left">
+                        School&nbsp;#
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $student->schoolid }}</span>
@@ -226,8 +227,8 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <div class="left" style="width: 37mm">
-                        Primary Language
+                    <div class="left">
+                        Primary&nbsp;Language
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('primary-language') }}</span>
@@ -237,16 +238,16 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="left" style="width: 53mm">
-                        Specific Learning Disability
+                    <div class="left">
+                        Disability&nbsp;Classification
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('classification-disability') }}</span>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="left" style="width: 30mm">
-                        Disability Code
+                    <div class="left">
+                        Disability&nbsp;Code
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('disability-code') }}</span>
@@ -257,15 +258,15 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="left">
-                        Special Education Teacher
+                        Special&nbsp;Education&nbsp;Teacher
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('sped-teacher') }}</span>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="left" style="width: 42mm">
-                        Regular Ed. Category
+                    <div class="left">
+                        Regular&nbsp;Ed.&nbsp;Category
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('reged-category') }}</span>
@@ -283,8 +284,8 @@
 
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="left" style="width: 40mm">
-                        Regular Ed. Teacher
+                    <div class="left">
+                        Regular&nbsp;Ed.&nbsp;Teacher
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('reged-teacher') }}</span>
@@ -292,7 +293,7 @@
                 </div>
                 <div class="col-xs-3 col-xs-offset-3">
                     <div class="left">
-                        Regular Percent
+                        Regular&nbsp;Percent
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('regular-percent') }}</span>
@@ -317,7 +318,7 @@
             <div class="row">
                 <div class="col-xs-9">
                     <div class="left">
-                        Assessment Type
+                        Assessment&nbsp;Type
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('assessment-type') }}</span>
@@ -328,7 +329,7 @@
             <div class="row">
                 <div class="col-xs-9">
                     <div class="left">
-                        Placement Type (This IEP record)
+                        Placement&nbsp;Type&nbsp;(This&nbsp;IEP&nbsp;record)
                     </div>
                     <div class="right underline left-input">
                         <span>{{ $responses->get('placement-type') }}</span>
