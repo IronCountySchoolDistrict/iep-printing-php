@@ -9,8 +9,6 @@ foreach ($textTypes as $type) {
     }
 }
 
-$pdf->addStudent($student);
-
 $textFields = $responses->find('type', 'text');
 $pdf->setField('date', $responses->get('date'));
 $pdf->setField('phone', $student->getPhone());
@@ -43,3 +41,7 @@ foreach ($checkboxFields as $checkboxField) {
   	}
   }
 }
+
+$pdf->setField('lastfirst', $student->lastfirst);
+$pdf->setField('dob', $student->dob->format('m/d/Y'));
+$pdf->setField('gender', $student->gender);
