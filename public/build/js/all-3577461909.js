@@ -86,6 +86,7 @@ function loadIep() {
 }
 
 function styleIep() {
+  setSelectedIep($('.iep-snippet.active').prop('id'));
   $('.iep-table').dataTable({
     "paging": false,
     "ordering": false,
@@ -331,9 +332,21 @@ function activateIep(event) {
   }
 }
 
+function setSelectedIep(iepid) {
+  localStorage.setItem('iep', iepid);
+}
+
+function getSelectedIep() {
+  return localStorage.getItem('iep');
+}
+
 $(document).ready(function() {
   resizeContent();
-  if ($('.iep-snippet.active').length > 0) {
+  if (getSelectedIep() && $('.iep-snippet#' + getSelectedIep()).length > 0) {
+    $('.iep-snippet.active').removeClass('active');
+    $('.iep-snippet#' + getSelectedIep()).addClass('active');
+    loadIep();
+  } else if ($('.iep-snippet.active').length > 0) {
     loadIep();
   }
 
