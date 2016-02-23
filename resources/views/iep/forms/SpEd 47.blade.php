@@ -1,6 +1,7 @@
 <?php
 
-$pdf->addStudent($student);
+$pdf->setField('student', $student->lastfirst);
+$pdf->setField('dob', $student->dob->format('m/d/Y'));
 
 ?>
 

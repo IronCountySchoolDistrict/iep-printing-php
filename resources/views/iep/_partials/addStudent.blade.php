@@ -1,1 +1,1 @@
-<?php $pdf->addStudent($student); ?>
+{{-- <?php $pdf->addStudent($student); ?> --}}
