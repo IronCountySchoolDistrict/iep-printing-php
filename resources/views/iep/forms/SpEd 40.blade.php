@@ -11,8 +11,8 @@ foreach ($textTypes as $type) {
 
 $textFields = $responses->find('type', 'text');
 $pdf->setField('date', $responses->get('date'));
-$pdf->setField('phone', $student->getPhone());
-$pdf->setField('ethnicity', $student->getEthnicity());
+$pdf->setField('phone', $student->home_phone);
+$pdf->setField('ethnicity', $student->ethnicity);
 $pdf->setField('parents', $student->getParents());
 $pdf->setField('address', $student->getAddress());
 $pdf->setField('vision:' . $responses->get('vision'), 'Yes');
