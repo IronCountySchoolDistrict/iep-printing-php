@@ -233,7 +233,7 @@
     <div class="row">
         <div class="col-xs-12 box">
             <p class="text-bold">
-                Written Prior Notice for Eligibility Determination (Black Rules pp. 73-74)
+                Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D
             </p>
             <p>
                 {{ str_repeat('&nbsp;', 5) }}The Procedural Safeguards under Part B of the IDEA you received previously afford you protection. You may request another copy of the Procedural Safeguards from the special education teacher. If you have any questions regarding this notice or Procedural Safeguards, contact the principal or the special education teacher at the student’s school.
