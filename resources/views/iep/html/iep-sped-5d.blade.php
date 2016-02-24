@@ -333,7 +333,7 @@
     <div class="row">
         <div class="col-xs-12 box">
             <p class="text-bold">
-                Written Prior Notice for Eligibility Determination (Black Rules pp.73-74)
+                Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D
             </p>
             <p>
                 {{ str_repeat('&nbsp;', 5) }}The Procedural Safeguards under Part B of the IDEA you received previously afford you protection. You may request another copy of the Procedural Safeguards from the special education teacher. If you have any questions regarding this notice or Procedural Safeguards, contact the principal or the special education teacher at the student’s school.
@@ -522,7 +522,7 @@
             Participated via telephone, video conference or other means <span class="text-bold text-underline">AND</span>
             <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'Copy of this document was mailed to parent/adult student'])</span>
             Copy of this document was mailed to parent/adult student on (date)
-            <span class="text-underline">{{ str_repeat('&nbsp;', 5) }}{{ (!empty($responses->get('copy-mailed-date'))) ? $responses->get('note-date') : str_repeat('&nbsp;', 10) }}{{ str_repeat('&nbsp;', 5) }}</span>
+            <span class="text-underline">{{ str_repeat('&nbsp;', 5) }}{{ (!empty($responses->get('copy-mailed-date'))) ? $responses->get('copy-mailed-date') : str_repeat('&nbsp;', 10) }}{{ str_repeat('&nbsp;', 5) }}</span>
         </div>
     </div>
 @endsection
