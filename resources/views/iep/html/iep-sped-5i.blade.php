@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row" style="font-size: 0.9em">
         <div class="col-xs-8">
             {{ config('iep.district.name') }} - {{ $student->getSchoolCity() }}
         </div>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-7">
             <div class="left">
                 School
             </div>
@@ -56,7 +56,7 @@
                 {{ $student->getSchoolName() }}
             </div>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <div class="left">
                 Grade
             </div>
@@ -177,7 +177,7 @@
     <div class="row">
         <div class="col-xs-12 box">
             <p class="text-bold">
-                Written Prior Notice for Eligibility Determination (Black Rules pp.73-74)
+                Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D
             </p>
             <p>
                 {{ str_repeat('&nbsp;', 5) }}The Procedural Safeguards under Part B of the IDEA you received previously afford you protection. You may request another copy of the Procedural Safeguards from the special education teacher. If you have any questions regarding this notice or Procedural Safeguards, contact the principal or the special education teacher at the student’s school.
