@@ -92,19 +92,19 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="text-bold">
-                        Written Prior Notice for Free Appropriate Public Education
+                        Written Prior Notice for Free Appropriate Public Education Utah State Board of Education Special Education Rules &sect;IV.D
                     </p>
                     <p>
                         {{ str_repeat('&nbsp;', 5) }}The IEP team proposes to implement this program, based on the student’s needs as documented in the Present Level of Academic Achievement and Functional Performance section of this document and representing the free, appropriate public education the student will be provided.
                     </p>
                     <p>
                         {{ str_repeat('&nbsp;', 5) }}The following options were considered and rejected for these reasons:
-                        <br>
+                        {{ str_repeat('&nbsp;', 5) }}
                         {{ $responses->get('considered-and-rejected-reasons') }}
                     </p>
                     <p>
                         {{ str_repeat('&nbsp;', 5) }}Other factors relevant to this proposal:
-                        <br>
+                        {{ str_repeat('&nbsp;', 5) }}
                         {{ $responses->get('other-factors-relevant') }}
                     </p>
                     <p>
@@ -174,12 +174,12 @@
             </p>
 
             <div class="row">
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left" style="width: 41mm">
                         Parent/Adult Student
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('parent-adult-student') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('parent-adult-student') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -191,12 +191,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         LEA Representative
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('lea-rep') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('lea-rep') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -208,12 +208,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Student
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('student-participate') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('student-participate') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -225,12 +225,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Regular Ed Teacher
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('reged-teacher') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('reged-teacher') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -242,12 +242,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Special Ed Teacher
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('sped-teacher') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('sped-teacher') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -259,12 +259,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Other
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('other1') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('other1') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -276,12 +276,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Other
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('other2') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('other2') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -293,12 +293,12 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom:3px">
+                <div class="col-xs-9" style="margin-bottom: 4px">
                     <div class="left">
                         Other
                     </div>
-                    <div class="right underline left-input">
-                        <span>{{ $responses->get('other3') }}</span>
+                    <div class="right underline text-right">
+                      <small>{{ $responses->get('other3') }}</small>
                     </div>
                 </div>
                 <div class="col-xs-3">
@@ -319,11 +319,11 @@
                 *Note:  If parent/adult student signature is missing, then parent/adult student:
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('participate'), 'needle' => 'Did not attend (document efforts to involve parent/adult student) OR'])
                 Did not attend (document efforts to involve parent/adult student)  <span class="text-bold">OR</span>
-                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('participate'), 'needle' => 'Participated via telephone, video conference or other means AND'])
+                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('participate'), 'needle' => 'Participated via telephone'])
                 Participated via telephone, video conference or other means  <span class="text-bold">AND</span>
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('participate'), 'needle' => 'Copy of this document was mailed to parent adult student on'])
                 Copy of this document was mailed to parent/adult student on (date)
-                <span class="underline" style="font-size: 1em">{{ !empty($responses->get('date')) ? str_repeat('&nbsp;', 20) : $responses->get('date') }}</span>
+                <span class="underline" style="font-size: 1em">{{ empty($responses->get('date')) ? str_repeat('&nbsp;', 20) : $responses->get('date') }}</span>
             </p>
         </div>
     </div>
