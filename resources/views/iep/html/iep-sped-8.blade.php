@@ -49,7 +49,7 @@
 
     <div class="row">
         <div class="col-xs-12 box">
-            <span class="text-bold">Written Prior Notice for Evaluation for Eligibility for Free Appropriate Public Education under IDEA</span>
+            <span class="text-bold">Written Prior Notice for Evaluation for Eligibility for Free Appropriate Public Education under IDEA Utah State Board of Education Special Education Rules &sect;IV.D</span>
             <p>
                 {{ str_repeat('&nbsp;', 5) }}We are proposing to evaluate / re-evaluate this student to determine if he/she has a disability that adversely affects educational performance and requires special education and related services under the Individuals with Disabilities Education Act (IDEA). We are proposing this evaluation because there are concerns about the student’s educational progress. Although there may have been interventions implemented, concerns about his/her progress continue. You have protection under the Procedural Safeguards under Part B of the IDEA, which you have received previously. You may request another copy of the Procedural Safeguards from the special education teacher. If you have any questions regarding this notice or the Procedural Safeguards, contact the principal or the special education teacher at the student’s school.
             </p>
@@ -121,8 +121,8 @@
                 <tr>
                     <td></td>
                     <td>
-                        <div class="left" style="width: 180pt">
-                            <span>Additional areas to be assessed:</span>
+                        <div class="left">
+                            <span>Additional&nbsp;areas&nbsp;to&nbsp;be&nbsp;assessed:</span>
                         </div>
                         <div class="right underline left-input">
                             <span>{{ ($responses->get('determined') == '2') ? $responses->get('assessed') : '' }}</span>
@@ -136,8 +136,8 @@
                 <tr>
                     <td></td>
                     <td>
-                        <div class="left" style="width: 120pt">
-                            <span>Areas to be assessed:</span>
+                        <div class="left">
+                            <span>Areas&nbsp;to&nbsp;be&nbsp;assessed:</span>
                         </div>
                         <div class="right underline left-input">
                             <span>{{ ($responses->get('determined') == '3') ? $responses->get('assessed') : '' }}</span>
@@ -180,8 +180,8 @@
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    <div class="left" style="width: 175pt">
-                        <span>Signature of Interpreter, if used</span>
+                    <div class="left">
+                        <span>Signature&nbsp;of&nbsp;Interpreter,&nbsp;if&nbsp;used</span>
                     </div>
                     <div class="right text-right">
                         <span><small>{{ $responses->get('sign-of-interpreter') }}</small></span>
