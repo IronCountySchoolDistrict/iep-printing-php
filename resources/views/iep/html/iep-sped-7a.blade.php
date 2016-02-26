@@ -185,7 +185,7 @@
 
     <div class="row">
         <div class="col-xs-12 box">
-            <span class="text-bold">Written Prior Notice for Initial Placement (Black Rules pp.73-74)</span>
+            <span class="text-bold">Written Prior Notice for Initial Placement Utah State Board of Education Special Education Rules &sect;IV.D</span>
             <br>
             <p style="padding-left: 15px">
                 {{ str_repeat('&nbsp;', 5) }}The Procedural Safeguards under Part B of the IDEA you received previously afford you protection. You may request another copy of the Procedural Safeguards from the special education teacher. If you have any questions regarding this notice or Procedural Safeguards, contact the principal or the special education teacher at the student’s school.
@@ -262,7 +262,7 @@
             <div class="row">
                 <div class="col-xs-7">
                     <div class="left">
-                        Signature&nbsp;of&nbsp;Parent/Adult&nbsp;Student
+                        Signature&nbsp;of&nbsp;Parent/Adult&nbsp;Student*
                     </div>
                     <div class="right text-right">
                         <span style="font-size: 0.9em">{{ $doSign or '' }}</span>
@@ -288,7 +288,7 @@
             <div class="row">
                 <div class="col-xs-7">
                     <div class="left">
-                        Signature&nbsp;of&nbsp;Parent/Adult&nbsp;Student
+                        Signature&nbsp;of&nbsp;Parent/Adult&nbsp;Student*
                     </div>
                     <div class="right text-right">
                         <span style="font-size: 0.9em">{{ $dontSign or '' }}</span>
@@ -298,6 +298,11 @@
                     Date
                 </div>
             </div>
+        </div>
+        <div class="col-xs-12 text-center">
+          <p class="text-bold">
+            *Signature indicates receipt of copy of this notice.
+          </p>
         </div>
     </div>
 @endsection
