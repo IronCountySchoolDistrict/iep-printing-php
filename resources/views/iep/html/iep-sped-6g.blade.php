@@ -6,7 +6,7 @@
     @parent
 
     <style>
-        body { width: 241.3mm }
+        /*body { width: 241.3mm }*/
     </style>
 @endsection
 
