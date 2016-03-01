@@ -1,28 +1,17 @@
-require 'json'
-require 'yaml'
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
 
-VAGRANTFILE_API_VERSION ||= "2"
-confDir = $confDir ||= File.expand_path("vendor/laravel/homestead", File.dirname(__FILE__))
+  config.vm.provision "shell", path: "vagrant-provision.sh"
 
-homesteadYamlPath = "Homestead.yaml"
-homesteadJsonPath = "Homestead.json"
-afterScriptPath = "after.sh"
-aliasesPath = "aliases"
+  config.vm.network :private_network, {
+      ip: "192.168.10.10",
+  }
 
-require File.expand_path(confDir + '/scripts/homestead.rb')
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/var/www/iep-printing-php"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    if File.exists? aliasesPath then
-        config.vm.provision "file", source: aliasesPath, destination: "~/.bash_aliases"
-    end
-
-    if File.exists? homesteadYamlPath then
-        Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
-    elsif File.exists? homesteadJsonPath then
-        Homestead.configure(config, JSON.parse(File.read(homesteadJsonPath)))
-    end
-
-    if File.exists? afterScriptPath then
-        config.vm.provision "shell", path: afterScriptPath
-    end
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 512
+    v.cpus = 1
+  end
 end
