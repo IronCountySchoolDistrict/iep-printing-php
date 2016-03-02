@@ -169,12 +169,12 @@
         </div>
 
         <div class="col-xs-12">
-            <p class="text-bold">
+            <p class="text-bold" style="margin-top: 200px">
                 IEP Team Participants
             </p>
 
             <div class="row">
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left" style="width: 41mm">
                         Parent/Adult Student
                     </div>
@@ -182,7 +182,7 @@
                       <small>{{ $responses->get('parent-adult-student') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -191,7 +191,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         LEA Representative
                     </div>
@@ -199,7 +199,7 @@
                       <small>{{ $responses->get('lea-rep') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -208,7 +208,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Student
                     </div>
@@ -216,7 +216,7 @@
                       <small>{{ $responses->get('student-participate') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -225,7 +225,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Regular Ed Teacher
                     </div>
@@ -233,7 +233,7 @@
                       <small>{{ $responses->get('reged-teacher') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -242,7 +242,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Special Ed Teacher
                     </div>
@@ -250,7 +250,7 @@
                       <small>{{ $responses->get('sped-teacher') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -259,7 +259,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Other
                     </div>
@@ -267,7 +267,7 @@
                       <small>{{ $responses->get('other1') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -276,7 +276,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Other
                     </div>
@@ -284,7 +284,7 @@
                       <small>{{ $responses->get('other2') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
@@ -293,7 +293,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-9" style="margin-bottom: 4px">
+                <div class="col-xs-9" style="margin-top: 5px">
                     <div class="left">
                         Other
                     </div>
@@ -301,7 +301,7 @@
                       <small>{{ $responses->get('other3') }}</small>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="margin-top: 5px">
                     <div class="left">
                         Date
                     </div>
