@@ -104,10 +104,10 @@
             <table class="table table-bordered table-condensed sped-services">
                 <tbody>
                     <tr>
-                        <td class="text-bold" style="width: 41%"></td>
+                        <td class="text-bold" style="width: 40%"></td>
                         <td class="text-bold" style="width: 21%">Location</td>
                         <td class="text-bold" style="width: 17%">Amount of Time</td>
-                        <td class="text-bold" style="width: 21%">Frequency</td>
+                        <td class="text-bold" style="width: 22%">Frequency</td>
                     </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
@@ -137,9 +137,9 @@
                             </td>
                             <td>
                                 <div class="left">
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'D']) D
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'W']) W
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'M']) M
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'D'])&nbsp;D
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'W'])&nbsp;W
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-frequency$i"), 'needle' => 'M'])&nbsp;M
                                 </div>
                                 <div class="right underline left-input">
                                     <span>{{ $responses->get("sped-total$i") }}</span>
@@ -156,10 +156,10 @@
             <table class="table table-bordered table-condensed related-services">
                 <tbody>
                   <tr>
-                      <td class="text-bold" style="width: 41%"></td>
+                      <td class="text-bold" style="width: 40%"></td>
                       <td class="text-bold" style="width: 21%">Location</td>
                       <td class="text-bold" style="width: 17%">Amount of Time</td>
-                      <td class="text-bold" style="width: 21%">Frequency</td>
+                      <td class="text-bold" style="width: 22%">Frequency</td>
                   </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
@@ -189,9 +189,9 @@
                             </td>
                             <td>
                                 <div class="left">
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'D']) D
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'W']) W
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'M']) M
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'D'])&nbsp;D
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'W'])&nbsp;W
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("related-frequency$i"), 'needle' => 'M'])&nbsp;M
                                 </div>
                                 <div class="right underline left-input">
                                     <span>{{ $responses->get("related-total$i") }}</span>
@@ -211,9 +211,9 @@
             <table class="table table-bordered table-condensed services">
                 <tbody>
                   <tr>
-                      <td class="text-bold" style="width: 62%"></td>
+                      <td class="text-bold" style="width: 61%"></td>
                       <td class="text-bold" style="width: 17%">Amount of Time</td>
-                      <td class="text-bold" style="width: 21%">Frequency</td>
+                      <td class="text-bold" style="width: 22%">Frequency</td>
                   </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
@@ -225,9 +225,9 @@
                             </td>
                             <td>
                                 <div class="left">
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'D']) D
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'W']) W
-                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'M']) M
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'D'])&nbsp;D
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'W'])&nbsp;W
+                                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get("service-frequency$i"), 'needle' => 'M'])&nbsp;M
                                 </div>
                                 <div class="right underline left-input">
                                     <span>{{ $responses->get("service-total$i") }}</span>
