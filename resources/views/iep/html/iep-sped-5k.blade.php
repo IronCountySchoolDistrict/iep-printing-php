@@ -410,24 +410,24 @@
                         <th>Results (including data):</th>
                     </tr>
                     <tr>
-                        <td>{{ $responses->get('strategy1') }}</td>
-                        <td>{{ $responses->get('duration1') }}</td>
-                        <td>{{ $responses->get('results1') }}</td>
+                        <td>{{ $responses->get('strategy1') }}&nbsp;</td>
+                        <td>{{ $responses->get('duration1') }}&nbsp;</td>
+                        <td>{{ $responses->get('results1') }}&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>{{ $responses->get('strategy2') }}</td>
-                        <td>{{ $responses->get('duration2') }}</td>
-                        <td>{{ $responses->get('results2') }}</td>
+                        <td>{{ $responses->get('strategy2') }}&nbsp;</td>
+                        <td>{{ $responses->get('duration2') }}&nbsp;</td>
+                        <td>{{ $responses->get('results2') }}&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>{{ $responses->get('strategy3') }}</td>
-                        <td>{{ $responses->get('duration3') }}</td>
-                        <td>{{ $responses->get('results3') }}</td>
+                        <td>{{ $responses->get('strategy3') }}&nbsp;</td>
+                        <td>{{ $responses->get('duration3') }}&nbsp;</td>
+                        <td>{{ $responses->get('results3') }}&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>{{ $responses->get('strategy4') }}</td>
-                        <td>{{ $responses->get('duration4') }}</td>
-                        <td>{{ $responses->get('results4') }}</td>
+                        <td>{{ $responses->get('strategy4') }}&nbsp;</td>
+                        <td>{{ $responses->get('duration4') }}&nbsp;</td>
+                        <td>{{ $responses->get('results4') }}&nbsp;</td>
                     </tr>
                 </tbody>
             </table>
