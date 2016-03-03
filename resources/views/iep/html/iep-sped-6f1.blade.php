@@ -108,14 +108,12 @@
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-bordered table-condensed">
-                <thead>
+                <tbody>
                     <tr>
                         <th colspan="2" class="text-center">
                             Participation Codes - Enter appropriate code in table below.
                         </th>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td class="text-center">SA</td>
                         <td>Standard Administration (No Accommodations, includes embedded accessibility resources.)</td>
@@ -140,26 +138,24 @@
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-bordered table-condensed" style="border-top: none; border-left: none; border-right: none">
-                <thead>
-                    <tr>
-                        <th style="width: 17.5%; border: none"></th>
-                        <th style="width: 17.5%; border: none"></th>
-                        <th class="text-center" style="width: 5%; border: none">K</th>
-                        <th class="text-center" style="width: 5%; border: none">1</th>
-                        <th class="text-center" style="width: 5%; border: none">2</th>
-                        <th class="text-center" style="width: 5%; border: none">3</th>
-                        <th class="text-center" style="width: 5%; border: none">4</th>
-                        <th class="text-center" style="width: 5%; border: none">5</th>
-                        <th class="text-center" style="width: 5%; border: none">6</th>
-                        <th class="text-center" style="width: 5%; border: none">7</th>
-                        <th class="text-center" style="width: 5%; border: none">8</th>
-                        <th class="text-center" style="width: 5%; border: none">9</th>
-                        <th class="text-center" style="width: 5%; border: none">10</th>
-                        <th class="text-center" style="width: 5%; border: none">11</th>
-                        <th class="text-center" style="width: 5%; border: none">12</th>
-                    </tr>
-                </thead>
                 <tbody>
+                  <tr>
+                      <th style="width: 17.5%; border: none"></th>
+                      <th style="width: 17.5%; border: none"></th>
+                      <th class="text-center" style="width: 5%; border: none">K</th>
+                      <th class="text-center" style="width: 5%; border: none">1</th>
+                      <th class="text-center" style="width: 5%; border: none">2</th>
+                      <th class="text-center" style="width: 5%; border: none">3</th>
+                      <th class="text-center" style="width: 5%; border: none">4</th>
+                      <th class="text-center" style="width: 5%; border: none">5</th>
+                      <th class="text-center" style="width: 5%; border: none">6</th>
+                      <th class="text-center" style="width: 5%; border: none">7</th>
+                      <th class="text-center" style="width: 5%; border: none">8</th>
+                      <th class="text-center" style="width: 5%; border: none">9</th>
+                      <th class="text-center" style="width: 5%; border: none">10</th>
+                      <th class="text-center" style="width: 5%; border: none">11</th>
+                      <th class="text-center" style="width: 5%; border: none">12</th>
+                  </tr>
                     <tr>
                         <td class="text-center">National</td>
                         <td>NAEP</td>
@@ -391,18 +387,16 @@
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-bordered table-condensed table-header-rotated">
-                <thead>
-                    <tr>
-                        <th style="width: 34%"></th>
-                        <th class="rotate-45"><div><span>Instruction</span></div></th>
-                        <th class="rotate-45"><div><span>Assessment</span></div></th>
-                        <th class="divider-cell" style="width: 5%"></th>
-                        <th style="width: 26%"></th>
-                        <th class="rotate-45"><div><span>Instruction</span></div></th>
-                        <th class="rotate-45"><div><span>Assessment</span></div></th>
-                    </tr>
-                </thead>
                 <tbody>
+                  <tr>
+                      <th style="width: 34%"></th>
+                      <th class="rotate-45"><div><span>Instruction</span></div></th>
+                      <th class="rotate-45"><div><span>Assessment</span></div></th>
+                      <th class="divider-cell" style="width: 5%"></th>
+                      <th style="width: 26%"></th>
+                      <th class="rotate-45"><div><span>Instruction</span></div></th>
+                      <th class="rotate-45"><div><span>Assessment</span></div></th>
+                  </tr>
                     <tr>
                         <td>Alternate Location</td>
                         <td class="text-center">@include('iep.html._partials.checkmark', ['haystack' => $responses->get('check1'), 'needle' => 'Instruction'])</td>
@@ -540,17 +534,15 @@
     <div class="row" style="margin-top: 20px">
         <div class="col-xs-12">
             <table class="table table-condensed table-bordered">
-                <thead>
-                    <tr>
-                        <th colspan="3" class="text-center">For students participating in the Alternate Assessment based on Alternate Standards, the IEP Team must consider the</th>
-                    </tr>
-                    <tr>
-                        <th style="border: none">Indicate why the student cannot participate in the regular assessment:</th>
-                        <th style="width: 5%; border: none">YES</th>
-                        <th style="width: 5%; border: none">NO</th>
-                    </tr>
-                </thead>
                 <tbody>
+                  <tr>
+                      <th colspan="3" class="text-center">For students participating in the Alternate Assessment based on Alternate Standards, the IEP Team must consider the</th>
+                  </tr>
+                  <tr>
+                      <th style="border: none">Indicate why the student cannot participate in the regular assessment:</th>
+                      <th style="width: 5%; border: none">YES</th>
+                      <th style="width: 5%; border: none">NO</th>
+                  </tr>
                     <tr>
                         <td style="border: none">Is the student receiving instruction based on the Essential Elements (Utah’s alternate core standards)?</td>
                         <td class="text-center">@include('iep.html._partials.checkmark', ['haystack' => $responses->get('check28'), 'needle' => 'YES'])</td>

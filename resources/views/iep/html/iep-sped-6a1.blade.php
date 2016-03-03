@@ -102,15 +102,13 @@
             </div>
 
             <table class="table table-bordered table-condensed sped-services">
-                <thead>
-                    <tr>
-                        <th style="width: 41%"></th>
-                        <th style="width: 21%">Location</th>
-                        <th style="width: 17%">Amount of Time</th>
-                        <th style="width: 21%">Frequency</th>
-                    </tr>
-                </thead>
                 <tbody>
+                    <tr>
+                        <td class="text-bold" style="width: 41%"></td>
+                        <td class="text-bold" style="width: 21%">Location</td>
+                        <td class="text-bold" style="width: 17%">Amount of Time</td>
+                        <td class="text-bold" style="width: 21%">Frequency</td>
+                    </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
                             <td>
@@ -156,15 +154,13 @@
                 <li><span style="font-weight:bold">Related services</span> (if required for student to benefit from special education)</li>
             </div>
             <table class="table table-bordered table-condensed related-services">
-                <thead>
-                    <tr>
-                        <th style="width: 41%"></th>
-                        <th style="width: 21%">Location</th>
-                        <th style="width: 17%">Amount of Time</th>
-                        <th style="width: 21%">Frequency</th>
-                    </tr>
-                </thead>
                 <tbody>
+                  <tr>
+                      <td class="text-bold" style="width: 41%"></td>
+                      <td class="text-bold" style="width: 21%">Location</td>
+                      <td class="text-bold" style="width: 17%">Amount of Time</td>
+                      <td class="text-bold" style="width: 21%">Frequency</td>
+                  </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
                             <td>
@@ -213,14 +209,12 @@
                 <li><span style="font-weight:bold">Program modifications or supports for school personnel and/or supplementary aids and services to student or on behalf of student in regular education programs</span></li>
             </div>
             <table class="table table-bordered table-condensed services">
-                <thead>
-                    <tr>
-                        <th style="width: 62%"></th>
-                        <th style="width: 17%">Amount of Time</th>
-                        <th style="width: 21%">Frequency</th>
-                    </tr>
-                </thead>
                 <tbody>
+                  <tr>
+                      <td class="text-bold" style="width: 62%"></td>
+                      <td class="text-bold" style="width: 17%">Amount of Time</td>
+                      <td class="text-bold" style="width: 21%">Frequency</td>
+                  </tr>
                     @for ($i = 1; $i <= 6; $i++)
                         <tr>
                             <td>

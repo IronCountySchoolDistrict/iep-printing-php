@@ -403,14 +403,12 @@
     <div class="row">
         <div class="col-xs-12">
             <table class="table table-bordered table-condensed">
-                <thead>
+                <tbody>
                     <tr>
                         <th>Strategy Used:</th>
                         <th>Duration:</th>
                         <th>Results (including data):</th>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td>{{ $responses->get('strategy1') }}</td>
                         <td>{{ $responses->get('duration1') }}</td>

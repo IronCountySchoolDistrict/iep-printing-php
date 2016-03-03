@@ -343,12 +343,16 @@
             <div class="row">
                 <div class="col-xs-12 box">
                     <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Dates</th><th></th><th></th><th></th><th></th><th></th><th></th>
-                            </tr>
-                        </thead>
                         <tbody>
+                            <tr>
+                                <th>Dates</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
                             <tr>
                                 <td>Meetings:</td>
                                 <td class="text-right">1</td>
