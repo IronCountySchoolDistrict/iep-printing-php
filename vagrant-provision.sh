@@ -11,7 +11,7 @@ apt-get install -y alien pdftk libaio1 apache2 > /dev/null 2>&1
 
 echo "[+] Install PHP 7.0"
 apt-get install -y php7.0 > /dev/null 2>&1
-apt-get install -y php7.0-dev php7.0-mcrypt php7.0-mbstring php7.0-xml libapache2-mod-php7.0 > /dev/null 2>&1
+apt-get install -y php7.0-dev php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-zip libapache2-mod-php7.0 > /dev/null 2>&1
 
 echo "[+] Install Oracle InstantClient"
 alien -i /var/www/$HOSTNAME/_server/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
