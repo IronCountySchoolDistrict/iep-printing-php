@@ -420,4 +420,10 @@ Used to know which school a student is attending.
 
 Has some extra columns used to autofill in some form fields.
 
-### <a name="console"></a> Console
+### <a name="console"></a> Console commands
+
+There is only one console command created for this project.
+
+Upon first installing the iep-printing plugin to PowerSchool, if there are responses to IEP forms that are need to be included in an IEP run the artisan command `php artisan iep:create --all`. This will create an IEP for any student that has a response to an IEP form and then associate the latest response for each form they have a response to. This command is only meant to be ran once if at all. If you run it again it will create another IEP on top of what was already created and the result will be duplicated.
+
+If somehow, a single student has responses to IEP forms but there is no IEP and there are no associated responses, you can run that same command specifying that particular student's DCID. `php artisan iep:create 12345` This will create essentially do the same thing as running this command with the `--all` option but it will only execute for the specified student.
