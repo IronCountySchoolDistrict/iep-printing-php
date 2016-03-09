@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="col-xs-7">
-                <div class="left" style="width: 175pt">
-                    <span>Signature of Interpreter, if used</span>
+                <div class="left">
+                    <span>Signature&nbsp;of&nbsp;Interpreter,&nbsp;if&nbsp;used</span>
                 </div>
                 <div class="right text-right">
                     <span><small>{{ $responses->get('sign-of-interpreter') }}</small></span>
