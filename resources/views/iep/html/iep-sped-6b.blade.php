@@ -5,7 +5,13 @@
 @section('stylesheet')
     @parent
     <style>
+      /*body {
+        width: 9.5in;
+      }*/
 
+      .paragraph {
+        text-indent: 40px;
+      }
     </style>
 @endsection
 
@@ -66,15 +72,14 @@
             </ul>
         </div>
         <div class="col-xs-12">
-            <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('correlate-with-transition-plan') }}</p>
-            
-            @if (!empty($responses->get('continued')))
-                <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('continued') }}</p>
-            @endif
-
-            @if (!empty($responses->get('continued2')))
-                <p>{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('continued2') }}</p>
-            @endif
+            @for ($i=1; $i <= 5; $i++)
+              @if (!empty($responses->get("heading$i")))
+                <h4>{{ $responses->get("heading$i") }}</h4>
+              @endif
+              @if (!empty($responses->get("paragraph$i")))
+                <p class="paragraph">{{ $responses->get("paragraph$i") }}</p>
+              @endif
+            @endfor
         </div>
     </div>
 

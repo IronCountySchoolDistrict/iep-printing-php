@@ -16,7 +16,7 @@ apt-get install -y php7.0-dev php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-zi
 echo "[+] Install Oracle InstantClient"
 alien -i /var/www/$HOSTNAME/_server/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
 alien -i /var/www/$HOSTNAME/_server/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-printf "\n" | /var/www/$HOSTNAME/_server/php/pecl install oci8
+printf "\n" | pecl install oci8
 
 rm /etc/php/7.0/apache2/php.ini
 rm /etc/php/7.0/cli/php.ini

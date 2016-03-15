@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   }
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.synced_folder ".", "/var/www/iep-printing-php"
+  config.vm.synced_folder ".", "/var/www/iep-printing-php", owner: "www-data", group: "www-data"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 512
