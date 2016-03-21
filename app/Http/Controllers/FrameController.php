@@ -65,11 +65,16 @@ class FrameController extends Controller {
   }
 
   public function printTest(Request $request) {
+    $studentsDcid = $request->get('studentsdcid');
     $fileOption = $request->get('fileOption') ?: 'concat';
     $watermarkOption = $request->get('watermarkOption') ?: 'final';
-    $student = \Cache::remember('printTestStudent', 1440, function() {
-      return Student::orderByRaw('DBMS_RANDOM.RANDOM')->firstOrFail();
-    });
+    if ($studentsDcid) {
+      $student = Student::where('dcid', $studentsDcid)->firstOrFail();
+    } else {
+      $student = \Cache::remember('printTestStudent', 1440, function () {
+        return Student::orderByRaw('DBMS_RANDOM.RANDOM')->firstOrFail();
+      });
+    }
     $form = [
       (object)[
         'formid' => $request->get('formid'),
