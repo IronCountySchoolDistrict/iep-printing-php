@@ -64,7 +64,7 @@
                 Grade
             </div>
             <div class="right underline left-input">
-                {{ $student->grade }}
+                {{ $student->getGrade() }}
             </div>
         </div>
         <div class="col-xs-3">

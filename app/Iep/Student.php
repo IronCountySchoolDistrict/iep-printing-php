@@ -72,7 +72,15 @@ class Student extends Model {
   }
 
   public function getGrade() {
-    return $this->grade_level;
+    if ($this->grade_level == 0) {
+      return 'K';
+    } else if ($this->grade_level == -1) {
+      return 'PK4';
+    } else if ($this->grade_level == -2) {
+      return 'PK3';
+    } else {
+      return $this->grade_level;
+    }
   }
 
   public function getAddress() {

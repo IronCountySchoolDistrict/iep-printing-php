@@ -36,7 +36,7 @@
                 <tbody>
                     <tr>
                         <td><span class="text-bold">Student name:</span> {{ $student->lastfirst }}</td>
-                        <td><span class="text-bold">Grade:</span> {{ $student->grade }}</td>
+                        <td><span class="text-bold">Grade:</span> {{ $student->getGrade() }}</td>
                         <td><span class="text-bold">DOB:</span> {{ $student->dob->format('m/d/Y') }}</td>
                     </tr>
                     <tr>

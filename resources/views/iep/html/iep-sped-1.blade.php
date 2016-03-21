@@ -95,7 +95,7 @@
                 Grade
             </div>
             <div class="right underline center-input">
-                <span>{{ $student->grade }}</span>
+                <span>{{ $student->getGrade() }}</span>
             </div>
         </div>
     </div>

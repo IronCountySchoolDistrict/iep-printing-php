@@ -58,7 +58,7 @@
                 Grade
             </div>
             <div class="right underline center-input">
-                {{ !empty($responses->get('grade')) ? $responses->get('grade') : $student->grade }}
+                {{ !empty($responses->get('grade')) ? $responses->get('grade') : $student->getGrade() }}
             </div>
         </div>
     </div>
