@@ -455,7 +455,7 @@
                 <span style="font-weight:bold">The following options were considered and rejected for these reason:</span>{{ str_repeat('&nbsp;', 2) }}{{ $responses->get('considered-and-rejected') }}
             </p>
             <p>
-                <span style="font-weight:bold">The following options were considered and rejected for these reason:</span>{{ str_repeat('&nbsp;', 2) }}{{ $responses->get('considered-and-rejected') }}
+                <span style="font-weight:bold">Other factors that are relevant to this eligibility classification proposal:</span>{{ str_repeat('&nbsp;', 2) }}{{ $responses->get('other-factors') }}
             </p>
         </div>
     </div>
