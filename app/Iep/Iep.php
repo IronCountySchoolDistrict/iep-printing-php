@@ -104,7 +104,7 @@ class Iep extends Model
       if (empty($responseid)) $responseid = 0;
 
       $rawSql = "SELECT
-        	SUBSTR(u_fb_form_element.css_class, 5) AS field,
+        	REGEXP_SUBSTR(u_fb_form_element.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1) AS field,
         	u_fb_form_element.element_type AS type,
         	u_fb_form_response_detail.response_value AS response
         FROM u_fb_form
