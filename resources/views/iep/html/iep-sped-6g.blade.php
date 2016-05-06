@@ -1,6 +1,6 @@
 @extends('iep.layouts.default')
 
-@section('title', 'IEP: SpEd 6g-2')
+@section('title', 'IEP: SpEd 6g')
 
 @section('stylesheet')
     @parent
