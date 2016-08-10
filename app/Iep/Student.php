@@ -9,6 +9,7 @@ class Student extends Model {
   protected $table = 'STUDENTS';
   protected $primaryKey = 'DCID';
   protected $dates = ['dob'];
+  protected $hidden = array('custom', 'enrollment_transfer_info');
 
   public function school() {
     return $this->hasOne('App\Iep\School', 'school_number', 'schoolid');
