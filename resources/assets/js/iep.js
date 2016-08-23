@@ -56,7 +56,8 @@ function loadIep() {
   if (typeof iepContent[iepid] === "undefined") {
     var params = [
       'iep=' + iepid,
-      'frn=' + frn
+      'frn=' + frn,
+      'portal=' + portal
     ];
     window.fetch('iep?' + params.join('&'))
       .then(status)
