@@ -204,6 +204,30 @@ class Iep extends Model
       }
     }
 
+    public function getCaseManager($dcid) {
+
+      $rawSql = "SELECT
+          t.lastfirst AS case_manager
+        FROM
+          students s
+              INNER JOIN cc ON cc.studentid = s.id
+              INNER JOIN terms tm ON cc.schoolid = tm.schoolid AND tm.id = cc.termid
+              INNER JOIN sections sc ON cc.sectionid = sc.id
+              INNER JOIN teachers t ON sc.teacher = t.id
+    WHERE
+          cc.course_number IN ('0010')
+          AND to_date(?,'YYYY-MM-DD') BETWEEN cc.dateenrolled AND cc.dateleft
+          AND s.dcid=?";
+
+      $casemgr = DB::connection('oracle')->select($rawSql,[$this->start_date->toDateString(),$dcid]);
+      if(count($casemgr)==1){
+        return $casemgr[0]->case_manager;
+      }
+      else{
+        return "";
+      }
+    }
+
     public function updateCaseManager($fbResponse) {
       $data = $this->getResponseData($fbResponse->id);
       foreach ($data as $row) {

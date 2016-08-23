@@ -61,6 +61,7 @@
       var user = {!! json_encode($user) !!};
       var student = {!! json_encode($student) !!}
       var frn = "{{ $frn }}";
+      var portal = "{{ $portal }}";
     </script>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

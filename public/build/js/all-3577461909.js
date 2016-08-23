@@ -69,9 +69,12 @@ function loadIep() {
   if (typeof iepContent[iepid] === "undefined") {
     var params = [
       'iep=' + iepid,
-      'frn=' + frn
+      'frn=' + frn,
+      'portal=' + portal
     ];
+    console.log(params);
     window.fetch('iep?' + params.join('&'))
+    //$.ajax('iep?' + params.join('&'))
       .then(status)
       .then(html)
       .then(function(html) {

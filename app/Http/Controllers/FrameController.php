@@ -20,6 +20,7 @@ class FrameController extends Controller {
         'user' => User::where('dcid', $request->get('user'))->firstOrFail(),
         'student' => Student::where('dcid', substr($request->get('frn'), 3))->firstOrFail(),
         'ieps' => Iep::where('studentsdcid', substr($request->get('frn'), 3))->orderBy('start_date', 'desc')->get(),
+        'portal' => $request->get('portal'),
       ];
 
       return view('frame.index', $data);
@@ -32,9 +33,10 @@ class FrameController extends Controller {
     if ($request->has('iep')) {
       $frn = $request->get('frn');
       $iep = $request->get('iep');
+      $portal = $request->get('portal');
       $data = Iep::getFormResponseData($iep);
 
-      return view('frame.fetch.iep', compact('data', 'iep', 'frn'));
+      return view('frame.fetch.iep', compact('data', 'iep', 'frn', 'portal'));
     }
   }
 
@@ -44,7 +46,7 @@ class FrameController extends Controller {
 
     $iep = new Iep();
     $iep->studentsdcid = $student->dcid;
-    $iep->case_manager = $user->lastfirst;
+    $iep->case_manager = $user->lastfirst; //Should be replaced with actual case manager from CM class
     $iep->is_active = false;
     $iep->start_date = new Carbon($request->json('start_date'));
     $iep->whocreated = $user->lastfirst;
