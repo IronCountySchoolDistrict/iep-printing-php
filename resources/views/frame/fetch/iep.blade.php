@@ -24,6 +24,9 @@
     <div class="pull-left" style="margin-left: 20px">
       <button id="btnPrintSelection" type="submit" class="btn btn-primary"><i class="fa fa-spinner fa-pulse fa-fw hide"></i> Print Selected</button>
     </div>
+    <div class="pull-right" style="margin-right: 20px">
+      <a href="https://goo.gl/forms/OT3kVpVL3Mrrv58Y2" target="_BLANK">Report an Issue</a> 
+    </div>
   </div>
 </div>
 
@@ -50,8 +53,8 @@
           <img src="{{ $form->responseid ? secure_asset('img/flag-green.png') : secure_asset('img/flag-blue.png') }}" title="Last Entry: {{ $form->modified_on }}" />
         </td>
         <td>
-          <a href="{{ config('iep.powerschool_url') }}admin/formbuilder/students/studentform.html?formid={{ $form->formid }}&amp;type={{ $form->form_type }}&amp;responseid={{ $form->responseid }}&amp;iep={{ $iep }}&amp;frn={{ $frn }}" target="_blank">
-            {{ $form->form_title }}
+          <a href="{{ config('iep.powerschool_url') }}{{ ( $portal == "teacher" ? "teachers/studentpages/" : "admin/formbuilder/students/" )}}studentform.html?formid={{ $form->formid }}&amp;type={{ $form->form_type }}&amp;responseid={{ $form->responseid }}&amp;iep={{ $iep }}&amp;frn={{ $frn }}" target="_blank">
+            {{ $form->form_title }} 
           </a>
         </td>
         <td>
