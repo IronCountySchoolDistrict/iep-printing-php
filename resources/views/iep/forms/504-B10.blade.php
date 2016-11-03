@@ -1,3 +1,6 @@
+<?php
+	$pdf->setField('student-name', $student->getLastFirst());
+?>
 
 @foreach ($responses->responses as $response)
 	@if ($response['type'] == 'checkbox')

@@ -1,7 +1,6 @@
 <?php
-
-$pdf->setField('grade', $student->getGrade());
-
+	$pdf->setField('grade', $student->getGrade());
+	$pdf->setField('student-name', $student->getLastFirst());
 ?>
 
 @foreach ($responses->responses as $response)

@@ -1,7 +1,7 @@
 <?php
-
-$splits = ['impaired', 'some-degree', 'take-into-account', 'identification', 'services'];
-
+	$splits = ['impaired', 'some-degree', 'take-into-account', 'identification', 'services'];
+	$pdf->setField('student-name', $student->getLastFirst());
+	$pdf->setField('dob', $student->getDob()->format('m/d/Y'));
 ?>
 
 @foreach ($responses->responses as $response)

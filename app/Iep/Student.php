@@ -35,6 +35,10 @@ class Student extends Model {
     return $this->school->name;
   }
 
+  public function getStudentNumber() {
+    return $this->student_number;
+  }
+
   public function getParentWorkPhone() {
     $coreField = $this->studentCoreField;
     if (!empty($coreField->guardiandayphone)) return $coreField->guardiandayphone;
