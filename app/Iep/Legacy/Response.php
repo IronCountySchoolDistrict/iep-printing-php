@@ -43,10 +43,15 @@ class Response {
    * @param string $field
    * @return string
    */
-  public function get($field)
-  {
+  public function get($field, $flatten = False) {
     foreach ($this->responses as $response) {
-      if ($response['field'] == $field) return $response['value'];
+      if ($response['field'] == $field) {
+        if (is_array($response['value'])) {
+          return implode(', ', $response['value']);
+        } else {
+          return $response['value'];
+        }
+      }
     }
 
     return null;

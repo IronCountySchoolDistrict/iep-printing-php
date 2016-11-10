@@ -104,22 +104,45 @@ class Iep extends Model
       if (empty($responseid)) $responseid = 0;
 
       $rawSql = "SELECT
-        	REGEXP_SUBSTR(u_fb_form_element.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1) AS field,
-        	u_fb_form_element.element_type AS type,
-        	u_fb_form_response_detail.response_value AS response
-        FROM u_fb_form
+        REGEXP_SUBSTR(form_elem.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1) AS field,
+        form_elem.element_type                                               AS type,
+        '[' || listagg('\"' || elem_choice.label || '\"', ',')
+        WITHIN GROUP (
+          ORDER BY elem_choice.label) || ']'                                 AS response
+      FROM u_fb_form form
+        JOIN u_fb_form_response response ON response.u_fb_form_id = form.id
+        JOIN u_fb_form_response_element resp_elem ON resp_elem.u_fb_form_response_id = response.id
+        JOIN u_fb_form_response_detail resp_det
+          ON resp_det.u_fb_form_response_id = response.id AND resp_det.u_fb_form_response_element_id = resp_elem.id
+        JOIN u_fb_form_element form_elem ON resp_elem.u_fb_form_element_id = form_elem.id
+        JOIN u_fb_form_element_choice elem_choice ON form_elem.id = elem_choice.u_fb_form_element_id
+        JOIN u_fb_form_resp_ele_choice resp_elem_choice
+          ON elem_choice.id = resp_elem_choice.u_fb_form_element_choice_id AND
+             resp_elem.id = resp_elem_choice.u_fb_form_response_element_id
+        JOIN students students ON response.student_id = students.id
+      WHERE resp_det.response_value IS NOT NULL AND
+            response.id = ?
+      GROUP BY REGEXP_SUBSTR(form_elem.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1), form_elem.element_type,
+        resp_det.response_value, resp_elem_choice.response_selected
+      UNION
+      SELECT
+        REGEXP_SUBSTR(u_fb_form_element.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1) AS field,
+        u_fb_form_element.element_type                                               AS type,
+        u_fb_form_response_detail.response_value                                     AS response
+      FROM u_fb_form
         JOIN u_fb_form_response ON u_fb_form_response.u_fb_form_id = u_fb_form.id
         JOIN u_fb_form_response_element ON u_fb_form_response_element.u_fb_form_response_id = u_fb_form_response.id
         JOIN u_fb_form_response_detail
-        	ON u_fb_form_response_detail.u_fb_form_response_element_id = u_fb_form_response_element.id
-        	AND u_fb_form_response_detail.u_fb_form_response_id = u_fb_form_response.id
+          ON u_fb_form_response_detail.u_fb_form_response_element_id = u_fb_form_response_element.id
+             AND u_fb_form_response_detail.u_fb_form_response_id = u_fb_form_response.id
         JOIN u_fb_form_element
-        	ON u_fb_form_element.u_fb_form_id = u_fb_form.id
-        	AND u_Fb_form_element.id = u_fb_form_response_element.u_fb_form_element_id
-        WHERE u_fb_form_element.css_class LIKE '%pdf_%'
-        AND u_fb_form_response_detail.u_fb_form_response_id = ?";
+          ON u_fb_form_element.u_fb_form_id = u_fb_form.id
+             AND u_fb_form_element.id = u_fb_form_response_element.u_fb_form_element_id
+      WHERE u_fb_form_element.css_class LIKE '%pdf_%' AND
+            u_fb_form_response_detail.u_fb_form_response_id = ? AND
+            u_fb_form_element.element_type not in ('checkbox', 'radio')";
 
-      return DB::connection('oracle')->select($rawSql, [$responseid]);
+      return DB::connection('oracle')->select($rawSql, [$responseid, $responseid]);
     }
 
     public function save(array $options = []) {

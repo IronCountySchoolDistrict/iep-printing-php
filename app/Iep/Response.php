@@ -22,8 +22,20 @@ class Response {
 		$this->title = $response->title;
 		$this->description = isset($response->description) ? $response->description : '';
 		$this->type = isset($response->type) ? $response->type : '';
+		$response->responses = array_map(function($value) {
+			if (isset($value->response) && !is_null($value->response)) {
+					$json_response_value = json_decode($value->response, true);
+					if (!is_null($json_response_value)) {
+						$value->response = $json_response_value;
+						return $value;
+					} else {
+						return $value;
+					}
+				} else {
+					return $value;
+				}
+		}, $response->responses);
 		$this->responses = new Collection($response->responses);
-
 		return $this;
 	}
 
@@ -42,7 +54,7 @@ class Response {
 		}
 
 		$pdfOptions = [
-			'margin-top' => 20,
+			'margin-top' => 10,
 			'margin-bottom' => 10,
 			'margin-left' => 10,
 			'margin-right' => 10,

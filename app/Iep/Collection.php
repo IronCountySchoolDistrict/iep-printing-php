@@ -18,11 +18,23 @@ class Collection extends \Illuminate\Support\Collection {
 		}
 	}
 
-	public function get($key, $default = NULL) {
+	/**
+	 * get function that returns 'response' field
+	 * @param  string  $key
+	 * @param  string  $default [description]
+	 * @param  boolean $flatten should the return value be a string or array?
+	 * @return string|array     return string value of response, or, if $flatten
+	 * is true, return the array as the value
+	 */
+	public function get($key, $flatten = False, $default = NULL) {
 		if ($this->offsetExists($key)) {
-            return $this->items[$key]['response'];
-        }
+			if ($flatten) {
+				return implode(', ', $this->items[$key]['response']);
+			} else {
+				return $this->items[$key]['response'];
+			}
+    }
 
-        return value($default);
+    return value($default);
 	}
 }
