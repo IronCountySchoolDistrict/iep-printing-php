@@ -9,6 +9,9 @@
         .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
             border-top: none;
         }
+        .page-break {
+          page-break-after: always;
+        }
     </style>
 @endsection
 
@@ -207,7 +210,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row page-break">
         <div class="col-xs-12 box">
             <p class="text-center text-bold">
                 Family Educational Rights and Privacy Act (FERPA)
