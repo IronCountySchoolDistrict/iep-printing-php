@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Yajra\Oci8\Oci8ServiceProvider::class,
+        Conner\Kint\KintServiceProvider::class,
     ],
 
     /*
