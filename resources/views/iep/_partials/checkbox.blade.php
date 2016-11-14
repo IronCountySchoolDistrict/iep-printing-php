@@ -10,7 +10,7 @@ if (!is_array($response['value'])) {
 }
 $key = $response['field'];
 foreach ($values as $checkbox) {
-	if (isset($pdf->fields[$key.':'.$checkbox])) {
-		$pdf->fields[$key.':'.$checkbox] = $checked;
+	if (isset($pdf->fields[$key . ':' . $checkbox])) {
+		$pdf->fields[$key . ':' . $checkbox] = $checked;
 	}
 }
