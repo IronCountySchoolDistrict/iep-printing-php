@@ -4,10 +4,6 @@
 
 @section('stylesheet')
     @parent
-
-    <style>
-        /*body {width:23cm}*/
-    </style>
 @endsection
 
 @section('content')
@@ -89,6 +85,8 @@
         </div>
     </div>
 
+
+
     <div class="row">
         <div class="col-xs-12 box">
             <div class="text-center">
@@ -114,16 +112,22 @@
                             <td>
                                 <span>{{ $responses->get("sped-service$i") }}</span>
                             </td>
+
                             <td>
                                 <div class="left">
                                     @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-location$i"), 'needle' => 'G']) G
                                     @include('iep.html._partials.checkbox', ['haystack' => $responses->get("sped-location$i"), 'needle' => 'S']) S
-                                    @if (!empty($responses->get("sped-location$i")) && !in_array($responses->get("sped-location$i"), ['G', 'S']))
+
+                                    {{-- is "sped-location$i" not empty, *and* not General (G) or Special (S)? --}}
+                                    @if ($responses->get("sped-location$i") && !in_array($responses->get("sped-location$i"),  ['G', 'S']))
                                         @include('iep.html._partials.checkbox', ['haystack' => 'O', 'needle' => 'O']) O
+
+                                    {{-- "sped-location$i" is empty, so pass in a needle that will never match anything, thereby making the pdf field blank --}}
                                     @else
                                         @include('iep.html._partials.checkbox', ['haystack' => 'O', 'needle' => 'not here']) O
                                     @endif
                                 </div>
+
                                 <div class="right underline left-input">
                                     <span>
                                         @if (!in_array($responses->get("sped-location$i"), ['G', 'S']))
@@ -347,5 +351,4 @@
             </div>
         </div>
     </div>
-
 @endsection
