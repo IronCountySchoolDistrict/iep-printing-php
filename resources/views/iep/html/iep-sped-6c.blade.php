@@ -59,8 +59,28 @@
         </div>
     </div>
 
+
     <?php
-        $goalsAmount = (int)$responses->get('goal-amount');
+        // Since Form Builder ignores the response data for a dropdown that has
+        // not been modified from the default value (1, in this case), check if there
+        // *really* is data in any of the goal1 fields.
+        /*
+          @param   Collection $responses
+          @returns Boolean
+         */
+        function goalExists($responses) {
+          return $responses
+            ->filter(function($item) {
+              return strpos($item['field'], '1');
+            })
+            ->reduce(function($carry, $item) {
+              return $carry || boolval($item['response']);
+            }, false);
+        }
+        $goalsAmount = (int)$responses->get('goal-amount', True);
+        if ($goalsAmount == 0 && goalExists($responses)) {
+          $goalsAmount = 2;
+        }
         if ($goalsAmount < 2) $goalsAmount = 2;
     ?>
 
