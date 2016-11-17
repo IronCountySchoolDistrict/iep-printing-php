@@ -8,9 +8,7 @@
 @endforeach
 
 <?php
-
-$pdf->setField('lea', config('iep.district.name'));
-$pdf->setField('your-school', $responses->get('name-of-requesting-school'));
-$pdf->setField('your-city', $student->getSchoolCity());
-
+  $pdf->setField('lea', config('iep.district.name'));
+  $pdf->setField('your-school', $responses->get('name-of-requesting-school'));
+  $pdf->setField('your-city', $student->getSchoolCity());
 ?>

@@ -1,4 +1,3 @@
-
 @foreach ($responses->responses as $response)
   @if ($response['type'] == 'checkbox')
     @if (strpos($response['field'], 'singleCheck') !== false)
@@ -7,11 +6,12 @@
       @endif
     @elseif (strpos($response['field'], 'groupCheck') !== false)
       <?php
-        preg_match_all('/\|(\d)/', $response['value'], $matches);
+        if (is_array($response['value'])) {
+          foreach ($response['value'] as $groupCheckValue) {
+            preg_match_all('/\|(\d)/', $groupCheckValue, $matches);
 
-        if (isset($matches[1])) {
-          foreach ($matches[1] as $match) {
-            $pdf->setField($response['field'] . ':' . $match, 'Yes');
+            $pdf->setField($response['field'] . ':' . $matches[1][0], 'Yes');
+
           }
         }
       ?>
@@ -24,7 +24,6 @@
 @endforeach
 
 <?php
-
 $pdf->setField('your-school-district', config('iep.district.name'));
 $pdf->setField('your-city', $student->getSchoolCity());
 $pdf->setField('student', $student->getLastFirst());
