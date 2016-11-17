@@ -14,51 +14,58 @@ class Iep extends Model
     protected $dates = ['start_date', 'activated_at'];
     public $timestamps = false;
 
-    public function iepResponse() {
-      return $this->hasMany('App\Iep\IepResponse', 'u_sped_iepid');
+    public function iepResponse()
+    {
+        return $this->hasMany('App\Iep\IepResponse', 'u_sped_iepid');
     }
 
-    public function getFormattedStartDate() {
-      $fourWeeksAgo = new Carbon('4 weeks ago');
-      $fourWeeksFromNow = Carbon::now()->addWeeks(4);
+    public function getFormattedStartDate()
+    {
+        $fourWeeksAgo = new Carbon('4 weeks ago');
+        $fourWeeksFromNow = Carbon::now()->addWeeks(4);
 
-      if ($this->start_date->between($fourWeeksAgo, $fourWeeksFromNow)) {
-        return $this->start_date->diffForHumans();
-      }
+        if ($this->start_date->between($fourWeeksAgo, $fourWeeksFromNow)) {
+            return $this->start_date->diffForHumans();
+        }
 
-      return $this->start_date->toFormattedDateString();
+        return $this->start_date->toFormattedDateString();
     }
 
-    public function getFormattedExpireDate() {
-      return $this->getExpireDate()->toFormattedDateString();
+    public function getFormattedExpireDate()
+    {
+        return $this->getExpireDate()->toFormattedDateString();
     }
 
-    public function getExpireDate() {
-      return $this->start_date->addMonths(12)->subDay();
+    public function getExpireDate()
+    {
+        return $this->start_date->addMonths(12)->subDay();
     }
 
-    public function getActiveLabel() {
-      if ($this->is_active == "1") {
-        return '<span class="iep-status label label-primary">Active</span>';
-      } else if ($this->getExpireDate()->lt(new Carbon('now'))) {
-        return '<span class="iep-status label label-default">Expired</span>';
-      } else {
-        return '<span class="iep-status label label-warning">Inactive</span>';
-      }
+    public function getActiveLabel()
+    {
+        if ($this->is_active == '1') {
+            return '<span class="iep-status label label-primary">Active</span>';
+        } elseif ($this->getExpireDate()->lt(new Carbon('now'))) {
+            return '<span class="iep-status label label-default">Expired</span>';
+        } else {
+            return '<span class="iep-status label label-warning">Inactive</span>';
+        }
     }
 
-    public static function getAvailableStartYears() {
-      $years = [];
-      $date = new Carbon('1 year ago');
-      $years[] = (int)$date->format('Y');
-      $years[] = (int)$date->addYear()->format('Y');
-      $years[] = (int)$date->addYear()->format('Y');
+    public static function getAvailableStartYears()
+    {
+        $years = [];
+        $date = new Carbon('1 year ago');
+        $years[] = (int) $date->format('Y');
+        $years[] = (int) $date->addYear()->format('Y');
+        $years[] = (int) $date->addYear()->format('Y');
 
-      return $years;
+        return $years;
     }
 
-    public static function getFormResponseData($iep) {
-      $rawSql = "WITH form_responses AS
+    public static function getFormResponseData($iep)
+    {
+        $rawSql = "WITH form_responses AS
         (SELECT u_fb_form_response.id,
           u_fb_form_response.u_fb_form_id,
           u_fb_form_response.modified_on,
@@ -90,19 +97,23 @@ class Iep extends Model
         return DB::connection('oracle')->select($rawSql, [$iep]);
     }
 
-    public static function getFormData($forms) {
-      $forms = json_decode(json_encode($forms));
-      foreach ($forms as $form) {
-        $form->responses = self::getResponseData($form->responseid);
-      }
+    public static function getFormData($forms)
+    {
+        $forms = json_decode(json_encode($forms));
+        foreach ($forms as $form) {
+            $form->responses = self::getResponseData($form->responseid);
+        }
 
-      return $forms;
+        return $forms;
     }
 
-    public static function getResponseData($responseid = 0) {
-      if (empty($responseid)) $responseid = 0;
+    public static function getResponseData($responseid = 0)
+    {
+        if (empty($responseid)) {
+            $responseid = 0;
+        }
 
-      $rawSql = "SELECT
+        $rawSql = "SELECT
         REGEXP_SUBSTR(form_elem.css_class, 'pdf_(\w+(-\w*)*)', 1, 1, 'i', 1) AS field,
         form_elem.element_type                                               AS type,
         '[' || listagg('\"' || elem_choice.label || '\"', ',')
@@ -149,100 +160,109 @@ class Iep extends Model
         u_fb_form_response_detail.u_fb_form_response_id = ? AND
         u_fb_form_element.element_type NOT IN ('checkbox', 'multidd')";
 
-      return DB::connection('oracle')->select($rawSql, [$responseid, $responseid]);
+        return DB::connection('oracle')->select($rawSql, [$responseid, $responseid]);
     }
 
-    public function save(array $options = []) {
-      if (empty($this->id)) {
-        $this->id = self::max('id') + 1;
-      }
+    public function save(array $options = [])
+    {
+        if (empty($this->id)) {
+            $this->id = self::max('id') + 1;
+        }
 
-      parent::save($options);
+        parent::save($options);
     }
 
-    protected function canActivate() {
-      if (is_null($this->activated_at) && $this->getExpireDate()->gt(new Carbon())) {
-        return true;
-      }
+    protected function canActivate()
+    {
+        if (is_null($this->activated_at) && $this->getExpireDate()->gt(new Carbon())) {
+            return true;
+        }
 
-      return false;
+        return false;
     }
 
-    public function activate($student) {
-      if ($this->canActivate()) {
-        DB::transaction(function() use($student) {
-          $activeIep = Iep::where([
+    public function activate($student)
+    {
+        if ($this->canActivate()) {
+            DB::transaction(function () use ($student) {
+                $activeIep = Iep::where([
             'is_active' => 1,
-            'studentsdcid' => $student->dcid
+            'studentsdcid' => $student->dcid,
           ])->update(['is_active' => 0]);
 
-          $this->is_active = 1;
-          $this->activated_at = new Carbon();
+                $this->is_active = 1;
+                $this->activated_at = new Carbon();
 
-          $this->save();
-        });
+                $this->save();
+            });
 
-        return true;
-      }
-
-      return false;
-    }
-
-    public function attach($form, $user) {
-      if (isset($form->responses[0])) {
-        $response = IepResponse::where('u_fb_form_response_id', $form->responses[0]->id)->first();
-        if (is_null($response)) {
-          $this->attachResponse($form->responses[0]->id, $user);
-          $this->updateIep($form);
-
-          return true;
+            return true;
         }
 
-        $this->updateIep($form);
-      }
-
-      return false;
+        return false;
     }
 
-    protected function updateIep($form) {
-      if ($form->form_title == 'IEP: SpEd 6a1') {
-        $this->updateStartDate($form->responses[0]);
-      } else if ($form->form_title == 'IEP: SpEd 51') {
-        $this->updateCaseManager($form->responses[0]);
-      }
-    }
+    public function attach($form, $user)
+    {
+        if (isset($form->responses[0])) {
+            $response = IepResponse::where('u_fb_form_response_id', $form->responses[0]->id)->first();
+            if (is_null($response)) {
+                $this->attachResponse($form->responses[0]->id, $user);
+                $this->updateIep($form);
 
-    protected function attachResponse($responseid, $user) {
-      $response = new IepResponse();
-      $response->u_sped_iepid = $this->id;
-      $response->u_fb_form_response_id = $responseid;
-      $response->whocreated = $user->lastfirst;
-      $response->whencreated = new Carbon();
+                return true;
+            }
 
-      $response->save();
-    }
-
-    public function updateStartDate($fbResponse) {
-      $data = $this->getResponseData($fbResponse->id);
-      foreach ($data as $row) {
-        if ($row->field == 'date') {
-          try {
-            $this->start_date = new Carbon(trim($row->response, '{}[]()!@#$%^&*-_+=,.<>/?\'";:|\\'));
-            $this->save();
-          } catch (\Exception $e) {}
+            $this->updateIep($form);
         }
-      }
+
+        return false;
     }
 
-    public function updateCaseManager($fbResponse) {
-      $data = $this->getResponseData($fbResponse->id);
-      foreach ($data as $row) {
-        if ($row->field == 'sped-teacher') {
-          if (!empty(trim($row->response))) {
-            $this->case_manager = $row->response;
-            $this->save();
-          }
+    protected function updateIep($form)
+    {
+        if ($form->form_title == 'IEP: SpEd 6a1') {
+            $this->updateStartDate($form->responses[0]);
+        } elseif ($form->form_title == 'IEP: SpEd 51') {
+            $this->updateCaseManager($form->responses[0]);
         }
-      }
+    }
+
+    protected function attachResponse($responseid, $user)
+    {
+        $response = new IepResponse();
+        $response->u_sped_iepid = $this->id;
+        $response->u_fb_form_response_id = $responseid;
+        $response->whocreated = $user->lastfirst;
+        $response->whencreated = new Carbon();
+
+        $response->save();
+    }
+
+    public function updateStartDate($fbResponse)
+    {
+        $data = $this->getResponseData($fbResponse->id);
+        foreach ($data as $row) {
+            if ($row->field == 'date') {
+                try {
+                    $this->start_date = new Carbon(trim($row->response, '{}[]()!@#$%^&*-_+=,.<>/?\'";:|\\'));
+                    $this->save();
+                } catch (\Exception $e) {
+                }
+            }
+        }
+    }
+
+    public function updateCaseManager($fbResponse)
+    {
+        $data = $this->getResponseData($fbResponse->id);
+        foreach ($data as $row) {
+            if ($row->field == 'sped-teacher') {
+                if (!empty(trim($row->response))) {
+                    $this->case_manager = $row->response;
+                    $this->save();
+                }
+            }
+        }
     }
 }

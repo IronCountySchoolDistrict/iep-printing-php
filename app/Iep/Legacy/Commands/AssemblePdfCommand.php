@@ -3,11 +3,9 @@
 namespace App\Iep\Legacy\Commands;
 
 use File;
-use App\Jobs\Job;
 use App\Iep\Legacy\Events\PdfWasFilled;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class AssemblePdfCommand extends Job implements SelfHandling
+class AssemblePdfCommand
 {
     public $forms;
 
@@ -23,10 +21,8 @@ class AssemblePdfCommand extends Job implements SelfHandling
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): array
     {
         foreach ($this->forms as $form) {
             $path_to_blank = $this->getBlankPath($form->title);

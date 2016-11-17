@@ -3,10 +3,8 @@
 namespace App\Iep\Legacy\Commands;
 
 use File;
-use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class GetBlankPdfListCommand extends Job implements SelfHandling
+class GetBlankPdfListCommand
 {
     public $forms;
     public $files;
@@ -15,20 +13,18 @@ class GetBlankPdfListCommand extends Job implements SelfHandling
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param $forms
      */
-    public function __construct($forms)
+    public function __construct(array $forms)
     {
         $this->forms = json_decode($forms);
         $this->files = File::files(config('iep.blanks_storage_path'));
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * @return array
      */
-    public function handle()
+    public function handle(): array
     {
         foreach ($this->files as $file) {
             $name = $this->getFileName($file);
@@ -59,20 +55,16 @@ class GetBlankPdfListCommand extends Job implements SelfHandling
 
     /**
      * Gets the just the filename minus the path and minus the extension
-     * @param string The full file path
+     * @param string $fullPath
      * @return string
      */
-    protected function getFileName($fullPath)
+    protected function getFileName(string $fullPath): string
     {
         return File::name($fullPath);
     }
 
-    /**
-     * Get the file extension
-     * @param string The full file path
-     *
-     */
-    protected function getFileExtension($fullPath)
+
+    protected function getFileExtension(string $fullPath): string
     {
         return File::extension($fullPath);
     }
@@ -82,7 +74,7 @@ class GetBlankPdfListCommand extends Job implements SelfHandling
      * @param string
      * @return string
      */
-    protected function getFormName($formName)
+    protected function getFormName(string $formName): string
     {
         return str_replace('IEP: ', '', $formName);
     }

@@ -2,14 +2,13 @@
 
 namespace App\Iep\Legacy\Commands;
 
-use App\Jobs\Job;
-use App\Iep\Student;
+use Carbon\Carbon;
 use App\Iep\Legacy\Pdf;
 use App\Iep\Legacy\Response;
 use App\Iep\Legacy\Events\PdfWasFilled;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class FillPdfCommand extends Job implements SelfHandling
+class FillPdfCommand
 {
     public $student;
     public $responses;
@@ -19,8 +18,6 @@ class FillPdfCommand extends Job implements SelfHandling
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct($student, $responses, $fileOption = 'zip', $watermarkOption = 'final')
     {
@@ -33,10 +30,9 @@ class FillPdfCommand extends Job implements SelfHandling
 
     /**
      * Execute the job.
-     *
-     * @return void
+     * @return array
      */
-    public function handle()
+    public function handle(): array
     {
         foreach ($this->responses as $response) {
             $path_to_blank = $this->getBlankPath($response->title);
@@ -110,26 +106,28 @@ class FillPdfCommand extends Job implements SelfHandling
             $downloadFile = event(new PdfWasFilled($files, $this->concatName, $this->fileOption))[0];
         }
 
-        return [ 'file' => $downloadFile, 'error' => (isset($error)) ? $error : [] ];
+        return ['file' => $downloadFile, 'error' => (isset($error)) ? $error : []];
     }
 
     /**
      * get the full path the the blank pdf file
      *
-     * @param $formTitle
+     * @param string $formTitle
      * @return string
      */
-    protected function getBlankPath($formTitle) {
+    protected function getBlankPath(string $formTitle): string
+    {
         return config('iep.forms_storage_path') . str_replace('IEP: ', '', $formTitle) . '.pdf';
     }
 
     /**
      * get the name of the blade template for a form
      *
-     * @param $formTitle
+     * @param string $formTitle
      * @return string
      */
-    protected function getViewName($formTitle) {
+    protected function getViewName(string $formTitle): string
+    {
         // strip IEP: and periods from the form title gives the view name
         return "iep.forms." . str_replace('IEP: ', '', str_replace('.', '', $formTitle));
     }
@@ -140,8 +138,9 @@ class FillPdfCommand extends Job implements SelfHandling
      * @param $formTitle
      * @return string
      */
-    protected function getFilledPath($formTitle) {
-        $now = \Carbon\Carbon::now()->format('Ymd-His');
+    protected function getFilledPath($formTitle)
+    {
+        $now = Carbon::now()->format('Ymd-His');
         // slugify entire string. concat student full name, form title, current datetime, plus 4 ranomd characters
         return str_slug($this->student->getLastFirst() . ' ' . $formTitle) . '-' . $now . '-' . str_random(4) . '.pdf';
     }
