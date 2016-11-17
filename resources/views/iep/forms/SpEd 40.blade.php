@@ -21,27 +21,25 @@ $pdf->setField('health:' . $responses->get('health'), 'Yes');
 $pdf->setField('other-preschool-services:' . $responses->get('other-preschool-services'), 'Yes');
 $pdf->setField('parent-aware-of-referral:' . $responses->get('parent-aware-of-referral'), 'Yes');
 if (!in_array($responses->get('relationship'), ['Parent', 'Teacher'])) {
-  $pdf->setField('relationship:Other', 'Yes');
-  $pdf->setField('relationship:other-text', $responses->get('relationship'));
+    $pdf->setField('relationship:Other', 'Yes');
+    $pdf->setField('relationship:other-text', $responses->get('relationship'));
 } else {
-  $pdf->setField('relationship:' . $responses->get('relationship'), 'Yes');
+    $pdf->setField('relationship:' . $responses->get('relationship'), 'Yes');
 }
 
 
 if (!empty($responses->get('screening-recommended'))) $pdf->setField('screening-recommended', 'Yes');
 if (!empty($responses->get('no-evaluation-recommended'))) $pdf->setField('no-evaluation-recommended', 'Yes');
 
-$checkboxFields = $responses->find('type', 'checkbox');
-$split = "/,\s(?<=\|\d,\s)/";
-foreach ($checkboxFields as $checkboxField) {
-  $values = preg_split($split, $checkboxField['value']);
-  foreach ($values as $value) {
-	if (isset($pdf->fields[$checkboxField['field'].':'.$value])) {
-  		$pdf->fields[$checkboxField['field'].':'.$value] = 'Yes';
-  	}
-  }
-}
 
 $pdf->setField('lastfirst', $student->lastfirst);
 $pdf->setField('dob', $student->dob->format('m/d/Y'));
 $pdf->setField('gender', $student->gender);
+
+?>
+
+@foreach($responses->responses as $response)
+    @if ($response['type'] == 'checkbox')
+        @include('iep._partials.checkbox')
+    @endif
+@endforeach
