@@ -103,7 +103,7 @@
 
     <div class="col-xs-12">
       <div class="left">
-        @include('iep.html._partials.checkbox', ['haystack' => $responses->get('check'), 'needle' => 'Medical history from qualified health professional regarding specific syndromes'])
+        @include('iep.html._partials.checkbox', ['haystack' => $responses->get('check'), 'needle' => 'Medical history from qualified health professional regarding specific syndromes, health concerns, medication, and any information deemed necessary for planning the students educational program is attached'])
       </div>
       <div class="right left-input">
         <span class="text-bold">Medical history from qualified health professional regarding specific syndromes, health concerns, medication, and any information deemed necessary for planning the student’s educational program is attached.</span>
@@ -223,7 +223,7 @@
       <div class="row">
         <div class="col-xs-11 col-xs-offset-1">
           <div class="left">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Traumatic Brain Injury'])
+            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Traumatic Brain Injury, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
           </div>
           <div class="right left-input">
             This student has a Traumatic Brain Injury, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -231,7 +231,7 @@
         </div>
         <div class="col-xs-11 col-xs-offset-1">
           <div class="left">
-            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does not have a Traumatic Brain Injury'])
+            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does not have a Traumatic Brain Injury, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
           </div>
           <div class="right left-input">
             This student does <span class="text-bold text-underline">not</span> have a Traumatic Brain Injury, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
@@ -248,7 +248,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="page-break-before: always;">
       <div class="col-xs-12 box">
           <span class="text-bold">Notice in Understandable Language:</span>
           <p>Federal regulations require that parents and adult students be provided prior notice in their native language or other mode of communication each time the LEA proposes or refuses to initiate or change the identification, evaluation, or educational placement of your child/you or the provision of a free appropriate public education (FAPE) to your child/you, or upon conducting a manifestation determination.</p>
