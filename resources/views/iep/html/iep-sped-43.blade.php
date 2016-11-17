@@ -143,4 +143,50 @@
             </div>
         </div>
     </div>
+
+    @if ($responses->get('additional-signatures'))
+      @for ($rowIndex = 0; $rowIndex < ceil($responses->get('additional-signatures') / 2); $rowIndex++)
+        @php
+          $showFirstSignature = 2*$rowIndex < $responses->get('additional-signatures');
+          $showSecondSignature = 2*$rowIndex + 1 < $responses->get('additional-signatures');
+        @endphp
+        {{-- comment for tomorrow: always render the divs, but blank out content and "right" class to hide --}}
+        <div class="row">
+            <div class="col-xs-6">
+              <div class="right @if ($showFirstSignature)underline @endif">
+                  &nbsp;
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="right @if ($showSecondSignature)underline @endif">
+                  &nbsp;
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="left">
+                @if ($showFirstSignature)
+                  Additional Signature
+                @endif
+              </div>
+              <div class="right right-input">
+                @if ($showFirstSignature)
+                  <small></small>
+                @endif
+              </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="left">
+                  @if ($showSecondSignature)
+                    Additional Signature
+                  @endif
+                </div>
+                <div class="right right-input">
+                  @if ($showSecondSignature)
+                    <small></small>
+                  @endif
+                </div>
+            </div>
+        </div>
+      @endfor
+    @endif
 @endsection
