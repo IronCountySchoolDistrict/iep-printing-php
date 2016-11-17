@@ -2,17 +2,16 @@
 
 namespace App\Jobs;
 
-use Bus;
 use Exception;
+use Carbon\Carbon;
 use ZipArchive;
-use App\Jobs\Job;
+use Queue;
 use App\Iep\Pdftk;
-use App\Iep\Student;
 use App\Iep\Response;
-use Illuminate\Contracts\Bus\SelfHandling;
 use App\Iep\Legacy\Commands\FillPdfCommand;
+use App\Iep\Legacy\Commands\RemoveFile;
 
-class PrintPdf extends Job implements SelfHandling
+class PrintPdf
 {
     protected $student;
     protected $responses;
@@ -23,8 +22,6 @@ class PrintPdf extends Job implements SelfHandling
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct($student, $responses, $fileOption, $watermarkOption)
     {
@@ -40,8 +37,6 @@ class PrintPdf extends Job implements SelfHandling
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -60,9 +55,8 @@ class PrintPdf extends Job implements SelfHandling
                     }
                 } else {
                     // do legacy PrintPdf Command Job
-                    $info = Bus::dispatch(
-                        new FillPdfCommand($this->student, $this->jsonResponses[$index], $this->fileOption, $this->watermarkOption)
-                    );
+                    $fillPdfCommand = new FillPdfCommand($this->student, $this->jsonResponses[$index], $this->fileOption, $this->watermarkOption);
+                    $info = $fillPdfCommand->handle();
 
                     if (!empty($info['file'])) {
                         $this->files[] = $info['file'];
@@ -73,33 +67,42 @@ class PrintPdf extends Job implements SelfHandling
                     }
                 }
             } catch (Exception $e) {
-              // throw $e;
-              $error[$response->id] = $e->getMessage();
+                // throw $e;
+                $error[$response->id] = $e->getMessage();
             }
         }
 
         $downloadFile = $this->groupFiles();
 
-
         return ['file' => $downloadFile, 'error' => (isset($error)) ? $error : []];
     }
 
+    /**
+     * The job failed to process.
+     *
+     * @param Exception $exception
+     */
+    public function failed(Exception $exception)
+    {
+        ddd($exception);
+        // Send user notification of failure, etc...
+    }
 
     /**
-     * generate the name of the output file
-     *
-     * @param $extension
+     * generate the name of the output file.
+     * @param string $extension
      * @return string
      */
-    protected function getOutFile($extension = 'zip') {
+    protected function getOutFile(string $extension = 'zip'): string
+    {
         return str_slug($this->student->lastfirst . ' ' . str_random(4)) . '.' . $extension;
     }
 
     /**
-     * figure out how we should group
-     *
+     * figure out how we should group.
      */
-    protected function groupFiles() {
+    protected function groupFiles(): string
+    {
         if (count($this->files) > 1) {
             if ($this->fileOption == 'zip') {
                 return $this->createZip();
@@ -112,15 +115,16 @@ class PrintPdf extends Job implements SelfHandling
     }
 
     /**
-     * zip everything in $this->files into one zip file
+     * zip everything in $this->files into one zip file.
      *
      * @return string
      */
-    protected function createZip() {
+    protected function createZip(): string
+    {
         $outFile = $this->getOutFile();
 
         $zip = new ZipArchive();
-        $zip->open($outFile, ZIPARCHIVE::CREATE);
+        $zip->open($outFile, ZipArchive::CREATE);
 
         foreach ($this->files as $file) {
             $zip->addFile($file);
@@ -132,11 +136,12 @@ class PrintPdf extends Job implements SelfHandling
     }
 
     /**
-     * concatenate all pdf files into one pdf file
-     *
+     * concatenate all pdf files into one pdf file.
      * @return string
+     * @throws Exception
      */
-    protected function concatFiles() {
+    protected function concatFiles(): string
+    {
         $outFile = $this->getOutFile('pdf');
 
         foreach ($this->files as $index => $file) {
@@ -153,20 +158,24 @@ class PrintPdf extends Job implements SelfHandling
             throw new Exception('Error concatenating all forms. ' . $pdftk->getError());
         }
 
+        $date = Carbon::now()->addSeconds(8);
+        Queue::later($date, new RemoveFile($outFile));
         return $outFile;
     }
 
     /**
-    * add a watermark stamp to the pdf file
-    *
-    * @param $file Path to the file
-    */
-    protected function watermarkPdf($file) {
+     * add a watermark stamp to the pdf file.
+     *
+     * @param $file Path to the file
+     * @throws Exception
+     */
+    protected function watermarkPdf($file)
+    {
         $pdftk = new Pdftk($file);
 
         if ($this->watermarkOption == 'draft') {
             $pdftk->stamp(config('iep.draft_watermark'));
-        } else if ($this->watermarkOption == 'copy') {
+        } elseif ($this->watermarkOption == 'copy') {
             $pdftk->stamp(config('iep.copy_watermark'));
         }
 
