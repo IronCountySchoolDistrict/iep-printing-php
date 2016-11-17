@@ -6,9 +6,16 @@
     $haystack = preg_split($split, $haystack, $limit, $flags);
   }
 ?>
-
-@if (in_array($needle, $haystack))
-  <span class="ballot-box-checked">&#x2611;</span>
-@else
-  <span class="ballot-box">&#x2610;</span>
+@if (is_array($haystack))
+  @if (in_array($needle, $haystack))
+    <span class="ballot-box-checked">&#x2611;</span>
+  @else
+    <span class="ballot-box">&#x2610;</span>
+  @endif
+@elseif (is_string($haystack))
+  @if ($haystack == $needle)
+    <span class="ballot-box-checked">&#x2611;</span>
+  @else
+    <span class="ballot-box">&#x2610;</span>
+  @endif
 @endif

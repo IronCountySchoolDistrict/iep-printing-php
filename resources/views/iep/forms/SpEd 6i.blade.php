@@ -1,5 +1,4 @@
 <?php
-
 for ($i = 1; $i < 5; $i++) {
   if (!empty($responses->get('team-members-name' . $i))) {
     $forms[] = (object)[
@@ -12,7 +11,7 @@ for ($i = 1; $i < 5; $i++) {
         (object)['field' => 'location', 'type' => 'text', 'response' => $responses->get('location')],
         (object)['field' => 'team-members-name', 'type' => 'text', 'response' => $responses->get("team-members-name$i")],
         (object)['field' => 'role', 'type' => 'text', 'response' => $responses->get("role$i")],
-        (object)['field' => 'excused', 'type' => 'text', 'response' => $responses->get("reason$i", True) . '. ' . $responses->get('excused')],
+        (object)['field' => 'excused', 'type' => 'text', 'response' => $responses->get("reason$i") . '. ' . $responses->get('excused')],
         (object)['field' => 'adult-sign', 'type' => 'text', 'response' => $responses->get('adult-sign')],
         (object)['field' => 'lea-sign', 'type' => 'text', 'response' => $responses->get('lea-sign')],
         (object)['field' => 'adult-date', 'type' => 'text', 'response' => $responses->get('adult-date')],
