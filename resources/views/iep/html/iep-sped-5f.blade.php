@@ -80,9 +80,6 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <div class="left">
-      @include('iep.html._partials.checkbox', ['haystack' => $responses->get('all-requirements'), 'needle' => 'A'])
-    </div>
     <div class="right left-input">
       <span class="text-bold text-underline">All requirements of Rule II.J.5 must be documented below or attached.</span>
     </div>
@@ -91,9 +88,6 @@
   <p><br></p>
 
   <div class="col-xs-12">
-    <div class="left">
-      <span class="ballot-box">&#x2610;</span>
-    </div>
     <div class="right left-input">
       Team determined that learning needs exist, other than those directly related to the loss of hearing.
       {{ str_repeat('&nbsp;', 5) }}
@@ -104,9 +98,6 @@
   </div>
 
   <div class="col-xs-12">
-    <div class="left">
-      <span class="ballot-box">&#x2610;</span>
-    </div>
     <div class="right left-input">
       Type of deafness or hearing loss is:
       {{ str_repeat('&nbsp;', 5) }}
@@ -119,9 +110,6 @@
   </div>
 
   <div class="col-xs-12">
-    <div class="left">
-      <span class="ballot-box">&#x2610;</span>
-    </div>
     <div class="right left-input">
       Team determined that a central nervous system impairment, functional hearing loss, cortical hearing impairment, or auditory processing disorder is causing the student to appear as a student with a hearing impairment or deafness.
       {{ str_repeat('&nbsp;', 5) }}
@@ -213,7 +201,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" style="page-break-inside: avoid;">
   <div class="col-xs-12 box">
     <p>
       <span class="text-bold">Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D</span><br>
@@ -225,7 +213,7 @@
     <div class="row">
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Hearing Impairment/Deafness'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Hearing Impairment/Deafness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services'])
         </div>
         <div class="right left-input">
           This student has a Hearing Impairment/Deafness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -233,7 +221,7 @@
       </div>
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Hearing Impairment/Deafness'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Hearing Impairment/Deafness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
         </div>
         <div class="right left-input">
           This student does <span class="text-bold text-underline">not</span> have a Hearing Impairment/Deafness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.

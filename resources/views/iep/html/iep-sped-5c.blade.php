@@ -193,7 +193,7 @@
       </div>
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has Deafblindness'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has Deafblindness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services'])
         </div>
         <div class="right left-input">
           This student has Deafblindness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -201,7 +201,7 @@
       </div>
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have Deafblindness'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have Deafblindness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
         </div>
         <div class="right left-input">
           This student does <span class="text-bold text-underline">not</span> have Deafblindness, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
@@ -310,8 +310,8 @@
       *Note: If parent/adult student signature is missing, then parent/adult student:
       @include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'Did not attend (document efforts to involve parent/adult student)'])
       Did not attend (document efforts to involve parent/adult student) &nbsp;<span class="text-bold text-underline">OR</span>&nbsp;
-      @include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'OR Participated via telephone'])
-      Pareticipated via telephone, video conference or other means &nbsp;<span class="text-bold text-underline">AND</span>&nbsp;
+      @include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'OR Participated via telephone, video conference or other means'])
+      Participated via telephone, video conference or other means &nbsp;<span class="text-bold text-underline">AND</span>&nbsp;
       @include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'AND Copy of this document was mailed to parent/adult student on'])
       Copy of this document was mailed to parent/adult student on (date)
       <span class="underline">{{ (!empty($responses->get('note-date'))) ? $responses->get('note-date') : str_repeat('&nbsp;', 25) }}</span>

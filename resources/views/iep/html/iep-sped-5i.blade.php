@@ -90,7 +90,7 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('definition'), 'needle' => 'Medical history from qualified health professional regarding specific syndromes'])
+                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('definition'), 'needle' => 'Medical history from qualified health professional regarding specific syndromes, health concerns, medication, and any information deemed necessary for planning the students educational program is attached.'])
             </div>
             <div class="right left-input text-bold">
                 Medical history from qualified health professional regarding specific syndromes, health concerns, medication, and any information deemed necessary for planning the student’s educational program is attached.
@@ -187,7 +187,7 @@
                 <ul style="list-style-type: none">
                     <li>
                         <div class="left">
-                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has an Orthopedic Impairment'])
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has an Orthopedic Impairment, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
                         </div>
                         <div class="right left-input">
                             This student has an Orthopedic Impairment, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -195,7 +195,7 @@
                     </li>
                     <li>
                         <div class="left">
-                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have an Orthopedic Impairment'])
+                            @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have an Orthopedic Impairment, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services'])
                         </div>
                         <div class="right left-input">
                             This student does <span class="text-bold text-underline">not</span> have an Orthopedic Impairment, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
@@ -294,10 +294,10 @@
             *Note: If parent/adult student signature is missing, then parent/adult student:
             <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'Did not attend (document efforts to involve parent/adult student)'])</span>
             Did not attend (document efforts to involve parent/adult student) <span class="text-bold text-underline">OR</span>
-            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'OR Participated via telephone'])</span>
+            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'OR Participated via telephone, video conference or other means'])</span>
             Participated via telephone, video conference or other means <span class="text-bold text-underline">AND</span>
-            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'AND Copy of this document was mailed to parent/adult student on (date)_'])</span>
-            Copy of this document was mailed to parent/adult student on (date)
+            <span>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('note'), 'needle' => 'AND Copy of this document was mailed to parent/adult student on'])</span>
+            Copy of this document was mailed to parent/adult student on
             <span class="text-underline">{{ str_repeat('&nbsp;', 5) }}{{ (!empty($responses->get('note-date'))) ? $responses->get('note-date') : str_repeat('&nbsp;', 10) }}{{ str_repeat('&nbsp;', 5) }}</span>
         </div>
     </div>

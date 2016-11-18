@@ -111,11 +111,11 @@
             <span>On the basis of the data reviewed, the participants have determined:</span>
             <table class="table table-condensed">
                 <tr>
-                  <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => 'Existing data are sufficient to determine eligibility/continued eligibility and the nature and extent of the special education and related services needed.|1'])</td>
+                  <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => '1'])</td>
                   <td>Existing data are sufficient to determine eligibility/continued eligibility and the nature and extent of special education and related services needed.</td>
                 </tr>
                 <tr>
-                  <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => 'Existing data are NOT sufficient to determine eligibility/continued eligibility and the nature and extent of the special education and related services needed. Additional areas to be assessed below:|2'])</td>
+                  <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => '2'])</td>
                   <td>Existing data are NOT sufficient to determine eligibility/continued eligibility and the nature and extent of special education and related services needed.</td>
                 </tr>
                 <tr>
@@ -125,12 +125,12 @@
                           <span>Additional&nbsp;areas&nbsp;to&nbsp;be&nbsp;assessed:</span>
                         </div>
                         <div class="right underline left-input">
-                          <span>{{ ($responses->get('determined', True) == 'Existing data are NOT sufficient to determine eligibility/continued eligibility and the nature and extent of the special education and related services needed. Additional areas to be assessed below:|2') ? $responses->get('assessed', True) : '' }}</span>
+                          <span>{{ ($responses->get('determined', True) == '2') ? $responses->get('assessed', True) : '' }}</span>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => 'Parents have a right to and are requesting an assessment to determine eligibility/continued eligibility. Areas to be assessed:|3'])</td>
+                    <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('determined'), 'needle' => '3'])</td>
                     <td>Parents have a right to and are requesting an assessment to determine eligibility/continued eligibility.</td>
                 </tr>
                 <tr>
@@ -140,7 +140,7 @@
                             <span>Areas&nbsp;to&nbsp;be&nbsp;assessed:</span>
                         </div>
                         <div class="right underline left-input">
-                            <span>{{ ($responses->get('determined', True) == 'Parents have a right to and are requesting an assessment to determine eligibility/continued eligibility. Areas to be assessed:|3') ? $responses->get('assessed', True) : '' }}</span>
+                            <span>{{ ($responses->get('determined', True) == '3') ? $responses->get('assessed', True) : '' }}</span>
                         </div>
                     </td>
                 </tr>

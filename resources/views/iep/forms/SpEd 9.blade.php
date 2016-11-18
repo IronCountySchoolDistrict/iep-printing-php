@@ -7,7 +7,7 @@ if (!empty($responses->get('sign-of-interpreter'))) {
   $pdf->setField('adult-understands', 'Yes');
 }
 
-if (!empty($responses->get('date-of-communication')) && !empty($responses->get('by'))) {
+if (!empty($responses->get('communication-on')) && !empty($responses->get('communication-by'))) {
   $pdf->setField('notice-translated', 'Yes');
 }
 

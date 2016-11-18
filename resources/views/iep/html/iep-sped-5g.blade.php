@@ -173,7 +173,7 @@
     <div class="row">
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has an Intellectual Disability'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has an Intellectual Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
         </div>
         <div class="right left-input">
           This student has an Intellectual Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -181,7 +181,7 @@
       </div>
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have an Intellectual Disability'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have an Intellectual Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
         </div>
         <div class="right left-input">
           This student does <span class="text-bold text-underline">not</span> have an Intellectual Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
@@ -199,7 +199,6 @@
 </div>
 
 @include('iep.html._partials.notice-in-understandable-language')
-
 
 <p><br><br></p>
 

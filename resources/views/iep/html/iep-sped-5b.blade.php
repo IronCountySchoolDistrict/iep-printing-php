@@ -243,11 +243,11 @@
             </p>
             <ul style="list-style-type: none">
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA)'])
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
                     This student has a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
                 </li>
                 <li>
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA)'])
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
                     This student does <span class="text-bold text-underline">not</span> have a Speech/Language Impairment as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
                 </li>
             </ul>
@@ -368,7 +368,7 @@
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'Did not attend (document efforts to involve parent/adult student)'])
                 Did not attend (document efforts to involve parent/adult student)
                 <span class="text-bold text-underline">OR</span>
-                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'OR Participated via telephone'])
+                @include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'OR Participated via telephone, video conference or other means'])
                 Participated via telephone, video conference or other means
                 <span class="text-bold text-underline">AND</span>
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'AND Copy of this document was mailed to parent/adult student on'])

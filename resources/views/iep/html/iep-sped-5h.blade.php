@@ -202,7 +202,7 @@
     <div class="row">
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Multi-Disability'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has a Multi-Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
         </div>
         <div class="right left-input">
           This student has a Multi-Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.
@@ -210,7 +210,7 @@
       </div>
       <div class="col-xs-11 col-xs-offset-1">
         <div class="left">
-          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Multi-Disability'])
+          @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student does NOT have a Multi-Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.'])
         </div>
         <div class="right left-input">
           This student does <span class="text-bold text-underline">not</span> have a Multi-Disability, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and does not require special education and related services.
@@ -222,7 +222,7 @@
       The following options were considered and rejected for these reasons:{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('considered-and-rejected') }}
     </p>
     <p>
-      The following options were considered and rejected for these reasons:{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('other-factors') }}
+      Other factors that are relevant to this eligibility classification proposal:{{ str_repeat('&nbsp;', 5) }}{{ $responses->get('other-factors') }}
     </p>
   </div>
 </div>

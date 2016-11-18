@@ -109,28 +109,28 @@
                                     <td class="no-border-right">
                                         Career/Employment: <span class="left-input">{{ $responses->get('career-employment') }}</span>
                                     </td>
-                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered'])</td>
+                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered, not needed'])</td>
                                     <td class="no-border-left" style="width: 24%">Considered, not needed</td>
                                 </tr>
                                 <tr>
                                     <td class="no-border-right">
                                         Education/Instruction: <span class="left-input">{{ $responses->get('education-instruction') }}</span>
                                     </td>
-                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered'])</td>
+                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered, not needed'])</td>
                                     <td class="no-border-left">Considered, not needed</td>
                                 </tr>
                                 <tr>
                                     <td class="no-border-right">
                                         Community: <span class="left-input">{{ $responses->get('community') }}</span>
                                     </td>
-                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered'])</td>
+                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered, not needed'])</td>
                                     <td class="no-border-left">Considered, not needed</td>
                                 </tr>
                                 <tr>
                                     <td class="no-border-right">
                                         Adult Living Independent Living Skills (where appropriate): <span class="left-input">{{ $responses->get('adult-living-skills') }}</span>
                                     </td>
-                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered'])</td>
+                                    <td class="no-border-left no-border-right">@include('iep.html._partials.checkbox', ['haystack' => $responses->get('career-employment-considered'), 'needle' => 'Considered, not needed'])</td>
                                     <td class="no-border-left">Considered, not needed</td>
                                 </tr>
                             </tbody>
