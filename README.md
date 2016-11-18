@@ -37,9 +37,9 @@ Things that you'll need to install on the server are:
 - pdftk
 - libaio1
 - apache2
-    - enable `rewrite` module
+    - enable the `rewrite` and `headers` modules
 - PHP 7.0 + modules:
-    - php7.0-dev php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-zip libapache2-mod-php7.0
+    - `php7.0-dev`, `php7.0-mcrypt` `php7.0-mbstring` `php7.0-xml` `php7.0-zip` `libapache2-mod-php7.0`
 - [Oracle InstantClient 12c](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html) (basic and sdk/development packages)
     - use `alien -i oracle-package.rpm` to install. basic first then sdk.
 - oci8
