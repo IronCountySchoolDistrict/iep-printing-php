@@ -66,33 +66,50 @@ class Iep extends Model
     public static function getFormResponseData($iep)
     {
         $rawSql = "WITH form_responses AS
-        (SELECT u_fb_form_response.id,
-          u_fb_form_response.u_fb_form_id,
-          u_fb_form_response.modified_on,
-          u_fb_form_response.created_on
-        FROM u_fb_form_response
-        JOIN u_sped_iep_response  ON u_sped_iep_response.u_fb_form_response_id = u_fb_form_response.id
-        WHERE u_sped_iep_response.u_sped_iepid = ?)
+        (
+            SELECT
+              u_fb_form_response.id,
+              u_fb_form_response.u_fb_form_id,
+              u_fb_form_response.modified_on,
+              u_fb_form_response.created_on
+            FROM
+              u_fb_form_response
+              JOIN u_sped_iep_response ON u_sped_iep_response.u_fb_form_response_id = u_fb_form_response.id
+            WHERE
+              u_sped_iep_response.u_sped_iepid = ?
+        )
         SELECT
           form_responses.id AS responseid,
-          u_fb_form.id AS formid,
+          u_fb_form.id      AS formid,
           u_fb_form.form_type,
           (CASE
-            WHEN form_responses.modified_on IS NULL THEN
-              (CASE
-                WHEN form_responses.created_on IS NULL THEN To_date('19700101', 'yyyymmdd')
+           WHEN form_responses.modified_on IS NULL
+             THEN
+               (CASE
+                WHEN form_responses.created_on IS NULL
+                  THEN To_date('19700101', 'yyyymmdd')
                 ELSE form_responses.created_on
-              END)
-            ELSE form_responses.modified_on
-          END) AS modified_on,
+                END)
+           ELSE form_responses.modified_on
+           END)             AS modified_on,
           u_fb_form.form_title,
           u_fb_form.description
-        FROM u_fb_form
-        LEFT JOIN form_responses ON form_responses.u_fb_form_id = u_fb_form.id
-        WHERE u_fb_form.form_title LIKE 'IEP%'
-        AND u_fb_form.publish = 'true'
-        AND u_fb_form.id > 0
-        ORDER BY form_responses.modified_on DESC nulls last, form_responses.created_on DESC nulls last, u_fb_form.form_title ASC";
+        FROM
+          u_fb_form
+          LEFT JOIN form_responses ON form_responses.u_fb_form_id = u_fb_form.id
+        WHERE
+          u_fb_form.form_title LIKE 'IEP%' AND
+          u_fb_form.publish = 'true' AND
+          u_fb_form.id > 0
+        ORDER BY
+          CASE
+          WHEN form_responses.modified_on IS NULL
+            THEN form_responses.created_on
+          WHEN form_responses.modified_on > form_responses.created_on
+            THEN form_responses.modified_on
+          ELSE form_responses.created_on
+          END DESC NULLS LAST,
+          u_fb_form.form_title ASC";
 
         return DB::connection('oracle')->select($rawSql, [$iep]);
     }
