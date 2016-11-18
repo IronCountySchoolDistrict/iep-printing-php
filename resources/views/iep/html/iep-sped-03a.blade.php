@@ -10,7 +10,7 @@
             border-top: none;
         }
         .page-break {
-          page-break-after: always;
+          page-break-inside: avoid;
         }
     </style>
 @endsection
@@ -249,7 +249,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row page-break">
         <div class="col-xs-12 box">
             <span class="text-bold">Notice in Understandable Language:</span>
             <p>Federal regulations require that parents and adult students be provided prior notice in their native language or other mode of communication each time the LEA proposes or refuses to initiate or change the identification, evaluation, or educational placement of your child/you or the provision of a free appropriate public education (FAPE) to your child/you, or upon conducting a manifestation determination.</p>
