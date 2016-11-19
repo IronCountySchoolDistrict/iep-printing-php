@@ -301,7 +301,7 @@
 
     <p></p>
 
-    <div class="row">
+    <div class="row" style="page-break-inside: avoid;">
         <div class="col-xs-12 box">
             <p>
                 <span class="text-bold">Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D</span><br>
