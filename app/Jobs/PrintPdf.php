@@ -111,7 +111,7 @@ class PrintPdf
                 return $this->concatFiles();
             }
         } elseif (count($this->files) == 1) {
-            $date = Carbon::now()->addSeconds(8);
+            $date = Carbon::now()->addMinutes(30);
             Queue::later($date, new RemoveFile($this->files[0]));
             return isset($this->files[0]) ? $this->files[0] : '';
         } else {
@@ -163,7 +163,7 @@ class PrintPdf
             throw new Exception('Error concatenating all forms. ' . $pdftk->getError());
         }
 
-        $date = Carbon::now()->addSeconds(8);
+        $date = Carbon::now()->addMinutes(30);
         Queue::later($date, new RemoveFile($outFile));
         return $outFile;
     }
