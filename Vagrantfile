@@ -3,6 +3,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", path: "vagrant-provision.sh"
   config.vm.provision "shell", inline: "service apache2 restart", run: "always"
+  config.vm.provision "shell", inline: "supervisorctl reread && supervisorctl update && supervisorctl start laravel-worker:*", run: "always"
+  config.vm.provision "shell", inline: "service beanstalkd restart", run: "always"
 
   config.vm.network :private_network, {
       ip: "192.168.10.10",
