@@ -10,6 +10,7 @@ use App\Iep\Pdftk;
 use App\Iep\Response;
 use App\Iep\Legacy\Commands\FillPdfCommand;
 use App\Iep\Legacy\Commands\RemoveFile;
+use Log;
 
 class PrintPdf
 {
@@ -109,9 +110,13 @@ class PrintPdf
             } else {
                 return $this->concatFiles();
             }
+        } elseif (count($this->files) == 1) {
+            $date = Carbon::now()->addSeconds(8);
+            Queue::later($date, new RemoveFile($this->files[0]));
+            return isset($this->files[0]) ? $this->files[0] : '';
+        } else {
+            Log::error('groupFiles was called, but this->files is empty');
         }
-
-        return isset($this->files[0]) ? $this->files[0] : '';
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Iep\Legacy\Commands;
 
+/* Alias imports */
 use File;
 use Exception;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,7 +44,12 @@ class RemoveFile implements ShouldQueue
                 }
             } else {
                 Log::info("Deleting file: " . public_path($this->files));
-                File::delete(public_path($this->files));
+                $deleteStatus = File::delete(public_path($this->files));
+                if ($deleteStatus) {
+                    Log::info("Deletion of file: $this->files successful");
+                } else {
+                    Log::info("Deletion of file: $this->files unsuccessful");
+                }
             }
         } else {
             $this->delete();
