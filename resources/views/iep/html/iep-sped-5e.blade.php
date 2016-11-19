@@ -314,7 +314,7 @@
 
             <p>Based on the evaluation data, the eligibility team proposes the following action:</p>
 
-            <div class="row" style="page-break-inside: avoid;">
+            <div class="row">
                 <div class="col-xs-11 col-xs-offset-1">
                     <div class="left">
                         @include('iep.html._partials.checkbox', ['haystack' => $responses->get('action'), 'needle' => 'This student has an Emotional Disturbance, as defined in the Individuals with Disabilities Education Act (IDEA), that adversely affects educational performance and requires special education and related services.'])
