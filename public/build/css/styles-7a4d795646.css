@@ -1,0 +1,106 @@
+.panel .panel-body.panel-no-padding {
+  padding: 0;
+}
+
+.panel .panel-body.no-padding {
+  padding: 0;
+}
+
+.panel .panel-heading {
+  color: #607d8b;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.iep-sidebar {
+  border-right: 1px solid #eeeeee;
+}
+
+.iep-sidebar .iep-options {
+  padding: 10px;
+  border-top: 1px solid #eeeeee;
+}
+
+.scroll-pane {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-pane > .scroll-content {
+  position: absolute;
+  overflow: scroll;
+  overflow-x: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.no-padding {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.iep {
+  min-height: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.iep .iep-table tr.error td {
+  background-color: #f2dede;
+}
+
+.iep .iep-table tr.error .form-error {
+  color: #a94442;
+}
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.iep-container .iep-list {
+  min-height: 145px;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+  overflow-y: auto;
+}
+
+.iep-container .iep-list .iep-snippet {
+  background: #fafafa;
+  border-bottom: 1px solid #eeeeee;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.iep-container .iep-list .iep-snippet.active,
+.iep-container .iep-list .iep-snippet:hover {
+  background: #add;
+}
+
+.iep-container .iep-list .iep-snippet .iep-title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px !important;
+}
+
+.iep-container .iep-list .iep-snippet .iep-title a {
+  text-decoration: none;
+  border-bottom: 1px dashed;
+}
+
+.iep-container .iep-list .iep-snippet .iep-title a:hover {
+  text-decoration: none;
+}
+
+.iep-container .iep-list .iep-snippet .iep-desc {
+  margin: 0;
+}
+
+.iep-container .iep-list .iep-snippet .iep-date {
+  margin: 0;
+  color: #90a4ae;
+  font-size: 11px;
+}
