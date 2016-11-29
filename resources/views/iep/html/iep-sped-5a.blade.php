@@ -191,7 +191,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="page-break-inside: avoid;">
         <div class="col-xs-12 box">
             <span class="text-bold">Written Prior Notice for Eligibility Determination Utah State Board of Education Special Education Rules &sect;IV.D</span><br>
             <p>
@@ -332,7 +332,7 @@
                 <span class="text-bold text-underline">AND</span>&nbsp;
                 @include('iep.html._partials.checkbox', ['haystack' => $responses->get('missing'), 'needle' => 'AND Copy of this document was mailed to parent/adult student on (date)'])
                 Copy of this document was mailed to parent/adult student on (date)
-                <span class="underline">{{ (!empty($responses->get('mailed-date'))) $responses->get('mailed-date') : str_repeat('&nbsp;', 25) }}</span>
+                <span class="underline">{{ (!empty($responses->get('mailed-date'))) ? $responses->get('mailed-date') : str_repeat('&nbsp;', 25) }}</span>
             </p>
         </div>
     </div>
