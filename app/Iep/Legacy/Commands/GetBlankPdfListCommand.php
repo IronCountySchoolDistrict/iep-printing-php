@@ -15,7 +15,7 @@ class GetBlankPdfListCommand
      *
      * @param $forms
      */
-    public function __construct(array $forms)
+    public function __construct(string $forms)
     {
         $this->forms = json_decode($forms);
         $this->files = File::files(config('iep.blanks_storage_path'));
