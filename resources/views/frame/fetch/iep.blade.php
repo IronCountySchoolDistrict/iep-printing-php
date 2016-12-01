@@ -50,7 +50,7 @@
           <img src="{{ $form->responseid ? secure_asset('img/flag-green.png') : secure_asset('img/flag-blue.png') }}" title="Last Entry: {{ $form->modified_on }}" />
         </td>
         <td>
-          <a href="{{ config('iep.powerschool_url') }}admin/formbuilder/students/studentform.html?formid={{ $form->formid }}&amp;type={{ $form->form_type }}&amp;responseid={{ $form->responseid ? $form->responseid : -1 }}&amp;iep={{ $iep }}&amp;frn={{ $frn }}" target="_blank">
+          <a href="{{ config('iep.powerschool_url') }}admin/formbuilder/students/studentform.html?formid={{ $form->formid }}&amp;type={{ $form->form_type }}&amp;responseid={{ $form->responseid }}&amp;iep={{ $iep }}&amp;frn={{ $frn }}" target="_blank">
             {{ $form->form_title }}
           </a>
         </td>
