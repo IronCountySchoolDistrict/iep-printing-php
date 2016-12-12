@@ -104,7 +104,7 @@
                 <tbody>
                     <tr>
                         <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('tests'), 'needle' => 'Intellectual/Cognitive'])</td>
-                        <td style="width: 20%">Intellectual / Congnitive</td>
+                        <td style="width: 20%">Intellectual / Cognitive</td>
                         <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('tests'), 'needle' => 'Academic'])</td>
                         <td style="width: 16%">Academic</td>
                         <td>@include('iep.html._partials.checkbox', ['haystack' => $responses->get('tests'), 'needle' => 'Communication'])</td>
