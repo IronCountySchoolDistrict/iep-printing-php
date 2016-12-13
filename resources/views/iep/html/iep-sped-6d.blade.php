@@ -168,7 +168,7 @@
             </p>
         </div>
 
-        <div class="col-xs-12">
+        <div class="col-xs-12" style="page-break-inside: avoid;">
             <p class="text-bold" style="margin-top: 200px">
                 IEP Team Participants
             </p>

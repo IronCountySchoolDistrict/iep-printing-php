@@ -265,7 +265,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="page-break-inside: avoid;">
         <div class="col-xs-12 box">
             <h4>Participation in Statewide and District-wide Assessment &nbsp;&nbsp;(See attached addendum)</h4>
             <p>
