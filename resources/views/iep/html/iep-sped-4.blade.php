@@ -69,7 +69,8 @@
                     @include('iep.html._partials.checkbox', ['haystack' => $responses->get('review-evaluation-re-evaluation'), 'needle' => 'Review evaluation/re-evaluation data and consider your student\'s eligibility for special education and related services'])
                 </div>
                 <div class="col-xs-11">
-                    Review evaluation/re-evaluation data and consider your student's eligibility for special education and related services.
+                    Review evaluation/re-evaluation data and consider your student's eligibility for special education
+                    and related services.
                 </div>
                 <div class="col-xs-12">
                     <p style="text-decoration: underline">
@@ -78,10 +79,11 @@
                 </div>
 
                 <div class="col-xs-1">
-                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'and consider the educational placement of your student (Enclosed is a copy of the Procedural Safeguards)|1'])
+                    @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'Discuss/develop an individualized IEP for your student, and consider the educational placement of your student (Enclosed is a copy of the Procedural Safeguards)|1'])
                 </div>
                 <div class="col-xs-11">
-                    Discuss / develop an individualized education program (IEP) for your student, and consider the educational placement of your student.
+                    Discuss / develop an individualized education program (IEP) for your student, and consider the
+                    educational placement of your student.
                     <br>
                     <span class="text-bold">Enclosed is a copy of the Procedural Safeguards.</span>
                 </div>
@@ -99,7 +101,8 @@
                             @include('iep.html._partials.checkbox', ['haystack' => $responses->get('if-eligible'), 'needle' => 'with your consent (see attached consent form)|3'])
                         </div>
                         <div class="col-xs-11">
-                            An outside agency representative will be invited, as described below, with your consent (see attached consent form).
+                            An outside agency representative will be invited, as described below, with your consent (see
+                            attached consent form).
                         </div>
                     </div>
                 </div>
@@ -164,7 +167,8 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('lea-rep'))) ? 'no' : 'yes']) LEA Representative
+                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('lea-rep'))) ? 'no' : 'yes'])
+                LEA Representative
             </div>
             <div class="right underline left-input">
                 <span>{{ $responses->get('lea-rep') }}</span>
@@ -172,7 +176,8 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('sped-teacher'))) ? 'no' : 'yes']) Special Education Teacher
+                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('sped-teacher'))) ? 'no' : 'yes'])
+                Special Education Teacher
             </div>
             <div class="right underline left-input">
                 <span>{{ $responses->get('sped-teacher') }}</span>
@@ -180,7 +185,8 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('reged-teacher'))) ? 'no' : 'yes']) Regular Education Teacher
+                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('reged-teacher'))) ? 'no' : 'yes'])
+                Regular Education Teacher
             </div>
             <div class="right underline left-input">
                 <span>{{ $responses->get('reged-teacher') }}</span>
@@ -188,7 +194,8 @@
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px">
             <div class="left">
-                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('student-invited'))) ? 'no' : 'yes']) Student (as appropriate)
+                @include('iep.html._partials.checkbox', ['haystack' => 'yes', 'needle' => (empty($responses->get('student-invited'))) ? 'no' : 'yes'])
+                Student (as appropriate)
             </div>
             <div class="right underline left-input">
                 <span>{{ $responses->get('student-invited') }}</span>
@@ -308,13 +315,18 @@
     <div class="row" style="margin-top: 10px">
         <div class="col-xs-10 col-xs-offset-1 text-center">
             <p class="text-italic" style="text-decoration: underline">
-                If any IEP team member will not be attending the IEP meeting, complete and attach the form "IEP team member not attending" prior to the meeting.
+                If any IEP team member will not be attending the IEP meeting, complete and attach the form "IEP team
+                member not attending" prior to the meeting.
             </p>
         </div>
 
         <div class="col-xs-12">
             <p>
-                You may bring other individuals who have knowledge or special expertise regarding your student. At your request the Part C service coordinator or other representatives of the Part C system may be invited to participate at the initial IEP meeting for a student previously served under Part C of the IDEA. Please notify the person listed below and he/she will extend the invitation. If you plan to do so, or if this is not a convenient time and place, please contact:
+                You may bring other individuals who have knowledge or special expertise regarding your student. At your
+                request the Part C service coordinator or other representatives of the Part C system may be invited to
+                participate at the initial IEP meeting for a student previously served under Part C of the IDEA. Please
+                notify the person listed below and he/she will extend the invitation. If you plan to do so, or if this
+                is not a convenient time and place, please contact:
             </p>
         </div>
     </div>
