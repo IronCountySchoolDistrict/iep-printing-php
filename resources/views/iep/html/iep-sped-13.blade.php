@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    @if (!in_array($responses->get("environment"), ['Other']))
+    @if (in_array($responses->get("environment"), ['Other']))
         <div class="row" style="margin-top:10px;">
             <div class="col-xs-12">
                 <div class="left">
